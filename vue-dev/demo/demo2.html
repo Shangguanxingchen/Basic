@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app3'>
+        <p v-if="see">now you see me</p>
+    </div>
+
+    <script src="../dist/vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app3',
+            data: {
+                see: true
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>用户注册</h1>
+    <form action="">
+        <label>用户名：<input type="text" id="username"></label>
+        <br>
+        <br>
+        <label>密码&nbsp：<input type="password" id="password"></label>
+        <br>
+        <br>
+        <label>邮箱&nbsp：<input type="text" id="email"></label>
+        <br>
+        <br>
+        <input type="submit" value="注册" id="zc">
+        <input type="reset" value="重置"  id="cz">
+    </form>
+
+    <script src="../zh-web/lib/jquery-3.1.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#zc').on('click', function() {
+                var name = $('#username').val(),
+                    pass = $('#password').val(),
+                    email = $('#email').val();
+                $.post('php/ajaxreg.php', {username: name, password: pass, email: email}, function(response) {
+                    console.log(response);
+                    if(response == "success") {
+                        alert("恭喜您，注册成功！");
+                    } else("注册失败，请您重试！")
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

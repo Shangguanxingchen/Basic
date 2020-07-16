@@ -1,0 +1,564 @@
+html,body,a,ul,li,dl,dd,p,h2,h3 {
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+}
+ul,li {
+    list-style: none;
+}
+body {
+    min-width: 996px;
+}
+a:hover {
+    text-decoration: underline;
+}
+.header .header_top {
+    height: 40px;
+    line-height: 40px;
+    background: #dadada;
+    border-bottom: 1px solid #c7c7c7;
+}
+.wp {
+    margin:0 auto;
+    width: 996px;
+}
+.wp-left {
+    float: left;
+}
+.wp-left li {
+    float: left;
+}
+.wp-left li a {
+    margin-right: 25px;
+    color: #369;
+    font-size: 12px;
+}
+.wp-left li a.moflyfw {
+    background-image: url(../img/header_phone.gif);
+    background-repeat: no-repeat;
+    margin-right: 0;
+    padding-left: 15px;
+    padding-bottom: 3px;
+    position: relative;
+    top: -2px;
+}
+.wp-left li a:hover {
+    text-decoration: underline;
+}
+.wp-right {
+    float: right;
+}
+.wp-right li {
+    float: left;
+    padding-left: 10px;
+}
+.wp-right li a {
+    color: #3e84ab;
+    font-size: 12px;
+}
+.wp-right li a:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    height: 92px;
+    background: #f0f0f0;
+    border-top: 1px solid #fff;
+    position: relative;
+}
+.logo .icon_logo {
+    display: inline-block;
+    background-image: url(../img/logo_new.gif);
+    width: 201px;
+    height: 54px;
+    position: absolute;
+    left: 590px;
+    top: 18px;
+}
+
+.nav {
+    height: 50px;
+    line-height: 50px;
+    background: #3a9d9a;
+}
+.nav li {
+    float: left;
+    width: 140px;
+    height: 50px;
+    border-right: 1px solid #49a6a5;
+    border-left: 1px solid #3a9d9a;
+    text-align: center;
+    position: relative;
+}
+.nav li.active {
+    background-color: #28898d;
+}
+.nav li:hover {
+    background-color: #fbfbfb;
+}
+.nav li:hover a {
+    color: #0e6596;
+}
+.nav li:hover b {
+    width: 10px;
+    height: 5px;
+    background-image: url(../img/icon_up.gif);
+    position: absolute;
+    left: 105px;
+    top: 22px;
+}
+.nav li a {
+    color: #fff;
+    font-family: 'microsoft yahei';
+    font-size: 17px;
+}
+.cover {
+    width: 10px;
+    height: 5px;
+    background-image: url(../img/icon_down.gif);
+    position: absolute;
+    left: 105px;
+    top: 22px;
+}
+.nav_right {
+    float: right;
+    position: relative;
+}
+.nav_right input {
+    width: 200px;
+    height: 25px;
+    line-height: 25px;
+    padding: 1px 1px 1px 8px;
+    border: 1px solid #317798;
+    background: #e1ebea;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.nav_right a {
+    background-image: url(../img/search_icon.png);
+    width: 22px;
+    height: 21px;
+    display: inline-block;
+    position: absolute;
+    left: 180px;
+    top: 15px;
+}
+.container {
+    background: #f0f0f0;
+}
+.container .c_top {
+    padding: 20px 0;
+    position: relative;
+}
+.c_top .c_top_view li {
+    background-image: url(../img/icon_lvy.jpg);
+    width: 995px;
+    height: 330px;
+}
+.c_top .contral {
+    position: absolute;
+    right: 60px;
+    bottom: 40px;
+    z-index: 10;
+}
+.c_top .contral a {
+    background-image: url(../img/index_icon.png);
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    float: left;
+}
+.c_top .contral a.active {
+    background-position: 0 -20px
+}
+.container_mid {
+    margin: 25px auto;
+    width: 996px;
+    text-align: left;
+    overflow:hidden;
+}
+.container_mid .container_mid_l {
+    float: left;
+    width: 662px;
+    padding-right: 44px;
+}
+
+/* 推荐目的地 */ 
+.title {
+    height: 38px;
+    font-family: 'microsoft yahei';
+    color: #2b2b2b;
+    font-size: 18px;
+}
+.container_mid .container_mid_l .text {
+    margin-bottom: 30px;
+    overflow:hidden;
+}
+.text li {
+    float: left;
+}
+.text .iconleft {
+    width: 312px;
+    padding-right: 38px;
+    float: left;
+}
+.text li .name {
+    color: #666;
+    font-weight: bold;
+    font-size: 16px;
+    height: 18px;
+    line-height: 18px;
+    margin: 10px 0; 
+}
+.text p {
+    color: #9c9c9c;
+    line-height: 20px;
+    font-size: 12px;
+}
+.text .iconright {
+    width: 312px;
+    padding-right: 0;
+    float: left;
+}
+.iconright h2 a {
+    font-size: 16px;
+    color: #2b2b2b;
+    font-family: 'microsoft yahei';
+    font-weight: 100;
+}
+.dil {
+    background: url(../img/list_bg.gif) no-repeat 0 10px;
+    padding-left: 15px;
+    width: 310px;
+    line-height: 23px;
+    font-size: 12px;
+    color: #666;
+}
+.text .more {
+    padding-top: 40px;
+    float: left;
+    width: 662px;
+    color: #2b2b2b;
+    font-size: 12px;
+}
+.text .more a {
+    color: #666;
+    font-size: 12px;
+}
+.text .more a.active {
+    color: red;
+}
+
+.text .tupbox {
+    float: left;
+    padding-right: 37px;
+    width: 196px;
+    padding-bottom: 40px;
+    font-family: 'microsoft yahei';
+   /*  position: relative; */
+}
+.text .tupbox img {
+    margin-bottom: 5px;
+    width: 196px;
+    height: 196px;
+}
+.text .tupbox h2 {
+    color: #666;
+    font-size: 14px;
+    font-weight: 100;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+.text .tupbox .lt1 {
+    width: 90px;
+    float: left;
+    font-size: 12px;
+    color: #666;
+    line-height: 25px;
+    padding-bottom: 5px
+}
+.text .tupbox .ri2 {
+    width: 106px;
+    float: right;
+    font-size: 12px;
+    color: #666;
+    line-height: 25px;
+    padding-bottom: 5px;
+    text-align: right;
+}
+.text .tupbox a.like {
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    min-width: 35px;
+    display: inline-block;
+    padding: 2px 10px 2px 40px;
+    background: #94cf72;
+    background-image: url(../img/index_icon.png);
+    background-position: 8px -38px;
+    background-repeat: no-repeat;
+    /* position: absolute;
+    top: 260px;
+    left: 0px; */
+    color: #fff;
+}
+.xinxcl .text ul li.last {
+    padding-right: 0;
+}
+.dibgg .dibgg_l {
+    margin-right: 14px;
+}
+
+/* 右侧 */
+.container_mid .container_mid_r {
+    float: left;
+    width: 290px;
+}
+.xiangghd_tp .content {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.xiangghd_tp .content li {
+    float: left;
+    padding-bottom: 16px;
+}
+.xiangghd_tp .content .image {
+    float: left;
+}
+.xiangghd_tp .content li img {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 12px;
+}
+.xiangghd_tp .content li .text {
+    float: left;
+    width: 228px;
+}
+.text h3 {
+    width: 228px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 100;
+    color: #2b2b2b;
+    overflow: hidden;
+}
+.text p {
+    font-size: 12px;
+    color: #9c9c9c;
+    line-height: 20px;
+} 
+.text p .adming {
+    /* padding-right: 15px; */
+    float: left;
+}
+.text p .adriq {
+   /*  padding-right: 15px; */
+   float: right;
+}
+.xiangghd_bm {
+    margin-bottom: 60px;
+}
+.xiangghd_bm a {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+    font-family: 'microsoft yahei';
+    padding: 0 40px;
+    text-align: center;
+    background: #fa7b00!important;
+    color: #fff!important;
+    overflow: hidden;
+}
+.xiangghd_bm a:hover {
+    text-decoration: none;
+    background-color: #fe9f00!important;
+}
+.ads {
+    margin-bottom: 30px;
+    width: 290px;
+}
+.ads .title {
+    width: 265px;
+    line-height: 45px;
+    height: 45px;
+    font-weight: normal;
+    font-family: "microsoft yahei";
+    padding-left: 25px;
+    background-color: #3a9d9a;
+    font-size: 20px;
+    color: #fff;
+}
+.ads .booking {
+    width: 258px;
+    padding-left: 23px;
+    padding-right: 7px;
+    border: 1px solid #e6eef2;
+    border-top: none;
+    background-color: #f2f9fd;
+}
+.ads .booking .searchbox {
+    padding: 11px 0 5px;
+    border-bottom: 1px solid #e6eef2;
+}
+
+.ads .booking .searchbox .form input {
+    width: 230px;
+    line-height: 24px;
+    height: 24px;
+    margin: 4px 0;
+    padding-left: 10px;
+    background-color: #FFFFFF;
+    border: 1px solid #CDCDCD;
+    color: #555555;
+    display: inline-block;
+    font-size: 14px;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+.ads .booking .searchbox .form_bm {
+    padding: 7px 1px;
+    height: 25px;
+    line-height: 25px;
+    color: #3a9d9a;
+    font-size: 12px;
+    font-family: "simsun";
+}
+.ads .booking .searchbox .form_bm button {
+    float: right;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+    padding: 0 15px;
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    background: #fa7b00!important;
+    color: #fff!important;
+    cursor: pointer;
+    font-family: 'microsoft yahei';
+}
+.ads .booking .searchbox .form_bm button:hover {
+    background-color: #fe9f00!important;
+}
+.ads .booking p {
+    line-height: 28px;
+    height: 28px;
+    font-size: 12px;
+    font-family: "microsoft yahei";
+    color: #c9c8c8;
+}
+.ads .booking .bt_1 {
+    font-size: 14px;
+    font-family: Arial;
+    color: #003580;
+}
+.ads .booking .bt_2 {
+    font-size: 14px;
+    font-family: Arial;
+    color: #23b8f4;
+}
+.footer {
+    padding: 50px 0 40px;
+    background: #2b2b2b;
+    color: #818181;
+    text-align: center;
+}
+.footer .footer-wp {
+   
+}
+.footer .footer-wp .helpcenter {
+    width: 996px;
+    margin: 0 auto 50px;
+    overflow: hidden;
+    text-align: left;
+}
+.helpcenter dl {
+    float: left;
+    width: 145px;
+    height: 140px;
+    padding-left: 15px;
+    border-left: 1px solid #404040;
+}
+.helpcenter dl.first {
+    margin-left: 45px;
+}
+.helpcenter dl dt {
+    line-height: 24px;
+    padding-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #9c9c9c;
+}
+.helpcenter dl dd .phone {
+    display: inline-block;
+    background-image: url(../img/bottom_phone.gif);
+    width: 17px;
+    height: 16px;
+    position: relative;
+    top: 4px;
+    left: -5px;
+}
+.helpcenter dl dd.sina {
+    padding-left: 25px;
+    background: url(../img/bottom_sina.gif) 0 center no-repeat;
+    /* background-image: url(../img/bottom_sina.gif);
+    background-repeat: no-repeat; */
+}
+.helpcenter dl dd.weixin {
+    padding-left: 25px;
+    background: url(../img/bottom_weixin.gif) 0 center no-repeat;
+}
+.helpcenter dl dd a {
+    line-height: 24px;
+    color: #818181;
+    font-size: 12px;
+} 
+.helpcenter p.weixinapp img {
+    width: 86px;
+    height: 86px;
+}
+.footer p {
+    line-height: 24px;
+    padding-bottom: 5px;
+    font-size: 12px;
+}
+.footer p img {
+    width: 20px;
+    height: 27px;
+    position: relative;
+    top: 10px;
+    left: 5px;
+}
+.huiddb {
+    display: block;
+    width: 52px;
+    height: 52px;
+    text-align: center;
+    position: fixed;
+    right: 94px;
+    top: 450px;
+    background: url(../img/gotop.gif) -52px 0;
+}
+.huiddb:hover {
+    background-position: 0 0;
+}
+.lianxwm {
+    display: block;
+    width: 52px;
+    height: 52px;
+    text-align: center;
+    position: fixed;
+    right: 94px;
+    top: 510px;
+    background: url(../img/gotop.gif) no-repeat -52px -53px;
+}
+.lianxwm:hover {
+    background-position: 0 -53px;
+}

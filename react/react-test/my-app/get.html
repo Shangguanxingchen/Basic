@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="./static/lzsale/src/js/jquery.min.js"></script>
+	<script>
+		/*function handleResponse(response){
+			 console.log('The responsed data is: '+response.data);
+		}
+		var script = document.createElement('script');
+		script.src = 'http://ipostest.bestseller.com.cn:8069?callback=handleResponse';
+		document.body.insertBefore(script, document.body.firstChild);*/
+	</script>
+	<script>
+		$(document).ready(function() {
+
+			$('#loadBtn').on('click', function() {
+				// var url = '../CSS/table.html';
+				// var url = '../json/data.txt';
+				//var url = '../userMng/server/ajaxUserList.php';
+				var a = 'http://ipostest.bestseller.com.cn:8069';
+				var url = a + '/nt_project_lingzhi/web_mobile/api?object=nt.pos.html';
+
+				$.post(url, function(response) {
+
+					console.log(response.data)
+
+					// response = eval('(' + response + ')'); // 不推荐
+
+					// response = $.parseJSON(response); // 依赖jQuery
+
+					// response = JSON.parse(response); // JSON.stringify();
+
+					// console.log(response.list.data);
+
+					// $('#wp').html(response);
+				}, 'json');
+			});
+
+		});
+	</script>
+</head>
+<body>
+
+	<button id="loadBtn">load</button>
+
+	<hr>
+
+	<div id="wp">
+		loading...
+	</div>
+	
+</body>
+</html>

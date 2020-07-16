@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src = "../../jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        var lazyLoadImg = function(){
+	        $("img[src='']").each(function() {
+	            var $this = $(this);
+	            var $win = $(window);
+
+	            //if($this.attr('src') != "") return;
+
+	            if($this.offset().top + $this.height()/2  <  $win.height() + $win.onScrollTop()) {
+	            	$this.attr('src', $this.attr('x-src'));
+	            }
+
+	        });
+	    };
+
+	    $(window).on('scroll', lazyLoadImg);
+    </script>
+</body>
+</html>

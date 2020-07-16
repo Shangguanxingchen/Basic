@@ -1,0 +1,24 @@
+#content {
+    border: 1px solid #aaa;
+    margin: 10px auto;
+    width: 800px;
+}
+
+.pro_detail {
+    width: 780px;
+    height:auto;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.pro_detail_left {
+    width: 380px;
+    float: left;
+    overflow: hidden;
+}
+
+.pro_detail_right {
+    width: 380px;
+    float: left;
+    margin: 10px;
+}

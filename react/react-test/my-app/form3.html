@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <meta name="author" content="zsy">
+    <meta name="keywords" content="table, analysis">
+    <meta name="description" content="Query goods gross margin">
+    <meta name="robots" content="index, follow">
+
+    <meta name="apple-mobile-web-app-title" content="landing">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="">
+    <link rel="stylesheet" type="text/css" href="static/lzsale/build/common.css">
+
+    <meta name="google" value="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <title>门店周报</title>
+    
+    <script src="static/src/js/fastclick.min.js"></script>
+    <script src="static/lzsale/src/js/expand.js"></script>
+    <script src="static/index/js/jquery.min.js"></script>
+    <script src="project_dashboard.js"></script>
+    <script src="static/index/js/get_lang_json.js"></script>
+    
+</head>
+<body>
+    <div class="header new_header">
+        <ul>
+            <li style="width: 10%;height:100%"></li>
+            <li>
+                <a href="form.html" class="header_a" tkey="one_one"></a>
+            </li>
+            <li>
+                <a href="form11.html" class="header_a" tkey="store_sale"></a>
+            </li>
+            <li>
+                <a href="form5.html" class="header_a" tkey="multichannel_sale"></a>
+            </li>
+            <li>
+                <a href="form2.html" class="header_a" tkey="store_target"></a>
+            </li>
+            <li>
+                <a href="javascript:;" class="active header_a" tkey="store_week"></a>
+            </li>
+            <li>
+                <a href="form4.html" class="header_a" tkey="kucun_analysis"></a>
+            </li>
+            <li style="width: 10%"></li>
+        </ul>
+    </div>
+    <div id="main3"></div>
+    <div class="background"></div>
+    
+    <!-- 帮助1 -->
+    <div class="help-modeWeek-one">
+      <div>
+        <p class="help-title" tkey="three_1">
+        跨店对比
+        </p>
+      </div>
+      <div>
+        <div tkey="three_2">     - 周期显示:（缺省）当前日期所在周（周一至周日）</div>
+        <div class="line-margin" tkey="three_3">     - 日期筛选器:（1）选择任意天，选择范围截止至当天（2）缺省为当天</div>
+      </div>
+      <div tkey="three_4">     - 跨店对比条件:筛选器日期范围内当前门店（店仓A)与店仓B销售额对比</div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="three_5">店仓B默认为时间范围内同办事处同品牌，除当前门店外
+              排名最高门店；</li>
+          <li tkey="three_6">显示各门店排名次序；</li>
+          <li tkey="three_7">销售金额＝单位时间内，成交价*销售数量（计入退货商品）；</li>
+          <li tkey="three_8">本店环比公式</li>
+          <div tkey="three_9">     （本时间周期销售金额－同年上一周期销售金额）／本期金额＊100%</div>
+          <li tkey="three_10">本店同比公式</li>
+          <div tkey="three_11">     （本时间周期销售金额－去年上一周期销售金额）／本期金额＊100%</div>
+          <li tkey="three_12">同环比为正数时标 ↑；负数时标 ↓；</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="help-modeWeek-two">
+      <div>
+        <p class="help-title" tkey="three_13">
+        购物篮分析
+        </p>
+      </div>
+      <div>
+        <div tkey="three_14">     - 日期筛选范围内，每天的</div>
+      </div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="three_15">日小票数量（ ＊ 计入退单数量）；</li>
+          <li class="line-margin" tkey="three_16">搭配率</li>
+          <div tkey="three_17">     日销售商品数量／日小票数量 （＊ 不计入退货商品）</div>
+          <li class="line-margin" tkey="three_18">客单价</li>
+          <div tkey="three_19">     日均销售总额／日小票数量；</div>
+          <li class="line-margin" tkey="three_20">件单价</li>
+          <!-- <div tkey="three_21">     日均销售总额／日销售商品数量；</div> -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="help-modeWeek-three">
+      <div>
+        <p class="help-title" tkey="three_22">
+        活动分析（饼图，环比统计）
+        </p>
+      </div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="three_23">对比日期</li>
+          <div tkey="three_24">     当前日期范围与同年上期</div>
+          <li class="line-margin" tkey="three_25">外环数值</li>
+          <div tkey="three_26">     日期范围内所有促销活动销售额／销售总额＊100%（＊正价＝促销活动的一种）</div>
+          <li class="line-margin" tkey="three_27">内环</li>
+          <div tkey="three_28">     正价活动与所有促销活动销售总额相对比例；</div>
+        </ul>
+      </div>
+    </div>
+
+    <div class="help-modeWeek-four">
+      <div>
+        <p class="help-title" tkey="three_29">
+        商品销售量排行
+        </p>
+      </div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="three_30">降序统计大类销售，单品销售，取值TOP5</li>
+          <li tkey="three_31">数量不足5时显示“<暂无数据>”</li>
+          <li tkey="three_32">柱状图绘制，最大值取TOP1，其他按比例递减（点击显示名称与销售额）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="help-modeWeek-five">
+      <div>
+        <p class="help-title" tkey="three_33">
+        店铺排行列表与对比店铺选择
+        </p>
+      </div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="three_34">同办事处同品牌店铺对比</li>
+          <li tkey="three_35">标注当前店铺信息</li>
+          <li tkey="three_36">标注正在对比店铺信息</li>
+          <!-- <li tkey="three_37">见👆最上面</li> -->
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+        var One = {};
+        var Two = {};
+        var Three = {};
+        var Four = {};
+        var myCharts = {};
+        var needAnimation = false;
+        var _s;
+    </script>
+    <script type="text/javascript">
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        var _s = getUrlParameter('_s');
+        // _s = (!!_s)?_s:'';
+        if(_s == undefined || _s == 'undefined'){
+            _s = ''
+        }
+
+        var _paq = _paq || [];
+        window.onload = function(){
+            var shop_id = getUrlParameter('shop_id');
+            var _lang = getUrlParameter('lang');
+            var _s = getUrlParameter('_s');
+            var _siteId = getUrlParameter('site_id');
+            var arr = document.getElementsByClassName('header_a');
+            for(var i in arr){
+                var href = arr[i].href;
+                arr[i].href = href + '?shop_id=' + shop_id + '&lang=' + _lang + '&_s=' + _s + '&site_id=' + _siteId;
+            }
+            
+            // $('.header_a').each(function(){
+            //     if(!$(this).hasClass('active')){
+            //         $(this).attr('href', $(this).attr('href') + '&lang=' + _lang);
+            //     }
+            // })
+            setTimeout(function(){
+                var params = getParam(str);
+                _paq.push(['enableLinkTracking', true]);
+                (function() {
+                    try {
+                        var storage, SiteId, UserId;
+                        if(!!window.sessionStorage){
+                            storage = window.sessionStorage;
+                            SiteId = params.SiteId || storage.getItem("SiteId") || P_SiteId;
+                            UserId = params.UserId || storage.getItem("UserId") || '';
+                        }else{
+                            SiteId = params.SiteId || P_SiteId;
+                            UserId = params.UserId || '';
+                        }
+                        
+                        if(!!window.sessionStorage){
+                            storage = window.sessionStorage;
+                            storage.setItem("SiteId", SiteId);
+                            storage.setItem("UserId", UserId);
+                        }
+                        // 如果site_id是false,则不发送Piwik数据
+                        if(SiteId == '' || SiteId == false){
+                            return
+                        }
+                        
+                        var u="http://a2.nexttao.com/";
+                        // 当url为空不发送
+                        if(u == "" || u == "false" || u == false){
+                            return
+                        }
+                        if(!!UserId){
+                            _paq.push(['setUserId', UserId]);
+                        }
+                        _paq.push(['setTrackerUrl', u+'piwik.php']);
+                        _paq.push(['setSiteId', SiteId]);
+                        _paq.push(['setDocumentTitle', 'Dashboard-门店周报']);
+                        _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+                        _paq.push(['trackPageView']);
+                        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                    }catch (e){
+                        console.log(e);
+                    }
+                })();
+            }, 200)
+            
+        }
+        //piwik
+        var str = window.location.href;
+        function getParam(str){
+            var obj = {};
+            var pos_hash = str.lastIndexOf('#') ;
+            if(pos_hash != -1){
+                var search_arr = str.substr(str.indexOf('?') + 1 , ( pos_hash - str.indexOf('?') - 1)).split('&');
+            }else{
+                var search_arr = str.substr(str.indexOf('?') + 1).split('&');
+            }
+            for(var i = 0; i < search_arr.length; i++){
+                var key_value_arr = search_arr[i].split('=');
+                obj[key_value_arr[0]] = decodeURIComponent(key_value_arr[1]);
+            }
+            return obj;
+        }
+
+    </script>
+    <script type="text/javascript" src="static/lzsale/build/form3.js"></script>
+    <script src="static/index/js/lang.js"></script>
+    <script src="static/lzsale/src/js/common.js"></script>
+</body>
+</html>

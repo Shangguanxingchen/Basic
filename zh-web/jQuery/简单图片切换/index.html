@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .img-slider {
+            width: 500px;
+            height: 200px;
+            background-color: pink;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .img-slider li {
+            width: 500px;
+            height: 200px;
+            float:left;
+        }
+        .img-slider a {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            margin-top: -25px;
+            left: 0;
+            background-color: #333;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            display: none;
+        }
+        .img-slider a.next {
+            left: auto;
+            right: 0;
+        }
+        .img-slider:hover a {
+            display: block;
+        }
+    </style>
+    <script src="../../lib/jquery-3.1.0.js"></script>
+    <script>
+
+    /*简单图片切换*/
+        /*$(document).ready(function() {
+            $('.img-slider > a').on('click', function() {
+                var $this = $(this),
+                    $ul = $('.img-slider ul');
+                if ($this.hasClass('next')) { // next
+                    $ul.append($ul.find('li:first'));
+                } else { // prev
+                    $ul.prepend($ul.find('li:last'));
+                }
+            });
+        });*/
+        
+        /*$(document).ready(function() {
+            $('.img-slider > a').on('click', function() {
+                var $this = $(this),
+                    $ul = $('.img-slider ul')
+                if($this.hasClass('prev')) {
+                    $ul.prepend($ul.find('li:last'));
+                } else {
+                    $ul.append($ul.find('li:first'));
+                }
+            });
+        });*/
+
+    /*简单图片滑动切换*/
+        $(document).ready(function() {
+            var $ul = $('.img-slider > ul'),
+                len = $ul.find('li').length,
+                width = $ul.find('li').width(),
+                ulWidth = len * width;
+
+            $('.img-slider > a').on('click', function() {
+                var $this = $(this);
+
+                if ( $('ul:animated').length > 0 ) {
+                    return;
+                }
+
+                if ($this.hasClass('next')) {
+                    $ul.animate({marginLeft: -width}, 500, function() {
+                        $ul
+                            .append($ul.find('li:first'))
+                            .css('margin-left', 0);
+                    });
+                } else {
+                    $ul
+                        .prepend($ul.find('li:last'))
+                        .css('margin-left', -width);
+                    $ul.animate({marginLeft: 0}, 500);
+                }
+
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div class="img-slider">
+        <ul>
+            <li>item1</li>
+            <li>item2</li>
+            <li>item3</li>
+            <li>item4</li>
+            <li>item5</li>
+        </ul>
+        <a href="javascript:;" class="prev"></a>
+        <a href="javascript:void(0);" class="next"></a>
+    </div>
+
+    <!-- <hr>
+    <a href="#">test</a> -->
+    
+</body>
+</html>

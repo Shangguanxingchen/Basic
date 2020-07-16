@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+        background: url(./bs.jpg) no-repeat;
+      }
+      .content {
+        color:#ffffff;
+        opacity: 0.7;
+        font-size: 28px;
+        margin-top: 20px;
+      }
+      @media screen and (max-width: 768px) {
+        body {
+          background: url(./sbg.jpg) no-repeat;
+        }
+        .content {
+          font-size: 18px;
+      }
+    </style>
+</head>
+<body>
+    <div class="content" id="content">
+      Welcome to connect BS-Visitor Wi-Fi
+    </div>
+    <script>
+      /*var bb = 1;
+      function aa(bb) {
+        bb = 2;
+        alert(bb);
+      };
+      aa(bb);
+      alert(bb);*/
+      /*function a () {
+        console.log(this)
+      }
+      document.getElementById("content").onclick = function() {
+        a()
+      }*/
+      for(var i=0; i<5; i++) {
+        setTimeout(function() {
+          console.log(i)
+        },500)
+      }
+    </script>
+</body>
+</html>

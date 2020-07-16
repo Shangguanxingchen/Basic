@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>手风琴菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul,li {
+            list-style: none;
+        }
+        .shoufq {
+            width: 360px;
+            margin: 50px auto;
+            background-color: green;
+
+        }
+        .red {
+            color:red;
+        }
+        .shoufq h1 {
+            cursor: pointer;
+        }
+        .shoufq li {
+            background-color: pink;
+            color: blue;
+            text-indent: 20px;
+            cursor: pointer;
+        }
+        .shoufq li:hover {
+            background-color: red;
+        }
+        .title ul {
+            display: none;
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    <div class="shoufq">
+        <div class="title">
+            <h1>CSS课程</h1>
+            <ul>
+                <li>课程1</li>
+                <li>课程2</li>
+                <li>课程3</li>
+                <li>课程4</li>
+                <li>课程5</li>
+            </ul>
+        </div>
+        <div class="title">
+            <h1>js课程</h1>
+            <ul>
+                <li>课程1</li>
+                <li>课程2</li>
+                <li>课程3</li>
+                <li>课程4</li>
+                <li>课程5</li>
+            </ul>
+        </div>
+        <div class="title">
+            <h1>jQuery课程</h1>
+            <ul>
+                <li>课程1</li>
+                <li>课程2</li>
+                <li>课程3</li>
+                <li>课程4</li>
+                <li>课程5</li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <p></p>
+    
+    <script src="../../lib/jquery-3.1.0.js"></script>
+    <script>
+        $("p").html("Hello <b>world</b>!");
+        /*function accordion() {
+            var $shoufq = $('.shoufq'),
+                $h1 = $shoufq.find('h1');
+
+            $h1.on('click', function() {
+                var $this = $(this),
+                    $ul = $this.parent().find('ul');
+
+                $ul.toggle();
+                $this.parent().siblings().find('ul').hide();
+
+            })
+
+        }
+        accordion();*/
+        $(document).ready(function() {
+
+            var $title = $('.shoufq div.title');
+            $title.on('click', function() {
+                var $this = $(this);
+                $this
+                    .find('h1').toggleClass('red')
+                    .end()
+                    .find('ul').slideToggle()
+                    .end()
+                    .siblings()
+                    .find('h1.red').removeClass('red')
+                    .end()
+                    .find('ul:visible').slideUp();
+
+            });
+        });
+    </script>
+</body>
+</html>

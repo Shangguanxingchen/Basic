@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>大小屏动态响应轮播图</title>
+		
+	</head>
+	<body>
+		<script>
+			var banner = function(){
+				//1.获取数据及需要操作元素
+				var $banner = $('.banner');
+				var $points = $banner.find('.point');
+				var $images = $banner.find('.image');
+				var $window = $(window);
+				var data = [
+							{
+								pcSrc:"pc.jpg",
+								mSrc:"m.jpg"
+							}
+				];
+				
+				//渲染操作
+				var render = function(){
+					//2.判断当前设备768px
+					var isMobile = $window.width() < 768 ? true : false;
+					//3.根据当前设备把数据转换成HTML   拼接字符串
+					//3.1点容器内容需要动态生成
+					var pointHtml = '';
+					//3.2图片容器内容需要动态生成
+					var imageHtml = '';
+					
+					$.each(data,function(k,val){
+						pointHtml += '<li data-slide-to=" '+(k==0?active:'')+' "></li>';
+						
+						imageHtml += '<div>';
+						
+						if(isMobile){
+							imageHtml += '<img src=" '+val.mSrc+' "></img>';
+						}else{
+							imageHtml += '<img src=" '+val.pcSrc+' "></img>';
+						}
+
+						imageHtml += '</div>';
+					});
+					//4.渲染到页面当中
+					$points.html(pointHtml);
+					$images.html(imageHtml)
+				}
+;				
+				//5.测试是否相应   两种设备   监听页面尺寸改变重新渲染
+				//6.移动端 手势切换功能
+			};
+		</script>
+	</body>
+</html>

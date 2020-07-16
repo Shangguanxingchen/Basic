@@ -1,0 +1,270 @@
+[ng\:cloak],[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak{
+    display:none ! important;
+}
+a, body{
+    color: #34495E;
+}
+.title{
+    /*margin-top: 1rem;*/
+    /* margin-left: -25px; */
+    padding-left: 15px;
+    font-size: 20px;
+    font-family: PingFangSC-Medium;
+}
+.title::before{
+    content:" ";
+    position: absolute;
+    width: 4px;
+    height: 18px;
+    margin-left: -1rem;
+    margin-top: 13px;
+    background-color: #1296db;
+    box-shadow: 0px 2px 3px 1px #eaeaea;
+    border-radius: 3px;
+}
+/* .blue_block{
+    width: 5px;
+    height: 22px;
+    display: inline-block;
+    background: #1296db;
+    float: left;
+    margin-top: 6%;
+    margin: 10px 20px 10px 0;
+} */
+.datepicker{
+    /*margin-top: 1rem;*/
+}
+.datepicker img, .date_img{
+    width: 2rem;
+    float: right;
+    margin-top: 1rem;
+}
+.startDate_today{
+    background-color: #f7f8fa;
+    padding: .6rem 4rem ! important;
+}
+.startDate{
+    background-color: #f7f8fa;
+    padding: .6rem 1rem;
+}
+.header_5{
+    line-height: 47px;
+}
+.date_title{
+    /*margin-top: 1.4rem;*/
+}
+a:hover, a:focus{
+    color: #2db7f5;
+    text-decoration: none;
+}
+.nav-pills>li>a{
+    line-height: 1rem;
+    margin-top: 0.5rem;
+}
+._mar{
+    /*margin: 1rem 0;*/
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.tit_mar{
+    text-align: center;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+.mar_right{
+    border-right: 1px solid #eaeaea;
+    border-top: 1px solid #eaeaea;
+}
+.nodata_mul{
+	margin: 60% 335%;
+}
+.mar_left{
+    border-top: 1px solid #eaeaea;
+}
+._right_mar{
+    margin-top: 4rem;
+}
+.count_text{
+    font-size: 16px;
+    text-align: center;
+}
+.count{
+    text-align: center;
+    color: #ff6a00;
+}
+.count span{
+    font-size: 24px;
+    font-weight: 300;
+}
+.circle{
+    width: 3rem;
+    height: 3rem;
+    background-color: red;
+    border-radius: 50%;
+}
+.circle div{
+    margin-top: 8px;
+}
+.row{
+    width: 100%;
+}
+.well{
+    padding: 10px;
+    margin-bottom:0;
+    border-radius:0;
+}
+.sale_amount{
+    color: #339966;
+    font-size: 24px;
+}
+.big_font{
+    font-size: 24px;
+}
+.sale_count{
+    color: #34495E;
+    /*font-weight: 700;*/
+    font-size: 24px;
+}
+.sale_count span{
+	font-size: 16px;
+}
+#sale_on_off{
+    /* width: 300px; */
+    height: 150px;
+}
+.line_on::before{
+    content:" ";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    margin-left: -1.3rem;
+    margin-top: 0.4rem;
+    background-color: #FF9900;
+}
+.line_off::before{
+    content:" ";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    margin-left: -1.3rem;
+    margin-top: 0.4rem;
+    background-color: #FFB97B;
+}
+.line_on_off_amount{
+    font-size: 24px;
+}
+.flex_channel{
+    display: flex;
+    display: -webkit-box;
+    border: 1px solid #eaeaea;
+    overflow-y: auto;
+}
+.flex_lr{
+    min-width: 25%;
+    display: flex;
+    justify-content: flex-start;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    flex-grow: 2;
+}
+.channel_left{
+    width: 94px;
+    height: 108px;
+    background-color: #F7F8FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.channel_right {
+    padding: 0 10px;
+    /*margin: 1rem 0;*/
+}
+.channel_right div{
+    margin: .5rem 0;
+}
+.div2{
+    background-color: white; 
+    margin-top:1rem; 
+    /*border: 1px solid #eaeaea;*/
+}
+.staff_sort{
+    display: flex;
+    border: 1px solid #eaeaea;
+}
+.staff_left{
+    /*margin: 1rem;*/
+    width: 13%;
+}
+.tr_div{
+    padding: 8px;
+}
+.staff_right{
+    width: 84.5%;
+    /*margin: 1rem;*/
+    display: flex;
+    
+}
+.right_column{
+    position: relative;
+    min-width: 150px;
+    border-right: 1px solid #eaeaea;
+}
+.staff_right div div{
+    padding:3px;
+}
+.staff_color{
+    background-color: #F7F8FA;
+}
+.tit{
+    color: #34495E;
+    font-size: 18px;
+    font-weight: 700;
+}
+.tit_num{
+    color: #DA1E24;
+    font-size: 16px;
+    font-weight: 700;
+}
+.tit_1{
+    color: #34495E;
+    font-weight: 700;
+    font-size: 16px;
+}
+.tit_2{
+    color: #748292;
+    font-weight: 300;
+    font-size: 13px;
+}
+.bg_style {
+    position: absolute;
+    top: 60px;
+    width: 149px;
+    margin-left: -9%;
+    font-size: 124px;
+    font-weight: lighter;
+    text-align: center;
+    opacity: .4;
+    /*height: 297px;*/
+    color: #CACFD5;
+    font-family: helvetica;
+    font-style: italic;
+}
+/*
+  Set the color of the icon
+*/
+svg path,
+svg rect{
+  fill: #FF6700;
+}
+.loader{
+	width: 100%;
+    height: 100%;
+	margin: 0 0 2em;
+    text-align: center;
+    padding: 30%;
+    margin: 0 auto 1em;
+    display: inline-block;
+    vertical-align: top;
+}

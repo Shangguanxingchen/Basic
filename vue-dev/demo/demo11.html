@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id = "ha"></div>
+	<script>
+	/*function findLongestWord(str) {
+		var ha = document.getElementById('ha');
+		
+ 
+		 var astr=str.split( " " );
+
+		
+		 var bstr=astr.sort(function(a,b){
+
+		   return b.length-a.length;
+
+		 });
+
+		
+
+		 var lenMax= bstr[0].length;
+
+		
+
+		 return lenMax;
+		 
+ 		ha.innerHTML = lenMax;
+		}
+
+	findLongestWord("The quick brown foxjumped over the lazy dog");*/
+	/*function titleCase(str) {
+		var item = str.split(' ');
+		for (var i=0; i<item.length; i++) {
+			 item[i] = item[i][0].toUpperCase() + item[i].substring(1,item[i].length)
+		}
+		var strCase = item.join(' ');
+		console.log(strCase);
+	};
+	titleCase('i am a boy');*/
+
+	function titleCase(str) {
+
+		 var astr=str.toLowerCase().split(" ");
+
+		 for(var i=0 ; i<astr.length; i++){
+
+		   astr[i]=astr[i][0].toUpperCase()+astr[i].substring(1,astr[i].length);
+
+		 }
+
+		 var string=astr.join(" ");
+
+		 return string;
+		 console.log(string)
+
+		}
+
+		titleCase("I'm a little tea pot");
+	function charA(str,target) {
+		if(str.charAt(0) == target) {
+			return true
+		}
+		return false
+	}
+
+	charA('sublime', 'a')
+	</script>
+</body>
+</html>

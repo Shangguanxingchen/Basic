@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*//方法一
+        var arr = [2,5,7,8,9,2,5,7];
+        function unit(tmparr) {
+            var emptyarr = [];
+            for(var i=0; i<tmparr.length; i++) {
+                if(emptyarr.indexOf(tmparr[i]) < 0) {
+                    emptyarr.push(tmparr[i]);
+                }
+            }
+            return emptyarr;
+        }
+        console.log(unit(arr));*/
+
+    //方法二
+         /*var arr = [2,5,7,8,9,2,5,7];
+         function unit(tmparr) {
+            var emptyarr = [];
+            for(var i=0; i<tmparr.length; i++) {
+                if(!inarray(tmparr[i], emptyarr)) {
+                    emptyarr.push(tmparr[i]);
+                }
+            }
+            return emptyarr;
+         }
+
+         function inarray(val, arr) {
+            for(var i=0; i<arr.length; i++) {
+                if(arr[i] == val) {
+                   return true;
+                   break;
+                }
+            }
+           // return false;
+         }
+         console.log(unit(arr));*/
+    
+    //方法三 
+        var arr = [2,5,7,8,9,2,5,7,11];
+        function unit(tmparr) {
+            var obj = {};
+            for(var i=0; i<tmparr.length; i++) {
+                obj[tmparr[i]] = tmparr[i];
+            }
+            
+            tmparr.length = 0;
+           
+            for(var key in obj) {
+                tmparr.push(obj[key]);
+            }
+
+            return tmparr;
+        }  
+        console.log(unit(arr));
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <meta name="author" content="zsy">
+    <meta name="keywords" content="table, analysis">
+    <meta name="description" content="Query goods gross margin">
+    <meta name="robots" content="index, follow">
+
+    <meta name="apple-mobile-web-app-title" content="landing">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="">
+    <link rel="stylesheet" type="text/css" href="static/lzsale/build/common.css">
+
+    <meta name="google" value="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <title>视图报表</title>
+    
+    <script src="static/src/js/fastclick.min.js"></script>
+    <script src="static/lzsale/src/js/expand.js"></script>
+    <script src="static/index/js/jquery.min.js"></script>
+    <script src="project_dashboard.js"></script>
+    <script src="static/index/js/get_lang_json.js"></script>
+    
+</head>
+<body>
+    <div class="header new_header">
+        <ul>
+            <li style="width: 10%;height:100%"></li>
+            <li>
+                <a href="form.html" class="header_a" tkey="one_one"></a>
+            </li>
+            <li>
+                <a href="form11.html" class="header_a" tkey="store_sale"></a>
+            </li>
+            <li>
+                <a href="form5.html" class="header_a" tkey="multichannel_sale"></a>
+            </li>
+            <li>
+                <a href="form2.html" class="header_a" tkey="store_target"></a>
+            </li>
+            <li>
+                <a href="form3.html" class="header_a" tkey="store_week"></a>
+            </li>
+            <li>
+                <a href="javascript:;" class="active header_a" tkey="kucun_analysis"></a>
+            </li>
+            <li style="width: 10%"></li>
+        </ul>
+    </div>
+    <div id="main4"></div>
+    <div class="background"></div>
+    <div class="help-modeStore-one">
+      <div>
+        <p class="help-title" tkey="four_1">
+        库存大类分布
+        </p>
+      </div>
+      <div>
+        <div tkey="four_2">     - 大类库存量／库存总量＊100%</div>
+        <div tkey="four_3">     - 统计时间：当前</div>
+      </div>
+    </div>
+
+    <div class="help-modeStore-two">
+      <div>
+        <p class="help-title" tkey="four_4">
+        季节分布
+        </p>
+      </div>
+      <div>
+        <div tkey="four_5">     - 所有大类按季节属性区分</div>
+      </div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="four_6">     季节库存量／库存总量＊100%；</li>
+          <li tkey="four_7">     统计时间：当前；</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="help-modeStore-three">
+      <div>
+        <p class="help-title" tkey="four_8">
+        商品销售量与库存分析
+        </p>
+      </div>
+      <div>
+        <div tkey="four_9">     - 取TOP10，滚动显示商品信息</div>
+        <div tkey="four_10">     - 列表显示：SKU；名称；销售单价＋尺寸＋
+        颜色  ＊ 行信息字符超过27时缩略</div>
+        <div tkey="four_11">     - 图表信息对应排序列表</div>
+      </div>
+    </div>
+
+    <div class="help-modeStore-four">
+      <div>
+        <p class="help-title" tkey="four_12">
+        门店日销售量与库存对比
+        </p>
+      </div>
+      <div>
+        <div tkey="four_13">     - 当日所有商品销售总量与当日所有库存数量</div>
+        <div tkey="four_14">     - 日期范围：当前年－月</div>
+        <div tkey="four_15">     - 计算时间：实时计算</div>
+      </div>
+    </div>
+    
+    <script type="text/javascript">
+        var One = {};
+        var Two = {};
+        var Three = {};
+        var Four = {};
+        var myCharts = {};
+        var needAnimation = false;
+    </script>
+    <script type="text/javascript">
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        var _s = getUrlParameter('_s');
+        // _s = (!!_s)?_s:'';
+        if(_s == undefined || _s == 'undefined'){
+            _s = ''
+        }
+
+        var _paq = _paq || [];
+        window.onload = function(){
+            var shop_id = getUrlParameter('shop_id');
+            var _s = getUrlParameter('_s');
+            var _lang = getUrlParameter('lang');
+            var _siteId = getUrlParameter('site_id');
+            var arr = document.getElementsByClassName('header_a');
+            for(var i in arr){
+                var href = arr[i].href;
+                arr[i].href = href + '?shop_id=' + shop_id + '&lang=' + _lang + '&_s=' + _s + '&site_id=' + _siteId;
+            }
+
+            // $('.header_a').each(function(){
+            //     if(!$(this).hasClass('active')){
+            //         $(this).attr('href', $(this).attr('href') + '&lang=' + _lang);
+            //     }
+            // })
+            setTimeout(function(){
+                var params = getParam(str);
+                _paq.push(['enableLinkTracking', true]);
+                (function() {
+                    try {
+                        var storage, SiteId, UserId;
+                        if(!!window.sessionStorage){
+                            storage = window.sessionStorage;
+                            SiteId = params.SiteId || storage.getItem("SiteId") || P_SiteId;
+                            UserId = params.UserId || storage.getItem("UserId") || '';
+                        }else{
+                            SiteId = params.SiteId || P_SiteId;
+                            UserId = params.UserId || '';
+                        }
+                        
+                        if(!!window.sessionStorage){
+                            storage = window.sessionStorage;
+                            storage.setItem("SiteId", SiteId);
+                            storage.setItem("UserId", UserId);
+                        }
+                        // 如果site_id是false,则不发送Piwik数据
+                        if(SiteId == '' || SiteId == false){
+                            return
+                        }
+                        
+                        var u="http://a2.nexttao.com/";
+                        // 当url为空不发送
+                        if(u == "" || u == "false" || u == false){
+                            return
+                        }
+                        if(!!UserId){
+                            _paq.push(['setUserId', UserId]);
+                        }
+                        _paq.push(['setTrackerUrl', u+'piwik.php']);
+                        _paq.push(['setSiteId', SiteId]);
+                        _paq.push(['setDocumentTitle', 'Dashboard-库存分析']);
+                        _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+                        _paq.push(['trackPageView']);
+                        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                    }catch (e){
+                        console.log(e);
+                    }
+                })();
+            }, 200)
+        }
+        //piwik
+        var str = window.location.href;
+        function getParam(str){
+            var obj = {};
+            var pos_hash = str.lastIndexOf('#') ;
+            if(pos_hash != -1){
+                var search_arr = str.substr(str.indexOf('?') + 1 , ( pos_hash - str.indexOf('?') - 1)).split('&');
+            }else{
+                var search_arr = str.substr(str.indexOf('?') + 1).split('&');
+            }
+            for(var i = 0; i < search_arr.length; i++){
+                var key_value_arr = search_arr[i].split('=');
+                obj[key_value_arr[0]] = decodeURIComponent(key_value_arr[1]);
+            }
+            return obj;
+        }
+
+    </script>
+    <script type="text/javascript" src="static/lzsale/build/form4.js"></script>
+    <script src="static/index/js/lang.js"></script>
+    <script src="static/lzsale/src/js/common.js"></script>
+</body>
+</html>

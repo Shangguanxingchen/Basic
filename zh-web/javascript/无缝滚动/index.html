@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无缝滚动</title>
+	<style>
+		@keyframes move {
+			0% {
+				transform:translateX(0px);
+			}
+			100% {
+				transform:translateX(-500px);
+			}
+		}
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	    ul, li {
+	    	list-style: none;
+	    }
+		.banner {
+			width: 500px;
+			height: 100px;
+			margin: 50px auto;
+			border: 1px solid red;
+			overflow: hidden;
+		}
+		.banner ul {
+			width: 1000px;
+			height: 100px;
+			overflow: hidden;
+			animation: move 5s linear infinite;
+			-webkit-animation: move 5s linear infinite;
+		}
+		.banner ul li {
+			width: 98px;
+			height: 98px;
+			float: left;
+			background-color: #ccc;
+			text-align: center;
+			border: 1px solid #000;
+		}
+		.banner:hover ul{ animation-play-state:paused;}
+	</style>
+</head>
+<body>
+	<section class="banner">
+	    <ul>
+	        <li>1</li>
+	        <li>2</li>
+	        <li>3</li>
+	        <li>4</li>
+	        <li>5</li>
+	        <li>1</li>
+	        <li>2</li>
+	        <li>3</li>
+	        <li>4</li>
+	        <li>5</li>
+	     </ul>
+ </section>
+</body>
+</html>

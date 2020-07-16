@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>demo2</title>
+</head>
+<body>
+<p>点击表头，会根据当前列，切换排序。</p>
+<table id="baseTable" border="1">
+	<thead>
+		<th style="color:#ccc;">序号</th>
+		<th key="id">id</th>
+		<th key="name">姓名</th>
+		<th key="age">年龄</th>
+		<th key="status">状态</th>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<script src="../jquery-3.2.1.min.js"></script>
+<script>
+	var people = [
+		{
+			id: '001',
+			name: 'celine',
+			age: '18',
+			status: 2
+		},
+		{
+			id: '003',
+			name: 'apple',
+			age: '16',
+			status: 0
+		},
+		{
+			id: '002',
+			name: 'andy',
+			age: '22',
+			status: 1
+		},
+		{
+			id: '005',
+			name: 'hunter',
+			age: '1',
+			status: 0
+		},
+		{
+			id: '004',
+			name: 'redis',
+			age: '15',
+			status: 1
+		},
+		{
+			id: '019',
+			name: 'mango',
+			age: '18',
+			status: 0
+		},
+	];
+	$(function(){
+		getbaseList(people);
+		/** 表头点击事件 */
+		$('#baseTable th').on('click', function(){
+			var sort_ary;
+			if ($(this).attr('sort') == 'desc') {
+				// 逆序排序
+				sort_ary = people.sort(compare($(this).attr('key'),-1));
+				getbaseList(sort_ary);
+				// 切换sort属性的值，预设下一次点击是正序
+				$(this).attr('sort', 'asc');
+			} else {
+				sort_ary = people.sort(compare($(this).attr('key'),1));
+				getbaseList(sort_ary);
+				$(this).attr('sort', 'desc');
+			}
+		});
+	});
+	/** 生成表格 */
+	function getbaseList(ary) {
+		var html = '';
+		for (var i=0 ; i<ary.length; i++){
+			var status = '';
+			switch(ary[i].status){
+				case 1: status = '普通活跃'; break;
+				case 2: status = '特别活跃'; break;
+				default: status = '不活跃';
+			}
+			html += '<tr>';
+			html += '<td>' + (i+1) + '</td>';
+			html += '<td>' + ary[i].id + '</td>';
+			html += '<td>' + ary[i].name + '</td>';
+			html += '<td>' + ary[i].age + '</td>';
+			html += '<td>' + status + '</td>';
+			html += '</tr>';
+		}
+		$('#baseTable tbody').empty().append(html);
+	}
+	/** 
+	 * 比较函数
+	 * @param  {string} prop 数据里面要排序的key
+	 * @param  {number} type 1:asc  -1:desc
+	 * @return {number}
+	 */
+	function compare(prop,type) {
+	    return function (obj1, obj2) {
+	        var val1 = obj1[prop];
+	        var val2 = obj2[prop];
+	        if (!isNaN(Number(val1)) && !isNaN(Number(val2))) {
+	            val1 = Number(val1);
+	            val2 = Number(val2);
+	        }
+	        if (val1 < val2) {
+	            return 0-type;
+	        } else if (val1 > val2) {
+	            return type;
+	        } else {
+	            return 0;
+	        }            
+	    } 
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+
+    <style>
+        .shijian {
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            border: 5px solid red;
+            text-align: center;
+            font-size: 50px;
+           
+        }
+        .suiji {
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            border: 5px solid red;
+            text-align: center;
+            font-size: 50px;
+            margin-top: 10px;
+        }
+       
+    </style>
+
+
+</head>
+<body>
+    
+    <div class="shijian" id="shij">
+        初始化……
+    </div>
+
+    <div class="suiji" id="suij" >
+        loading
+    </div>
+    <div class="butt">
+        <button id = 'start'>开始</button>
+        <button id = 'stop'>停止</button>
+    </div>
+    
+
+    <script>
+/*定时器*/
+        setInterval(function() {
+            var date = new Date();
+                h = date.getHours();
+                m = date.getMinutes();
+                s = date.getSeconds();
+                r = fill0(h) + ':' + fill0(m) + ":" + fill0(s);
+            
+                shij = document.getElementById('shij');
+                shij.innerHTML = r;
+
+        }, 1000)
+
+        function fill0(num) {
+            return num < 10 ? "0" + num : num;
+        }
+
+/*随机抽选*/
+        var members = [
+            '程红岩',
+            '王瑞宏',
+            '闫志强',
+            '张晓文',
+            '陈彤彤',
+            '郭强',
+            '李艳从',
+            '苗子琪',
+            '王慧杰',
+            '申庆敏',
+            '吕洋'
+         ];
+        
+        var suij = document.getElementById('suij');
+        var start = document.getElementById('start');
+        var stop = document.getElementById('stop');
+        var st;
+
+        start.onclick = function () {
+            //start.disabled = "disabled";
+            
+            if(st) {
+                return;
+            };
+
+            st = setInterval(function() {
+                 var r = Math.floor(Math.random()*12);
+                 suij.innerHTML = members[r];
+            } ,100);
+
+        };
+
+        stop.onclick = function () {
+            //start.disabled = "";
+            clearInterval(st);
+            st = undefined;
+        };
+        
+
+        /*判断字符串以某个字母开头
+        var   stre = 'text';
+        var isStartWith = function(str, char) {
+            if(str.indexOf(char) == 0) {
+                return true;
+            }  else {
+                return false;
+            }
+        }
+        var r = isStartWith(stre, 'v');
+        console.log(r);*/
+        
+    </script>
+</body>
+</html>

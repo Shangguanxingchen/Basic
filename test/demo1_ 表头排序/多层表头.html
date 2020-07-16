@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<style>
+	table {
+	    border-collapse: collapse;
+	}
+	table th, table td {
+	    text-align: center;
+	    vertical-align: middle!important;
+	}
+</style>
+
+<button id = "btn">提交</button>
+<div id="wp">
+			<table id="conformTable" class="table table-striped table-bordered table-hover mb-0" border="1">
+		        <thead id="conformThead">
+		          <!-- <tr>
+		            <th>现金</th>
+		            <th>银行卡</th>
+		            <th>微信</th>
+		            <th>现金</th>
+		            <th>银行卡</th>
+		            <th>微信</th>
+		            <th>支付宝</th>
+		            <th>合计</th>
+		            <th>签字</th>
+		          </tr> -->
+		        </thead>
+			
+		        <tbody id="conformTbody" class="conformTbody"></tbody>
+		        <!-- <tr>
+		          <td>item1</td>
+		          <td>item2</td>
+		          <td>item3</td>
+		          <td>item4</td>
+		          <td>item5</td>
+		          <td>item6</td>
+		          <td>item7</td>
+		          <td>item8</td>
+		        </tr> -->
+		        <tfoot id="conformTfoot"></tfoot>
+			</table>
+		</div>
+
+		<script>
+	var data = /*[
+	    {
+		  "日期": "2020-1-1",
+		  "小计数量": "1",
+		  "小计金额": "",
+		  "mingxi": [{
+			    "cuxiao": "正价",
+			    "cuxiaomingxi": {
+			     "shuliang": "1",
+			     "jine": "100.00",
+			     "koulv": "0.21",
+			     "koukuan": "21"
+			    }
+		   },
+		   {
+			    "cuxiao": "促销1",
+			    "cuxiaomingxi": {
+			     "shuliaing": "2",
+			     "jine": "100.00",
+			     "koulv": "0.21",
+			     "koukuan": "21"
+			    }
+		   }
+		  ]
+		},
+		{
+		  "日期": "2020-1-2",
+		  "小计数量": "1",
+		  "小计金额": "",
+		  "mingxi": [{
+			    "促销": "正价",
+			    "cuxiaomingxi": {
+			     "shuliaing": "2",
+			     "jine": "100.00",
+			     "koulv": "0.21",
+			     "koukuan": "21"
+			    }
+		   },
+		   {
+			    "cuxiao": "促销1",
+			    "cuxiaomingxi": {
+			     "shuliaing": "2",
+			     "jine": "100.00",
+			     "koulv": "0.21",
+			     "koukuan": "21"
+			    }
+		   },
+		   {
+			    "cuxiao": "促销2",
+			    "cuxiaomingxi": {
+			     "shuliaing": "2",
+			     "jine": "100.00",
+			     "koulv": "0.21",
+			     "koukuan": "21"
+			    }
+		   }
+		 ]
+		}
+	];*/
+	[{
+  "riqi": "2020-1-1",
+  "小计数量": "1",
+  "小计金额": "",
+  "mingxi": [{
+    "cuxiao": "正价",
+    "cuxiaomingxi": {
+     "shuliang": "1",
+     "jine": "100.00",
+     "koulv": "0.21",
+     "koukuan": "21"
+    }
+   },
+   {
+    "cuxiao": "促销1",
+    "cuxiaomingxi": {
+     "shuliang": "2",
+     "jine": "200.00",
+     "koulv": "0.21",
+     "koukuan": "21"
+    }
+   },
+   {
+    "cuxiao": "促销2",
+    "cuxiaomingxi": {
+     "shuliang": "3",
+     "jine": "300.00",
+     "koulv": "0.21",
+     "koukuan": "21"
+    }
+   },
+   {
+    "cuxiao": "正价",
+    "cuxiaomingxi": {
+     "shuliang": "1",
+     "jine": "100.00",
+     "koulv": "0.21",
+     "koukuan": "21"
+    }
+   },
+   {
+    "cuxiao": "促销1",
+    "cuxiaomingxi": {
+     "shuliang": "2",
+     "jine": "200.00",
+     "koulv": "0.21",
+     "koukuan": "21"
+    }
+   },
+   {
+    "cuxiao": "促销2",
+    "cuxiaomingxi": {
+     "shuliang": "3",
+     "jine": "300.00",
+     "koulv": "0.21",
+     "koukuan": "21"
+    }
+   }
+  ]
+ },
+ {
+  "riqi": "2020-1-2",
+  "小计数量": "1",
+  "小计金额": "",
+  "mingxi": [{
+    "cuxiao": "正价",
+    "cuxiaomingxi": {
+     "shuliang": "1",
+     "jine": "100.00",
+     "扣率": "0.21",
+     "扣款": "21"
+    }
+   },
+   {
+    "cuxiao": "促销1",
+    "cuxiaomingxi": {
+     "shuliang": "2",
+     "jine": "100.00",
+     "扣率": "0.21",
+     "扣款": "21"
+    }
+   },
+   {
+    "cuxiao": "促销2",
+    "cuxiaomingxi": {
+     "shuliang": "3",
+     "jine": "100.00",
+     "扣率": "0.10",
+     "扣款": "10"
+    }
+   }
+  ]
+ }
+];
+		
+var tijiao = document.getElementById('btn');
+var onformThead = document.getElementById("conformThead");
+var onformTbody = document.getElementById("conformTbody");
+tijiao.onclick = function() {
+	var trs = [];
+    if (data.length == 0) {
+      alert('暂无查询结果，请更换店铺重试！');
+      return;
+    }
+
+    //获取表头
+    var mingxi = data[0].mingxi;
+    var ths = ['<tr>','<th ' + 'rowspan="2"' + '>日期</th>'];
+
+    for(var i=0; i<mingxi.length; i++) {
+      ths.push(
+        '<th  ' +  'colspan="4"' + '>',
+        	mingxi[i].cuxiao,
+        '</th>',
+      )
+    }
+
+    ths.push('</tr>')
+    	
+    for(var i=0; i<mingxi.length; i++) {
+      //ths.push('<th>');
+      for(var j=0; j<Object.keys(mingxi[0].cuxiaomingxi).length; j++) {
+      	//console.log(Object.keys(mingxi[0].cuxiaomingxi)[j])
+        ths.push(
+        	'<th>',Object.keys(mingxi[0].cuxiaomingxi)[j],'</th>',
+            	)
+	  }
+	  //ths.push('</th>');
+	}	
+   
+    conformThead.innerHTML= ths.join('');
+
+    //获取内容
+    for(var i=0; i<data.length; i++) {
+     	trs.push('<tr>',
+     		
+	        '<td>',data[i].riqi,'</td>',
+     	)
+     	for(var k=0;k<mingxi.length; k++) {
+     		/*for (var m=0; m<mingxi[0].length; m++) {*/
+     			trs.push(
+     			'<td>',mingxi[k].cuxiaomingxi.shuliang,'</td>',
+     			'<td>',mingxi[k].cuxiaomingxi.jine,'</td>',
+     			'<td>',mingxi[k].cuxiaomingxi.koulv,'</td>',
+     			'<td>',mingxi[k].cuxiaomingxi.koukuan,'</td>',
+	        	)
+     		/*}*/
+     		
+     	}
+     	trs.push('</tr>')
+      
+    };
+    conformTbody.innerHTML= trs.join('');
+};
+
+</script>
+</body>
+</html>

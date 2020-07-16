@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <style>
+    .wp {
+        width: 1000px;
+        margin: auto;
+    }
+    .wp {
+        width: 1000px;
+        margin: auto;
+    }
+
+    .wp > div {
+        float: left;
+        height: 300px;
+    }
+    .wp > div {
+        float: left;
+        height: 300px;
+    }
+
+    .left {
+        background-color: red;
+        width: 200px;
+    } 
+    .left {
+        background-color: red;
+        width: 200px;
+    }
+
+    .center {
+        background-color: green;
+        width: 700px;
+    }
+    .center {
+        background-color: green;
+        width: 700px;
+    }
+
+    .right {
+        background-color: blue;
+        width: 100px;
+    }
+    .right {
+        background-color: blue;
+        width: 100px;
+    }
+
+    @media screen and (min-width: 640px) and (max-width: 999px) {
+        .wp {
+            width: 640px;
+            /*background-color: green;*/
+        }
+        .left {
+            background-color: red;
+            width: 100px;
+        }
+
+        .center {
+            background-color: green;
+            width: 540px;
+        }
+
+        .right {
+            background-color: blue;
+            width: 100%;
+            float: none;
+        }
+    }
+    @media screen and (min-width: 640px) and (max-width: 999px) {
+        .wp {
+            width: 640px;
+            background-color: green;
+        }
+        .center {
+            width: 540px;
+            background-color: red;
+        }
+        .left {
+            background-color: green;
+            width: 100px;
+        }
+        .right {
+            background-color: blue;
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 639px) {
+        .wp {
+            width: 100%;
+            /*background-color: blue;*/
+        }
+        .left {
+            background-color: red;
+            width: 100%;
+            float: none;
+        }
+
+        .center {
+            background-color: green;
+            width: 100%;
+            float: none;
+        }
+
+        .right {
+            background-color: blue;
+            width: 100%;
+            float: none;
+        }
+    }
+
+    </style>
+</head>
+<body>
+
+    <div class="wp">
+        <div class="left">left</div>
+        <div class="center">center</div>
+        <div class="right">right</div>
+    </div>
+
+</body>
+</html>

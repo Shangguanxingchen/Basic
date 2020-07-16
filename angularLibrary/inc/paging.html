@@ -1,0 +1,20 @@
+<nav>
+  <ul class="pagination pull-right">
+    <li>
+      <a ng-click="firstPage" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li ng-class="{true: 'active'}[$index==page]" ng-click="clickPagingLi()" ng-repeat="tmpPage in pageArr"><a href="javascript:void(0)">{{tmpPage + 1}}</a></li>
+    <!-- <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li> -->
+    <li>
+      <a ng-click="lastPage" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

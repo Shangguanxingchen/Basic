@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES6</title>
+</head>
+<body>
+	<div id="wp">es6</div>
+	<script>
+		//document.write("<div id='wp'>ES6</div>");
+		/*let wp = document.getElementById("wp");
+		wp.onclick = alert(33);
+		for(let i=1;i<10;i++) {
+			console.log(i);
+		}
+		console.log(i);*/
+		/*for(var i=1;i<10;i++) {
+			console.log(i);
+		}
+		console.log(i);*/
+	/*	var a = [];
+		for(let i=1; i<10; i++) {
+			a[i] = function() {
+				console.log(i);
+			}
+		}
+    	a[6]();*/
+    	/*var tmp = 123;
+
+			if (true) {
+			   // ReferenceError
+			  let tmp;
+			  tmp = 'abc';
+			  console.log(tmp)
+
+		}*/
+		/*function we(){
+			let a=1;
+			let a=2;
+			console.log(a);
+		}
+		we();*/
+		/*var tmp = new Date();
+
+		function f() {
+		  console.log(tmp);
+		  if (false) {
+		    var tmp = 'hello world';
+		  }
+		}
+
+		f();*/
+		function f1() {
+		  let n = 5;
+		  if (true) {
+		     n = 10;
+		  }
+		  console.log(n); // 5
+		}
+		f1()
+	</script>
+</body>
+</html>

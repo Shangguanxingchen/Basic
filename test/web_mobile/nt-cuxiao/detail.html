@@ -1,0 +1,795 @@
+<html ng-app="NtCuxiao">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1.0, user-scalable=no"> 
+    <meta content="telephone=no" name="format-detection" />  
+    <script>
+         if (document.documentElement.clientWidth > 1024) { 
+           document.querySelector("meta[name=viewport]").setAttribute(
+             'content', 
+             'width=1024, initial-scale='+(document.documentElement.clientWidth/1024)+', minimum-scale=0.1, maximum-scale=2.0, user-scalable=no');
+       }
+    </script>
+    <link href="assets/css/css.css?r=1849920396" media="screen" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/datatables.css">
+    <link rel="stylesheet" href="assets/vendor/sm.min.css">
+    <link href="assets/css/style.css"  media="screen" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/sm-nx.css">
+    <script src="../Table/project.js"></script>
+</head>
+
+<body class="debugx detail">
+<div id="bg"></div>
+	<div id="container">
+		<header>
+				<span class="back"></span>
+				促销规则详情
+			</header>
+
+<div class="buttons-tab fixed-tab" data-offset="44">
+  <a href="#tab1" class="tab-link active button">促销详情</a>
+  <a href="#tab2" class="tab-link button">促销商品</a>
+  <a href="#tab3" class="tab-link button">促销赠品</a>
+  <a href="#tab4" class="tab-link button">门店参活品</a>
+</div>
+
+
+    <div class="tabs">
+      <div id="tab1" class="tab active">
+        <div class="loading loading-detail"> 加载中 ...</div>
+<div class="content-block cx-detail hidden">
+  <div class="timeline clearfix">
+    <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/detail-date.svg" class=""/> -->
+    <div class="line"></div>
+    <p data-rel='start_at'></p>
+    <p class="counter" data-rel='counter_str'></p>
+    <p data-rel='end_at'></p>
+  </div>
+
+<div class="clearfix"></div>
+<h1 data-rel='name'></h1>
+<h2 data-rel='code'></h2>
+
+
+<div class="label-box clearfix">
+<!--   <span>有效</span>
+  <span>整单活动</span>
+  <span>商场活动</span>
+  <span>CRM活动</span> -->
+</div>
+
+<article>
+  <p >
+    促销说明：<span data-rel='description'></span>
+  </p>
+  <p>
+    活动类型：<span data-rel='type_selection_name'></span>
+  </p>
+  <p class="description">
+      促销条件
+  </p>
+
+  <table class="cx">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td class="label">会员等级</td>
+        <td data-rel='member_level_str'></td>
+      </tr>
+      <tr>
+        <td class="label">数量条件</td>
+        <td data-rel='x_n'></td>
+      </tr>
+      <tr>
+        <td class="label">折扣条件</td>
+        <td data-rel='x_discount'></td>
+      </tr>
+      <tr>
+        <td class="label">金额条件</td>
+        <td data-rel='x_amount'></td>
+      </tr>
+      <tr>
+        <td class="label">活动券</td>
+        <td data-rel='user_coupon_str'></td>
+      </tr>
+      <tr>
+        <td class="label">返现金额</td>
+        <td data-rel='y_amount' style="background-color:#FAFAFA"></td>
+      </tr>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+</article>
+
+
+
+</div>
+      </div>
+      <div id="tab2" class="tab">
+        <div class="loading loading-product"> 加载中 ...</div>
+<div class="content-block cx-product hidden">
+<div class="cx-title hasext ext">物品范围</div>
+<div class="wrap">
+  <table class="cx">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td class="label">促销折扣</td>
+        <td data-rel="y_discount"></td>
+      </tr>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+  <table class="cx">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td class="label">商品范围</td>
+        <td data-rel="w_skus"></td>
+      </tr>
+      <tr>
+        <td class="label">排除范围</td>
+        <td data-rel="w_ex_skus"></td>
+      </tr>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+</div>
+
+<div class="cx-title">物品详情</div>
+
+<div class="wrap">
+<div class="condition">
+
+  <span class="error"></span>
+  <div class="item-content item-search">
+      <div class="resultRecord"></div>
+      <div class="item-input">
+        <!--relative-value 表示 一个输入框 对应 一个 右侧划入的列表-->
+        <input type="text" placeholder="请输入促销名称／编码查找" class="btn-panel" id="productCode"  value="">
+      </div>
+          </div>
+
+
+
+          <button class="button button-fill button-primary nx-btn-product-search">查询</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <table class="display nx-datatables" id="tblProduct" width="100%">
+        </table>
+
+        <footer>
+          
+        </footer>
+</div>
+  
+
+</div>
+      </div>
+      <div id="tab3" class="tab">
+        <div class="loading loading-gift"> 加载中 ...</div>
+<div class="content-block cx-product cx-gift hidden">
+<div class="cx-title hasext ext">赠品范围</div>
+<div class="wrap">
+  <table class="cx">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td class="label">价格条件</td>
+        <td data-rel="z_upper_price"></td>
+        <td class="label">换购数量</td>
+        <td data-rel="z_quantity"></td>
+        <td class="label">换购单价</td>
+        <td data-rel="z_price"></td>
+        <td class="label">换购积分</td>
+        <td data-rel="z_point"></td>
+      </tr>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+  <table class="cx">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td class="label">商品范围</td>
+        <td data-rel="z_skus"></td>
+      </tr>
+      <tr>
+        <td class="label">排除范围</td>
+        <td data-rel="z_ex_skus"></td>
+      </tr>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+</div>
+
+<div class="cx-title">物品详情</div>
+
+<div class="wrap">
+<div class="condition">
+
+  <div class="item-content item-search">
+      <!-- <div class="resultRecord"></div> -->
+
+      <div class="item-input">
+        <!--relative-value 表示 一个输入框 对应 一个 右侧划入的列表-->
+        <input type="text" placeholder="请输入促销名称／编码查找" class="btn-panel" id="giftCode"  value="">
+      </div>
+          </div>
+
+
+
+          <button class="button button-fill button-primary nx-btn-gift-search" data-table="#tblGift">查询</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <table class="display nx-datatables" id="tblGift" width="100%">
+     
+        </table>
+
+        <footer>
+          
+        </footer>
+</div>
+  
+
+</div>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+    
+    <script src="assets/vendor/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var jQuery=$.noConflict();
+    </script>
+
+    <script src="assets/vendor/fastclick.js"></script> 
+
+    
+    <script type="text/javascript" src="assets/vendor/zepto.js"></script>
+    <script src="assets/vendor/sm.min.js"></script> 
+
+    <script src="assets/vendor/datatables.min.js"></script>
+    <script src="assets/vendor/Scroller-1.4.2/js/dataTables.scroller.min.js"></script>
+    <script src="assets/vendor/FixedColumns-3.2.2/js/dataTables.fixedColumns.min.js"></script>
+    <script src="assets/vendor/FixedHeader-3.1.2/js/dataTables.fixedHeader.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/main.js"></script>
+
+<script>
+  $(function() {
+    FastClick.attach(document.body);
+  });
+
+</script> 
+
+<!-- 
+<script src="assets/api/api.config.js"></script>
+<script src="assets/api/api.js"></script> -->
+
+
+
+<script>
+
+//点击弹出右侧的panel    
+$(document).on("click", ".back", function() {
+    history.go(-1);
+});
+
+
+
+
+
+
+
+jQuery(document).ready(function($){
+    $('.hasext').click(function(){
+        $(this).toggleClass('ext');
+        if($(this).hasClass('ext')){
+            $(this).next('.wrap').slideDown();
+        }else{
+            $(this).next('.wrap').slideUp();
+        }
+    })
+
+    var tbl = {
+        tblProduct:'',
+        tblGift:'',
+    };
+
+            var render_table_example = function(id,data){
+
+                    if((typeof tbl !== 'undefined') && (typeof tbl[id] !== 'undefined') && (tbl[id] != '')){
+                        tbl[id].destroy();
+                    }
+
+                    tbl[id] = $('#'+id).DataTable( {
+                        data: data.records,
+                        columns: data.headers,
+                        scrollX: '100%',
+                        scrollY: '420',//768 - 70 - 50 - 50 - 50 - 66 
+                        //searching: false,
+                        sort:false,
+                        fixedHeader: {
+                            header: true,
+                            footer: true
+                        },
+                        "initComplete": function(settings, json) {
+                            $('.dataTables_length').appendTo('footer');
+                            $('.dataTables_info').appendTo('footer');
+                            $('.dataTables_paginate').appendTo('footer');
+                            $('tr.odd').removeClass('odd');
+                            $('tr.even').removeClass('even');
+                            $('tr').click(function(){
+                                window.location.href = 'detail.html';
+                            });
+
+                          },
+                        "lengthMenu": [ [10 , 20, 50, 100], _LANG_SHOW['page_change'] ],
+                        "language":   {
+                                "decimal":        "",
+                                "emptyTable":     "没有数据",
+                                "info":           "共 <span>_TOTAL_</span> 条",
+                                "infoEmpty":      "",
+                                "infoFiltered":   "(filtered from _MAX_ total entries)",
+                                "infoPostFix":    "",
+                                "thousands":      ",",
+                                "lengthMenu":     "_MENU_",
+                                "loadingRecords": "加载中...",
+                                "processing":     "处理中...",
+                                "search":         "搜索:",
+                                "zeroRecords":    "没有数据",
+                                "paginate": {
+                                    "first":      "",
+                                    "last":       "",
+                                    "next":       "<img src='/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/icon-rt.svg'>",
+                                    "previous":   "<img src='/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/icon-lt.svg'>"
+                                },
+                                "aria": {
+                                    "sortAscending":  ": activate to sort column ascending",
+                                    "sortDescending": ": activate to sort column descending"
+                                }
+                            }
+
+                    } )
+
+
+                    $('.button[data-table="#'+id+'"]').unbind('click').bind('click',function(){
+                        $('#'+id).DataTable()
+                        .search( $(this).parents('.condition').find('input').val() )
+                        //.search('ABC')
+                        .draw();
+
+                    })
+
+
+                    // new $.fn.dataTable.FixedColumns( table_example, {
+                    //         leftColumns: 1
+                    //     } );
+
+            }
+
+
+
+    var dummy_json = {
+      "code": "2CR01600539",
+      "x_n": 1,
+      "w_ex_skus": "",
+      "id": 344,
+      "from_crm": true,
+      "z_upper_price": 0,
+      "w_discount_type": "discount",
+      "x_amount": 500.00,
+      "reason_id": 25,
+      "end_at": "2016-05-17 00:00:00",
+      "member_level": [
+        {
+          "id": 18,
+          "name": "普通会员"
+        },
+        {
+          "id": 8,
+          "name": "初级会员"
+        },
+        {
+          "id": 9,
+          "name": "准会员"
+        },
+        {
+          "id": 19,
+          "name": "银卡会员"
+        },
+        {
+          "id": 20,
+          "name": "金卡会员"
+        },
+        {
+          "id": 10,
+          "name": "尊享会员"
+        },
+        {
+          "id": 11,
+          "name": "企业会员"
+        }
+      ],
+      "w_skus": "213,214,215,216",
+      "y_amount": 30.01,
+      "type_name": "单品",
+      "type": "not_order",
+      "reason_name": "会员活动",
+      "y_discount": 1,
+      "z_price": 20,
+      "start_at": "2016-04-08 00:00:00",
+      "description": "JJ正价商品满500元减30元",
+      "z_skus": "",
+      "is_active": true,
+      "overlap_order_rule": false,
+      "x_discount": 1,
+      "name": "JJ正价商品满500元减30元",
+      "z_ex_skus": "",
+      "z_point": 10,
+      "use_coupon": false,
+      "z_quantity": 1
+    };
+
+    function render_detail(data){
+        //会员等级
+        var tmp = [];
+        for(var i = 0 ; i < data.member_level.length ;i++){
+            tmp.push(data.member_level[i]['name']);
+        }
+        data.member_level_str = tmp.join('；');
+
+        //活动券
+        data.user_coupon_str = (data.user_coupon)?'必须使用':'不必须';
+
+
+
+        for(var ss in data){
+            $('*[data-rel="'+ss+'"]').html(data[ss]);
+            $('*[data-rel="'+ss+'"]').val(data[ss]);
+        }
+
+        $('.label-box').append('<span>'+data.reason_name+'</span>');
+        $('.label-box').append('<span>'+data.type_name+'</span>');
+        if(data.is_active){
+            $('.label-box').append('<span>有效</span>');
+        }
+        
+    }
+
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    var id = getUrlParameter('id');
+
+    var _data = {id:id};
+    var xhr = $.ajax({
+      url: '/nt_project_lingzhi/web_mobile/api?object=nt.pos.html&method=lingzhi_promotion_query_detail',
+      data: JSON.stringify(_data),
+      type: 'POST',
+        dataType : "json",
+        contentType: "application/json",
+      success:  function(data){
+        $('.loading-detail').remove();
+        $('.cx-detail').removeClass('hidden');
+        render_detail(data);
+      },
+      error:    function(){
+        $('.loading-detail').html('没有信息');
+        
+      },
+      complete: function(){
+        $('.loading-detail').remove();
+        $('.cx-detail').removeClass('hidden');
+      },
+      beforeSend : function(){
+      }
+    })
+
+
+
+
+    $('a[href="#tab2"]').click(function(){
+        if($(this).hasClass('active')){
+            return;
+        }
+        var data = {
+            "w_discount_type": "discount",
+            "product": [
+                {
+                    "code": "215332076160261",
+                    "name": "ABC-O-RAY LINNA RIGIDA JEANS",
+                    "color": "牛仔蓝 Mid.Blue Denim",
+                    "price": 0,
+                    "discount": 1,
+                    "sale_price": 599
+                },
+                {
+                    "code": "215332076160262",
+                    "name": "DDDDO-RAY LINNA RIGIDA JEANS",
+                    "color": "牛仔蓝 Mid.Blue Denim",
+                    "price": 0,
+                    "discount": 1,
+                    "sale_price": 599
+                },
+                {
+                    "code": "215332076160263",
+                    "name": "AAD-RAY LINNA RIGIDA JEANS",
+                    "color": "牛仔蓝 Mid.Blue Denim",
+                    "price": 0,
+                    "discount": 1,
+                    "sale_price": 599
+                }
+            ]
+        };
+
+
+        var _data = {
+            rule_id:id,
+            limit:999,
+            offset:0,
+            //product_info:'',
+        };
+        var xhr = $.ajax({
+          url: '/nt_project_lingzhi/web_mobile/api?object=nt.pos.html&method=lingzhi_promotion_rule_product',
+          data: JSON.stringify(_data),
+          type: 'POST',
+            dataType : "json",
+            contentType: "application/json",
+          success:  function(data){
+                    $('.loading-product').remove();
+                    $('.cx-product:not(.cx-gift)').removeClass('hidden');
+                    var records = [];
+                    for(var i =0;i<data.product.length;i++){
+                        records.push(
+                            [
+                            data.product[i]['code'],
+                            data.product[i]['name'],
+                            data.product[i]['color'],
+                            data.product[i]['price'],
+                            data.product[i]['sale_price']
+                            ]
+                            );
+                    }
+                    var _data = {
+                        headers:[{title : '物品编码'},
+                        {title : '物品名称'},
+                        {title : '颜色'},
+                        {title : '正价'},
+                        {title : '促销价'}],
+                        records:records
+                    };
+                    setTimeout(function(){
+                        render_table_example('tblProduct',_data);
+                    },100);
+          },
+          error:    function(){
+            $('.loading-product').html('没有信息');
+            
+          },
+          complete: function(){
+
+
+          },
+          beforeSend : function(){
+          }
+        })
+
+
+
+
+
+
+
+    })
+
+
+    $('a[href="#tab3"]').click(function(){
+        if($(this).hasClass('active')){
+            return;
+        }
+        var data = [
+                {
+                    "code": "215105014081340",
+                    "name": "Michelin0 Shirt l/s(Slim Fitting)",
+                    "point": 0,
+                    "color": "浅棕 Light Brown",
+                    "price": 99,
+                    "z_upper_price": 0,
+                    "sale_price": 399,
+                    "quantity": 1
+                },
+                {
+                    "code": "215105014081360",
+                    "name": "Michelin1 Shirt l/s(Slim Fitting)",
+                    "point": 0,
+                    "color": "浅棕 Light Brown",
+                    "price": 99,
+                    "z_upper_price": 0,
+                    "sale_price": 399,
+                    "quantity": 1
+                },
+                {
+                    "code": "215105014081380",
+                    "name": "Michelin3 Shirt l/s(Slim Fitting)",
+                    "point": 0,
+                    "color": "浅棕 Light Brown",
+                    "price": 99,
+                    "z_upper_price": 0,
+                    "sale_price": 399,
+                    "quantity": 1
+                }
+            ];
+
+
+
+
+        var _data = {
+            rule_id:id,
+            limit:999,
+            offset:0,
+            //product_info:'',
+        };
+        var xhr = $.ajax({
+          url: '/nt_project_lingzhi/web_mobile/api?object=nt.pos.html&method=lingzhi_promotion_rule_gift',
+          data: JSON.stringify(_data),
+          type: 'POST',
+            dataType : "json",
+            contentType: "application/json",
+          success:  function(data){
+            
+          },
+          error:    function(){
+            $('.loading-product').html('没有信息');
+            
+          },
+          complete: function(){
+                    $('.loading-gift').remove();
+                    $('.cx-gift').removeClass('hidden');
+                    
+                    var records = [];
+                    for(var i =0;i<data.length;i++){
+                        records.push(
+                            [
+                            data[i]['code'],
+                            data[i]['name'],
+                            data[i]['color'],
+                            data[i]['sale_price'],
+                            data[i]['point'],
+                            data[i]['price'],
+                            data[i]['quantity'],
+                            data[i]['point']
+                            ]
+                            );
+                    }
+                    var _data = {
+                        headers:[{title : '物品编码'},
+                        {title : '物品名称'},
+                        {title : '颜色'},
+                        {title : '正价'},
+                        {title : '价格条件'},
+                        {title : '换购积分'},
+                        {title : '换购价'},
+                        {title : '数量'}],
+                        records:records
+                    };
+                    setTimeout(function(){
+                        render_table_example('tblGift',_data);
+                    },100);
+          },
+          beforeSend : function(){
+          }
+        })
+
+
+    })
+
+
+
+
+//$('#example').DataTable();
+
+//render_table_example('tblGift');
+
+})
+
+
+</script>
+
+<script>
+    var _paq = _paq || [];
+    window.onload = function(){
+      setTimeout(function(){
+        _paq.push(['enableLinkTracking', true]);
+        (function() {
+          try {
+            var storage, SiteId, UserId;
+            if(!!window.sessionStorage){
+                storage = window.sessionStorage;
+                SiteId = getUrlParameter('SiteId') || storage.getItem("SiteId") || P_SiteId;
+                UserId = getUrlParameter('UserId') || storage.getItem("UserId") || '';
+            }else{
+                SiteId = getUrlParameter('SiteId') || P_SiteId;
+                UserId = getUrlParameter('UserId') || '';
+            }
+            
+            if(!!window.sessionStorage){
+                storage = window.sessionStorage;
+                storage.setItem("SiteId", SiteId);
+                storage.setItem("UserId", UserId);
+            }
+            // 如果site_id是false,则不发送Piwik数据
+            if(SiteId == '' || SiteId == false){
+                return
+            }
+            
+            var u="http://a2.nexttao.com/";
+            // 当url为空不发送
+            if(u == "" || u == "false" || u == false){
+                return
+            }
+            if(!!UserId){
+                _paq.push(['setUserId', UserId]);
+            }
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', SiteId]);
+            _paq.push(['setDocumentTitle', '其他报表/促销规则查询详情']);
+            _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+            _paq.push(['trackPageView']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          }catch (e){
+            console.log(e);
+          }
+        })();
+      }, 200)
+    }
+    
+</script>
+
+</body>
+</html>

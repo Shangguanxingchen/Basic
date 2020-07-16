@@ -1,0 +1,116 @@
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+.clear {
+  clear: both;
+}
+.clearfloat:after {
+  display: block;
+  content: "";
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  zoom: 1;
+}
+.nav {
+  height: 50px;
+  line-height: 50px;
+}
+.nav-l,.nav-m,.nav-r {
+  float: left;
+  width: 33%;
+  display: inline-block;
+}
+.nav-l {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+}
+.nav-m span {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+}
+.ivu-row {
+  float: right;
+  padding-right: 10px;
+}
+.nav-m .bc-blue{
+  background-color: #3366ff;
+  color: white;
+}
+.oto-total {
+  text-align: center !important;
+}
+.oto-details {
+  height: 35px;
+  line-height: 35px;
+  text-align: left;
+}
+.oto-details span {
+  width: 49%;
+  display: inline-block;
+}
+.selldetail {
+  float: left;
+  width: 49.5%;
+}
+.border-r {
+  border-right: 1px solid #ccc;
+}
+.nav,.classify,.member-wp {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+/* .classify ul {
+  margin: 0 auto;
+  width: 100%;
+} */
+.classify li {
+  width: 24%;
+  display: inline-block;
+}
+.classify-detail {
+  float: left;
+}
+.member-wp {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: left;
+  height: 50px;
+  line-height: 50px;
+}
+.mt {
+  margin-top: 10px;
+}
+.member-details {
+
+}
+.bc-w {
+  background-color: white;
+}
+.pad-l {
+  padding-left: 10px;
+}
+.pad-r {
+  padding-right: 10px;
+}
+.pad-t {
+  padding-top: 10px;
+}
+.h60 {
+  height: 60px;
+}
+.lh60 {
+  line-height: 60px;
+}
+.pad-t4 {
+  padding-top: 4px;
+}

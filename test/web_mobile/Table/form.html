@@ -1,0 +1,290 @@
+<!-- <!doctype html> -->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>查询报表</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-status-bar-style" content="black" />
+    <script>
+        if (document.documentElement.clientWidth > 1024) { 
+          document.querySelector("meta[name=viewport]").setAttribute(
+            'content', 
+            'width=1024, initial-scale='+(document.documentElement.clientWidth/1024)+', minimum-scale=0.1, maximum-scale=2.0, user-scalable=no');
+      }
+    </script>
+    <!-- <link href="assets/css/form.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/common.css" type="text/css" rel="stylesheet"> -->
+    <script src="project.js"></script>
+    <script src="assets/js/get_lang_json.js"></script>
+    <style>
+      body,input,h1,h2,h3,p,textarea,table,div{font-family: 'PingFangSC-Regular',"Helvetica Neue",Helvetica,sans-serif;vertical-align: baseline;margin:0;padding:0;}
+      img{border:0;}
+      .fl{float:left;}
+      .fr{float:right;}
+      ul,li{ list-style:none; padding:0; margin:0;}
+      a{ text-decoration:none; color:inherit; }
+      select{text-align:center;}
+      input:focus{ outline:none;}
+      textarea:focus{ outline:none;}
+      contenteditable:focus{ outline:none;}
+      div:focus{outline:none}
+      select:focus{outline:none}
+      body{ background-color:#f7f8fa;}
+
+      .top{ width:100%; height:0.7rem; float:left; border-bottom:2px solid #e7e9ec; background-color:#fff;}
+      .top_cen{ width:10.24rem; height:0.7rem; margin:auto;background-color:#fff;}
+      .top_l{ width:0.78rem; height:0.69rem; position:absolute; border:1px #e7e9ec solid; border-bottom:none;}
+      .top_tu{ width:0.35rem; height:0.25rem; float:left; margin-left:0.22rem; margin-top:0.22rem;}
+      .top_zj{ width:10.24rem; height:0.68rem; text-align:center; font-size:0.2rem; line-height:0.68rem; color:#34495e;}
+
+      html{ font-size:9.76566666666666666vw;}
+
+
+      .ck{ width:100%; float:left; margin-top:0.25rem;}
+      .ck_cen{ width:10.24rem; margin:auto;}
+      .ck_cen li{ width:1.87rem; float:left; margin-left:0.15rem;background: #fff;box-shadow: 0px 0px 12px #d2d2d2;padding-bottom: 30px;border-radius: 10px;} 
+      .ck_cx{ width:1.85rem; height:1.3rem; float:left; border-radius:5px;background-color:#fff; box-shadow: 0px 0px 12px #d2d2d2;box-shadow: 0 0;
+        border-bottom: 1px solid #d5d5d5;position: relative;}
+      .ck_tu{ width:0.4rem; height:0.4rem; float:left; margin-left:0.72rem; margin-top:0.2rem;}
+      .ck_zi{ width:1.85rem; float:left; text-align:center; margin-top:0.1rem; font-size:0.2rem; color:#748292}
+
+      .md{ width:1.87rem; float:left;}
+      .md_ck{ width:1.55rem; height:0.62rem; border:1px solid #2196F3; float:left; margin-top:0.2rem; border-radius:43px;background-color:#fff;margin-left: 15px;text-align: center;}
+      .md_zi{ color:#2196f3; font-size:0.19rem; margin-top:0.18rem;}
+      .md_tu{ width:0.1rem; height:0.18rem; float:right; margin-right:0.11rem; margin-top:0.3rem;}
+      .md_jian{position: absolute;width: 20px;bottom: 10px;left: 44%;display: block;}
+
+
+      .animated{-webkit-animation-duration:0.5s;animation-duration:0.5s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
+      @-webkit-keyframes fadeInLeft{0%{opacity:0;-webkit-transform:translateX(-20px);transform:translateX(-20px)}100%{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}}@keyframes fadeInLeft{0%{opacity:0;-webkit-transform:translateX(-20px);-ms-transform:translateX(-20px);transform:translateX(-20px)}100%{opacity:1;-webkit-transform:translateX(0);-ms-transform:translateX(0);transform:translateX(0)}}.fadeInLeft{-webkit-animation-name:fadeInLeft;animation-name:fadeInLeft} 
+      .ck_cen li:nth-child(2){animation-delay:0.2s;-webkit-animation-delay:0.2s;}
+      .ck_cen li:nth-child(3){animation-delay:0.4s;-webkit-animation-delay:0.4s;}
+      .ck_cen li:nth-child(4){animation-delay:0.6s;-webkit-animation-delay:0.6s;}
+      .ck_cen li:nth-child(5){animation-delay:0.8s;-webkit-animation-delay:0.8s;}
+
+
+      .xf_col{ background-color:#d1d1d1 !important;}
+    </style>
+  </head>
+
+  <body>
+    <div class="top">
+      <div class="top_cen">
+        <div class="top_l">
+        <div class="top_zj" tkey="form"></div>
+      </div>
+    </div>
+    <div class="ck">
+      <div class="ck_cen">
+        <li class="animated fadeInLeft">
+            <div class="ck_cx" style="border-top:7px solid #3F51B5">
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/kc.png" class="ck_tu">
+              <div class="ck_zi"><span tkey="form1_t"></span></div>
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/jian.png" class="md_jian">
+            </div>
+            <div class="md">
+              <div class="md_ck"  href="form1.html">
+                <div class="md_zi"><span tkey="form_1"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form18.html">
+                <div class="md_zi"><span tkey="form_18"></span></div>
+              </div>
+              <div class="md_ck"  href="form20.html">
+                <div class="md_zi"><span tkey="form_20"></span></div>
+              </div>
+              <div class="md_ck"  href="form21.html">
+                <div class="md_zi"><span tkey="form_21"></span></div>
+              </div>
+            </div>
+        </li>
+        <li class="animated fadeInLeft">
+            <div class="ck_cx" style="border-top:7px solid #9C27B0">
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/lx.png" class="ck_tu">
+              <div class="ck_zi"><span tkey="form2_t"></span></div>
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/jian.png" class="md_jian">
+            </div>
+            <div class="md">
+              <div class="md_ck"  href="form2.html">
+                <div class="md_zi"><span tkey="form_2"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form3.html">
+                <div class="md_zi"><span tkey="form_3"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form4.html">
+                <div class="md_zi"><span tkey="form_4"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form5.html">
+                <div class="md_zi"><span tkey="form_5"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form6.html">
+                <div class="md_zi"><span tkey="form_6"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form19.html">
+                <div class="md_zi"><span tkey="form_19"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+            </div>
+        </li>
+        <li class="animated fadeInLeft">
+            <div class="ck_cx" style="border-top:7px solid #00BCD4">
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/yg.png" class="ck_tu">
+              <div class="ck_zi"><span tkey="form3_t"></span></div>
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/jian.png" class="md_jian">
+            </div>
+            <div class="md">
+              <div class="md_ck"  href="form14.html">
+                <div class="md_zi"><span tkey="form_14"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form15.html">
+                <div class="md_zi"><span tkey="form_15"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form16.html">
+                <div class="md_zi"><span tkey="form_16"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              
+            </div>
+        </li>
+        <li class="animated fadeInLeft">
+            <div class="ck_cx" style="border-top:7px solid #673AB7">
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/yw.png" class="ck_tu">
+              <div class="ck_zi"><span tkey="form_8"></span></div>
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/jian.png" class="md_jian">
+            </div>
+            <div class="md">
+              <div class="md_ck"  href="form8.html">
+                <div class="md_zi"><span tkey="form_8"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form9.html">
+                <div class="md_zi"><span tkey="form_9"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form13.html">
+                <div class="md_zi"><span tkey="form_10"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+            </div>
+        </li>
+        <li class="animated fadeInLeft">
+            <div class="ck_cx" style="border-top:7px solid #2196F3">
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/qt.png" class="ck_tu">
+              <div class="ck_zi"><span tkey="form4_t"></span></div>
+              <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/jian.png" class="md_jian">
+            </div>
+            <div class="md">
+              <div class="md_ck"  href="form10.html">
+                <div class="md_zi"><span tkey="form_11"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form11.html">
+                <div class="md_zi"><span tkey="form_12"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+              <div class="md_ck"  href="form12.html">
+                <div class="md_zi"><span tkey="form_13"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+                <div class="md_ck"  href="../nt-cuxiao/index.html">
+                <div class="md_zi"><span tkey="form_17"></span></div>
+                <!-- <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/xyj.png" class="md_tu"> -->
+              </div>
+            </div>
+        </li>
+      </div>
+    </div>
+    <!--<script>
+    $(document).ready(function(e) {
+        $(".ck_cx").click(function(){
+        $(this).next(".md").slideToggle(100)
+        $(this).parents(".ck_cen li").siblings().children(".md").slideUp(100)
+        
+        });
+    });
+    </script>-->
+    <script src="assets/vendor/jquery.min.js"></script>
+    <script src="assets/js/lang.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script>
+    $(document).ready(function(e) {
+        var shop_id = getUrlParameter('shop_id');
+        var lang = getUrlParameter('lang');
+        var _siteId = getUrlParameter('site_id');
+        var _s = getUrlParameter('_s');
+        if(_s == undefined || _s == 'undefined'){
+          _s = ''
+        }
+        $(".md_ck").click(function(){
+          $(this).addClass("xf_col")
+            var aaa=$(this).attr("href")+ '?shop_id=' + shop_id + '&lang=' + lang + '&_s=' + _s + '&site_id=' + _siteId; 
+            $(function () {
+              setTimeout(function () {
+                $(".md_ck").removeClass("xf_col");
+                location.href = ''+aaa+''
+              }, 100);
+            });
+        });
+    }); 
+    var _paq = _paq || [];
+    window.onload = function(){
+      setTimeout(function(){
+        var storage, SiteId, UserId;
+        if(!!window.sessionStorage){
+            storage = window.sessionStorage;
+            SiteId = getUrlParameter('SiteId') || storage.getItem("SiteId") || P_SiteId;
+            UserId = getUrlParameter('UserId') || storage.getItem("UserId") || '';
+        }else{
+            SiteId = getUrlParameter('SiteId') || P_SiteId;
+            UserId = getUrlParameter('UserId') || '';
+        }
+        
+        if(!!window.sessionStorage){
+            storage = window.sessionStorage;
+            storage.setItem("SiteId", SiteId);
+            storage.setItem("UserId", UserId);
+        }
+        _paq.push(['enableLinkTracking', true]);
+        (function() {
+            try {
+                // 如果site_id是false,则不发送Piwik数据
+                if(SiteId == '' || SiteId == false){
+                    return
+                }
+                var u="http://a2.nexttao.com/";
+                // 当url为空不发送
+                if(u == "" || u == "false" || u == false){
+                    return
+                }
+                if(!!UserId){
+                    _paq.push(['setUserId', UserId]);
+                }
+                _paq.push(['setTrackerUrl', u+'piwik.php']);
+                _paq.push(['setSiteId', SiteId]);
+                _paq.push(['setDocumentTitle', '查询报表']);
+                _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+                // _paq.push(['setCustomVariable',"1","Platform",Platform]);
+                // _paq.push(['setCustomVariable',"2","TenantID",TenantName]);
+                // _paq.push(['setCustomVariable',"3","App version",Appversion]);
+                // _paq.push(['setCustomVariable',"4","ShopName",ShopName]);
+                // _paq.push(['setCustomVariable',"5", "TenantName", TenantName]);
+                _paq.push(['trackPageView']);
+                var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+            }catch (e){
+                console.log(e);
+            }
+        })();
+      }, 200);
+    }
+    </script>
+  </body>
+</html>

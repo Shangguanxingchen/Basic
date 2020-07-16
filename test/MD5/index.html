@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>md5加密</title>
+		<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<input type="password" name="" id="md5" value="" />
+		<input type="button" name="" id="" value="MD5加密" οnclick="testmd5()" />
+	</body>
+	<script type="text/javascript">
+		/*function testmd5(){
+		var password = $("#md5").val();
+		var md5password = $.md5(password);
+		console.log("没有加密之前的是："+password);
+		console.log("加密以后是："+md5password);
+		var str = "auth_key=ipos_alert@bestseller.com.cn&source=df&timestamp=123&user_info=da001";
+		var md5str = $.md5(str);
+		console.log(md5str);
+		}*/
+		!function(){
+			var str = "auth_key=ipos_alert@bestseller.com.cn&source=df&timestamp=123&user_info=da001";
+			var md5str = $.md5(str).toUpperCase();
+			console.log(md5str);
+		}();
+	</script>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>用户登录</h1>
+    <label>用户名：<input type="text" id="username"></label>
+    <br>
+    <br>
+    <label>密码&nbsp：<input type="password" id="password"></label>
+    <br>
+    <br>
+    <input type="submit" value="登录" id="dl">
+    <input type="reset" value="清空">
+    <a href="reg.html" style="text-decoration: none; margin-left: 100px;">注册</a>
+    
+    <script src="../zh-web/lib/jquery-3.1.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dl').on('click', function() {
+                var name = $('#username').val(),
+                    pass = $('#password').val();
+                $.post('php/login.php', {username: name, password: pass }, function(data) {
+                    alert(data);
+                    if(data.success) {
+                        alert("登陆成功！")
+                    }
+
+                });
+
+            });
+         });
+    </script>
+</body>
+</html>

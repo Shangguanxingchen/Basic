@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流-javascript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #content {
+            position: relative;
+            margin: 0 auto;
+        }
+        /*首行浮动，第二行开始绝对定位*/
+        .box {
+            padding: 5px;
+            float: left;
+            }
+        .box img {
+            width: 180px;
+            height: auto;
+            display: block;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            waterfall('content','box');
+            
+            //改变窗口大小时，重新排列
+            window.onresize = function(){
+                waterfall('content','box');
+            }
+            
+            //如果数据不够，没出现滚动条，自动加载数据
+            var time=setInterval(function(){
+                if(checkscrollside()){
+                    addDate();//插入数据
+                    waterfall('content','box');//加载完数据从新排列
+                }else{
+                    clearInterval(time);
+                    window.onscroll=function(){
+                        if(checkscrollside()){
+                            addDate();
+                            waterfall('content','box');
+                        };
+                    }
+                }
+            },1000) 
+            
+        }  
+        // 数据插入
+        function addDate(){
+            var dataInt=['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg'];//模拟数据，也可以是对象
+            var oParent = document.getElementById('content');
+            for(var i=0;i<dataInt.length;i++){//循环插入数据      
+                var oBox=document.createElement('div');
+                oBox.className='box';
+                oParent.appendChild(oBox);
+                var oImg=document.createElement('img');
+                oImg.src='./img/'+dataInt[i];
+                oBox.appendChild(oImg);
+            }
+        }
+        //主函数
+        function waterfall(parentID,childClass){
+            var oParent=document.getElementById(parentID);
+            var arrBox=getClassObj(parentID,childClass);// getClassObj()获取子class的数组
+            var iBoxW=arrBox[0].offsetWidth;// 获取瀑布流块的宽度
+            var num=Math.floor(document.documentElement.clientWidth/iBoxW);//计算窗口能容纳几列
+            oParent.style.width=iBoxW*num+'px';//设置父级宽度
+            var arrBoxH=[];//数组，用于存储每列中的所有块框相加的高度
+            for(var i=0;i<arrBox.length;i++){//遍历数组瀑布流 块
+                var boxH=arrBox[i].offsetHeight;//获取当前块的高度
+                if(i<num){
+                    arrBox[i].style.cssText="";//防止用户改变窗口大小，到时样式出错
+                    arrBoxH[i]=boxH; //第一行中的num个块box 先添加进数组arrBoxH
+                }else{
+                    var minH=Math.min.apply(null,arrBoxH);//获取数组arrBoxH中的最小值minH
+                    var minHIndex=getminHIndex(arrBoxH,minH);//遍历数组获取最小值minH的索引
+                    arrBox[i].style.position='absolute';//设置绝对位移
+                    arrBox[i].style.top=minH+'px';
+                    arrBox[i].style.left=minHIndex*iBoxW+'px';//也可以直接获取arrBox[minHIndex].offsetLeft
+                    arrBoxH[minHIndex]+=arrBox[i].offsetHeight;//添加后，更新最小列高
+                }
+            }
+        }
+        //获取子class的数组
+        function getClassObj(parentID,childClass){
+            var oParent=document.getElementById(parentID);
+            var allChildObj=oParent.getElementsByTagName('*');//获取父级下的所有子集
+            var childObj=[];//创建一个数组 用于收集子元素
+            for (var i=0;i<allChildObj.length;i++) {//遍历子元素、判断类别、压入数组
+                if (allChildObj[i].className==childClass){
+                    childObj.push(allChildObj[i]);
+                }
+            };
+            return childObj;
+        }
+        //获取数组最小值的索引
+        function getminHIndex(arr,minH){
+            for(var i in arr){
+                if(arr[i]==minH){
+                    return i;
+                }
+            }
+        }
+        // 判断滚动条是否到底部
+        function checkscrollside(){
+            var arrBox=getClassObj("content",'box');
+            //获取最后一个瀑布流块的高度：距离网页顶部(实现未滚到底就开始加载)
+            var lastBoxH=arrBox[arrBox.length-1].offsetTop;
+            var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;//获取滚动条卷走的高度
+            var documentH=document.documentElement.clientHeight;//显示页面文档的高
+            return (lastBoxH<scrollTop+documentH)?true:false;//到达指定高度后 返回true，触发waterfall()函数
+        }
+    </script>
+</head>
+<body>
+    <div id="content">
+        <div class="box"><img src="img/1.jpg" alt=""></div>
+        <div class="box"><img src="img/2.jpg" alt=""></div>
+        <div class="box"><img src="img/3.jpg" alt=""></div>
+        <div class="box"><img src="img/4.jpg" alt=""></div>
+        <div class="box"><img src="img/5.jpg" alt=""></div>
+        <div class="box"><img src="img/6.jpg" alt=""></div>
+    </div>
+</body>
+</html>

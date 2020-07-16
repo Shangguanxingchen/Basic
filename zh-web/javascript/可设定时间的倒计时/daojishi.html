@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .wp {
+            width: 300px;
+            margin: 50px auto;
+        }
+        .wp h1 {
+            text-align: center;
+        }
+        .wp input {
+            width: 133px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="wp">
+        <h1 id="clock">00:00:00</h1>
+        <div>
+            <input id="time" type="text">
+            <select name="" id="unit">
+                <option value="0">请选择</option>
+                <option value="3600">小时</option>
+                <option value="60">分钟</option>
+                <option value="1">秒</option>
+            </select>
+        <button id="startbtn">开始倒计时</button>
+        </div>
+        
+    </div>
+
+    <script>
+        var countDown = function() {
+            var startbtn = document.getElementById('startbtn');
+            var clock = document.getElementById('clock');
+
+            startbtn.onclick = function() {
+                var time = document.getElementById('time').value;
+                var unit = document.getElementById('unit').value;
+                var totalSeconds;
+                var h, m, s, d;
+                var timer;
+
+                if(isNaN(time) || time == "") { 
+                    alert("请输入一个数字");
+                    return;
+                }
+                if(unit == 0) {
+                    alert("请选择一个时间单位");
+                    return;
+                }
+
+                if(startbtn.innerHTML =='开始倒计时') {
+                    startbtn.innerHTML = '暂停倒计时';
+                } else {
+                    startbtn.innerHTML = '开始倒计时';
+                }
+
+                totalSeconds = time * unit;
+
+                function running() {
+                    h = Math.floor(totalSeconds /3600);
+                    m = Math.floor(totalSeconds % 3600 / 60);
+                    s = totalSeconds % 60;
+                    d = fill0(h) + ":" + fill0(m) + ":" + fill0(s);
+
+                    clock.innerHTML = d;
+
+                    totalSeconds--; 
+
+                    if(totalSeconds < 0) {
+                        clearInterval(timer);
+                        alert("时间到!");
+                    }
+
+                    if(totalSeconds < 10) {
+                        clock.style.color = 'red';
+                    }
+
+                    if(startbtn.innerHTML =='开始倒计时') {
+                        clearInterval(timer);
+                    }
+                }
+
+                timer = setInterval(running, 1000);
+                running();
+ 
+            }
+        }
+        countDown();
+
+        function fill0(num) {
+           return num < 10 ? "0" + num : num;
+        }
+
+    </script>
+</body>
+</html>

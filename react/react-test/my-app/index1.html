@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=2.0, user-scalable=no">
+    <title>绫致时装</title>
+    <link rel="stylesheet" href="static/src/css1/public.css">
+    <link rel="stylesheet" href="static/src/css1/index.css">
+    <script src="project_products.js"></script>
+    <script src="static/src/js1/get_lang_json.js"></script>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="shopForce"><img src="static/src/imgs1/Group.png" alt=""></div>
+    <div style="width: 80px;height: 80px;border-right: 1px solid #CACFD5;float: left;position: relative;z-index: 1"></div>
+    <header class="index_header">
+        <section class="left">
+            <span class="high_mark" tkey="city"></span>
+            <span >(<span tkey="from"></span> <span class="start_date"></span> <span tkey="to"></span> <span class="end_date"></span><span tkey="week"></span>)</span>
+        </section>
+        <section class="right">
+            <input type="text" name="product_sku" placeholder="请输入商品名称或编码搜索" placeholder-key="desc">
+            <img class="del" src="static/src/imgs1/del.png" alt="">
+            <button class="search" tkey="search"></button>
+
+            <div class="open-board"><img class="scan" src="static/src/imgs1/scan.png" alt=""></div>
+        </section>
+        <section class="clear"></section>
+    </header>
+    <div class="size">
+            <div class="loading"></div>
+            <table class="active">
+              <!-- loading -->
+              <div class="loader loader--style1" title="0">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                  s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                  c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/>
+                <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                  C22.32,8.481,24.301,9.057,26.013,10.047z">
+                  <animateTransform attributeType="xml"
+                    attributeName="transform"
+                    type="rotate"
+                    from="0 20 20"
+                    to="360 20 20"
+                    dur="0.5s"
+                    repeatCount="indefinite"/>
+                  </path>
+                </svg>
+              </div>
+                <thead>
+                    <tr>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+          </div>
+    <article class="index_body"></article>
+
+    <script src="static/src/js1/jquery.min.js"></script>
+    <script src="static/src/js1/index.js"></script>
+    <script src="static/src/js1/common.js"></script>
+    <script src="static/src/js1/lang.js"></script>
+    <script>
+        var _paq = _paq || [];
+        window.onload = function(){
+            setTimeout(function(){
+                _paq.push(['enableLinkTracking', true]);
+                (function() {
+                    var getUrlParameter = function getUrlParameter(sParam) {
+                        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                            sURLVariables = sPageURL.split('&'),
+                            sParameterName,
+                            i;
+
+                        for (i = 0; i < sURLVariables.length; i++) {
+                            sParameterName = sURLVariables[i].split('=');
+
+                            if (sParameterName[0] === sParam) {
+                                return sParameterName[1] === undefined ? true : sParameterName[1];
+                            }
+                        }
+                    };
+                    try {
+                    var storage, SiteId, UserId;
+                    if(!!window.sessionStorage){
+                        storage = window.sessionStorage;
+                        SiteId = getUrlParameter('SiteId') || storage.getItem("SiteId") || P_SiteId;
+                        UserId = getUrlParameter('UserId') || storage.getItem("UserId") || '';
+                    }else{
+                        SiteId = getUrlParameter('SiteId') || P_SiteId;
+                        UserId = getUrlParameter('UserId') || '';
+                    }
+                    
+                    if(!!window.sessionStorage){
+                        storage = window.sessionStorage;
+                        storage.setItem("SiteId", SiteId);
+                        storage.setItem("UserId", UserId);
+                    }
+                    // 如果site_id是false,则不发送Piwik数据
+                    if(SiteId == '' || SiteId == false){
+                        return
+                    }
+                    
+                    var u="http://a2.nexttao.com/";
+                    // 当url为空不发送
+                    if(u == "" || u == "false" || u == false){
+                        return
+                    }
+                    if(!!UserId){
+                        _paq.push(['setUserId', UserId]);
+                    }
+                    _paq.push(['setTrackerUrl', u+'piwik.php']);
+                    _paq.push(['setSiteId', SiteId]);
+                    _paq.push(['setDocumentTitle', '商品浏览']);
+                    _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+                    _paq.push(['trackPageView']);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                    }catch (e){
+                    console.log(e);
+                    }
+                })();
+            }, 200)
+        }
+        
+    </script>
+</body>
+</html>

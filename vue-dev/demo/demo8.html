@@ -1,0 +1,138 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="mp">
+		<label for="">
+			<input type="checkbox" v-model="selectArr.length == items.length" />全选
+		</label>
+		<div v-for="(index, item) in items" v-on:click = "chooseAll">
+			<input type="checkbox" :value="index" v-model="selectArr" />
+			名称：<span v-html = "item.name"></span>
+			价格：<span v-html = "item.price"></span>
+		</div>
+	</div>
+	
+	<script src="http://cdn.bootcss.com/vue/1.0.7/vue.js"></script>
+	<script>
+	var vue = new Vue({
+		el: '#mp',
+		data: {
+			items: [
+				{
+	                name : '山本汉方1',
+	                price : '19.00'
+	            },
+	            {
+	                name : '山本汉方2',
+	                price : '19.00'
+	            },
+	            {
+	                name : '山本汉方3',
+	                price : '19.00'
+	            },
+	            {
+	                name : '山本汉方4',
+	                price : '19.00'
+	            },
+	            {
+	                name : '山本汉方5',
+	                price : '19.00'
+	            }
+			],
+			selectArr: []
+		},
+		methods : {
+	        chooseAll : function(event) {
+            this.selectArr = [];
+            if ( event.currentTarget.checked ) {
+                this.items.forEach(function(item , index) {
+                    this.selectArr.push(index);
+                });
+            }
+           
+        }
+        }
+	})
+	
+	</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>vuejs-全选</title>
+<style type="text/css">
+* {
+    padding: 0;
+    margin: 0;
+}
+a {
+    color: #333;
+    text-decoration:none;
+}
+</style>
+</head>
+<body>
+<label>
+    <input type="checkbox" v-on:click="chooseAll" v-model="selectArr.length==goodsList.length" />
+    <span>全选</span>
+</label>
+<div v-for="(index, item) in goodsList">
+    <a href="javascript:;">
+        <input type="checkbox"  :value="index" v-model="selectArr" />
+        商品名称:<span v-html="item.name"></span> |
+        价格:<span v-html="item.price"></span>
+    </a>
+</div>
+
+<script src="http://cdn.bootcss.com/vue/1.0.7/vue.js"></script>
+<script>
+var vue = new Vue({
+    el : 'body',
+    data : {
+        goodsList : [
+            {
+                name : '山本汉方1',
+                price : '19.00'
+            },
+            {
+                name : '山本汉方2',
+                price : '19.00'
+            },
+            {
+                name : '山本汉方3',
+                price : '19.00'
+            },
+            {
+                name : '山本汉方4',
+                price : '19.00'
+            },
+            {
+                name : '山本汉方5',
+                price : '19.00'
+            },
+        ],
+        selectArr : []
+    },
+    methods : {
+        chooseAll : function(event) {
+            var oThis = this;
+            oThis.selectArr = [];
+            if ( event.currentTarget.checked ) {
+                oThis.goodsList.forEach(function(item , index) {
+                    oThis.selectArr.push(index);
+                });
+            }
+            console.log(oThis.selectArr);
+        }
+    }
+})
+</script>
+</body>
+</html>

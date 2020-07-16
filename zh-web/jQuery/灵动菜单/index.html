@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            height: 300px;
+            background-color: red;
+        }
+        .menu {
+            height: 50px;
+            background-color: blue;
+            width: 100%;
+        }
+        .menu.fixed {
+            position: fixed;
+            top: 0;
+        }
+        .content {
+            height: 1000px;
+            background-color: yellow;
+        }
+        .content.fixed {
+            margin-top: 50px;
+        }
+    </style>
+    <script src="../../lib/jquery-3.1.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            // window.onscroll = function() {};
+            var $menu = $('.menu'),
+                top = $('.header').height();
+            $(window).on('scroll', function() {
+                var scrollTop = $(window).scrollTop();
+                // console.log(top + '-' + scrollTop)
+                if (scrollTop > top) {
+                    $menu.add('.content').addClass('fixed');
+                    // $('.menu, .body')
+                } else {
+                    $menu.add('.content').removeClass('fixed');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header"></div>
+    <div class="menu"></div>
+    <div class="content">
+        <ul>
+            <li>item1</li>
+            <li>item2</li>
+            <li>item3</li>
+            <li>item4</li>
+            <li>item5</li>
+            <li>item6</li>
+            <li>item7</li>
+            <li>item8</li>
+            <li>item9</li>
+            <li>item10</li>
+        </ul>
+    </div>
+</body>
+</html>

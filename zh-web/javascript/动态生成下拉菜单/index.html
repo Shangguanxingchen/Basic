@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+         .mysel {
+            width: 100px;
+         }
+    </style>
+</head>
+<body>
+     <select name="" id="mysel" class="mysel">
+         <option value="0">请选择</option>
+     </select>
+
+     <button id="addBtn">生成</button>
+     
+    <script>
+        
+       /* var downlist = function() {
+            var addBtn = document.getElementById('addBtn');
+            var mysel = document.getElementById('mysel');
+            var arr = ['北京','上海','天津','杭州','深圳'];
+
+            addBtn.onclick = function() {
+                var optArr = ['<option value="0">请选择</option>'];
+                for(var i=0; i<arr.length; i++) {
+                    optArr.push('<option value="'+(i+1)+'">' + arr[i] + '</option>');
+                }
+
+                mysel.innerHTML = optArr;
+                console.log(optArr);
+            }
+        };
+        downlist();*/
+
+        /*var downlist = function () {
+            var addBtn = document.getElementById('addBtn');
+            var mysel = document.getElementById('mysel');
+            var arr = ['北京' ,'上海' ,'天津' ,'杭州' ,'深圳'];
+
+            addBtn.onclick = function() {
+                var optArr = ['<option value="red">请选择</option>'];
+                for(var i=0; i<arr.length; i++) {
+                    optArr.push('<option>' + arr[i] + '</option>');
+                }
+
+                mysel.innerHTML = optArr;
+
+            };
+        };
+        downlist();*/
+
+        !function(window, document){
+            var downList = function() {
+                var addBtn = document.getElementById('addBtn');
+                var mySel = document.getElementById('mysel');
+                var arr = ['bei', 'shang', 'guang', 'shen', 'tian', 'su', 'hang'];
+
+                addBtn.onclick = function() {
+                    var optArr = ['<option value ="red">请选择</option>'];
+                    for(var i=0; i<arr.length; i++) {
+                        optArr.push('<option>' + arr[i] + '</option>');
+                    }
+
+                    mySel.innerHTML = optArr.join('');
+                };
+            };
+            downList();
+
+        }(window, document);
+        
+
+    </script>
+</body>
+</html>

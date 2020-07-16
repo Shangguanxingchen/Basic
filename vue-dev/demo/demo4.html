@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app5">
+        <p>{{message}}</p>
+        <button v-on:click="tijiao" >提交</button>
+    </div>
+
+    <script src="../dist/vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app5',
+            data: {
+                message: "hello world!"
+            },
+            methods: {
+                tijiao: function() {
+                    this.message = this.message.split('').reverse().join("")
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

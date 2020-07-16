@@ -1,0 +1,18 @@
+<div class="row mb-10">
+    <div class="col-lg-8">
+      <div class="btn-group">
+        <button type="button" class="btn btn-success" ng-click="newBook()">新增图书</button>
+        <button type="button" class="btn btn-info">图书列表</button>
+        <button ng-disabled="pms.ids.length!=1" type="button" class="btn btn-warning" ng-click="updateBook()">修改图书</button>
+        <button ng-disabled="pms.ids.length==0" type="button" class="btn btn-danger" ng-click="delBook()">删除图书</button>
+      </div>
+    </div><!-- /.col-lg-6 -->
+    <div class="col-lg-4">
+      <div class="input-group">
+        <input id="searchIpt" type="text" class="form-control" placeholder="请输入书名" ng-model='query'>
+        <span class="input-group-btn">
+          <button id="searchBtn" class="btn btn-info" type="button" ng-click="searchBook()">搜索</button>
+        </span>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->

@@ -1,0 +1,24 @@
+html, body, div,span,iframe,a,h1,h2,h3,h4,h5,h6,ul, ol, dl,li, p,img,form,input {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+ul, ol, li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.clear {
+	clear: both;
+}

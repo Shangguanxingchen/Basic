@@ -1,0 +1,9 @@
+
+.submiting {
+    opacity: 0.5;
+    background: url(../img/icon_loading.gif) left center no-repeat;
+}
+
+.w-110 {
+    width: 110px;
+}

@@ -1,0 +1,32 @@
+* {
+margin: 0;
+padding: 0;
+}
+ul, li {
+  list-style: none;
+}
+.header {
+  height: 50px;
+  line-height: 50px;
+  color: blue;
+  text-align: center;
+  background-color: #ccc;
+}
+.wp {
+  height: 100%;
+}
+.wp ul li {
+  float: left;
+  width: 20%;
+  margin:0 5px;
+}
+.wp div {
+  float: right;
+  margin-right:10px;
+}
+.wp div input {
+  border-radius: 5px;
+  outline: none;
+  padding: 0 0 0 5px;
+  width: 80px;
+}

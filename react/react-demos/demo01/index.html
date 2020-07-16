@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+<<<<<<< HEAD
+    <div id="root"></div>
+    <script type="text/babel">
+      const lilist = [1,2,3,4,5];
+      
+      class ListComponent extends React.Component {
+        render() {
+          return  <ul>
+                    {
+                      lilist.map(function(item, index) {
+                        return <li key={index}> {item} </li>
+                      })
+                    }
+                  </ul> 
+        }
+      }
+
+      class FormComponent extends React.Component {
+        constructor() {
+          super(),
+          this.state = {
+            value: ''
+          }
+          /*this.getvalue = this.getvalue.bind(this)*/
+        }
+        /*getInitialState:(){
+          return {value:''}
+        }*/
+        getvalue(ev) {
+          this.setState ({value : ev.target.value})
+        }
+
+        render() {
+          return  <div>
+                    <h1> hello {this.props.title} </h1>
+                    <input type="text" onChange={(ev) => this.getvalue(ev)} value={this.state.value} />
+                    <input type="button" value={this.props.title} />
+                    <p>{this.state.value}</p>
+                    <ListComponent />
+                  </div>
+        }
+      }
+      
+
+      ReactDOM.render(
+        <FormComponent title="nihao"/>,
+        document.getElementById("root")
+      )
+
+
+
+    </script>
+  </body>
+</html>
+
+=======
+    <div id="example"></div>
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
+>>>>>>> 118288731eb350654f917564c6020f1995c62065

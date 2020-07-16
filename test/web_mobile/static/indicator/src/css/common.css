@@ -1,0 +1,276 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Microsoft YaHei';
+}
+body{
+  font-size: 18px;
+  background: #fafafa;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px; 
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 1281px) {
+  .container {
+    width: 1280px;
+  }
+}
+.font_color{
+  color: #26a9e2;
+  padding-right: 10px;
+}
+.font_weight{
+  font-weight: 700;
+}
+.red{
+  color: red;
+}
+.green{
+  color: green;
+}
+.line{
+  border-top:1px solid #d5d5d5;
+  margin: 0 20px;
+}
+.lines{
+  border-top:1px solid #d5d5d5;
+  margin: 0 10px;
+}
+.margin_left{
+  margin-left: 40px;
+}
+.marginLeft{
+  margin-left: 20px;
+}
+.nav_header .img{
+  position: relative;
+  top: 10px;
+}
+.right_nav .imgs{
+  position: relative;
+  top: 3px;
+}
+/*header*/
+.nav_header{
+  background: #fff;
+}
+.nav_header>div{
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+.nav_header span{
+  display: block;
+  color: #000;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 10px;
+}
+.nav_header>div img{
+  width: 20px;
+  margin-left: 10px;
+}
+.content_1{
+  border-top:1px solid #d5d5d5;
+  border-bottom: 1px solid #d5d5d5;
+  margin-top: 10px;
+}
+.content_1 p{
+  padding: 15px;
+}
+.content_1 .left{
+  border-right: 1px solid #d5d5d5;
+}
+.content_1 .left .title{
+  font-size: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #d5d5d5;
+}
+.content_1 .title{
+  font-size: 20px;
+}
+.title img{
+  height: 20px;
+  display: inline-block;
+  padding-right: 10px;
+}
+.content_1 .shop_header{
+  height: 60px;
+  border-bottom: 1px solid #d5d5d5;
+}
+.shop_header ul li{
+  line-height: 35px;
+  height: 35px;
+  margin-top: 5%;
+  width: 85px;
+  border: 1px solid #d5d5d5;
+  float: left;
+  text-align: center;
+}
+.shop_header ul li.active{
+  border:1px solid #26a9e2;
+}
+
+/*member line*/
+.member_line{
+  position: absolute;
+  top: 18%;
+  left: 3%;
+}
+.member_line li{
+  margin-bottom: 100%;
+}
+.member_line img{
+  width: 40px;
+}
+.right_block{
+  border-bottom:1px solid #d5d5d5;
+  border-left: 1px solid #d5d5d5;
+  width: 66.8%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: none;
+}
+/*header  tab*/
+.right_nav .tab{
+  width: 180px;
+  height: 120px;
+  border: 1px solid #d5d5d5;
+  border-top: none;
+  position: relative;
+  right: 60px;
+  background: #fff;
+  z-index: 1;
+  display: none;
+}
+.right_nav .tab a{
+  color: #666;
+  display:block; 
+}
+.right_nav ul.active{
+  display: block;
+}
+.tab .tab_bottom{
+  border-bottom: 1px solid #d5d5d5;
+  margin: 0 10px;
+}
+/*门店月指标*/
+.content_1 .left ul{
+  width: 100%;
+}
+.content_1 .left ul li{
+  width: 40%;
+  margin: 5%;
+  border: 1px solid #d5d5d5;
+  float: left;
+  text-align: center;
+  padding: 15px;
+  cursor: pointer;
+}
+.content_1 .left .Months .active{
+  background: #26a9e2;
+  color: #fff;
+}
+.content_1 .right ul li{
+  width: 30%;
+  float: left;
+  padding: 20px;
+}
+.content_1 .right .content input{
+  background: #f3f3f3;
+  border:1px solid #ccc;
+  padding: 9px;
+  outline: none;
+}
+.day_chart{
+  display: none;
+}
+/*门店日指标*/
+.content_h{
+  width: 100%;
+  height: 500px;
+  border-bottom: 1px solid #d5d5d5;
+  overflow-y: scroll;
+}
+.content_2{
+  height: 700px;
+  overflow-y: scroll;
+}
+.content_1 .btn ul li {
+  text-align: center;
+  float: right;
+  border: 1px solid #d5d5d5;
+  height: 50px;
+  margin: 10px;
+  line-height: 10px;
+  cursor: pointer;
+}
+.content_1 .btn ul .save{
+  background: #26a9e2;
+  color: #fff;
+}
+/*btn保存弹框*/
+#save_bg{
+  width: 100%;
+  position: absolute;
+  background: #000;
+  opacity: 0.5;
+  height: 100%;
+  z-index: 10;
+  display: none;
+}
+.btn_message{
+  width: 300px;
+  height: 200px;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  top: 220px;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 300;
+  display: none;
+}
+.btn_message p{
+  text-align: center;
+}
+.btn_message .title{
+  padding: 50px 0 20px 0;
+  font-size: 18px;
+}
+.Month_M .title{
+  padding: 50px 0 50px 0;
+  font-size: 18px;
+}
+.btn_message .num{
+  padding: 10px;
+  color: red;
+}
+.btn_message .btn{
+  padding: 10px;
+  font-size: 18px;
+  border-top: 1px solid #d5d5d5;
+  cursor: pointer;
+}
+/*图表*/
+#gauge,#gauges{
+  height: 220px;
+  /*border-bottom: 1px solid #d5d5d5;*/
+}
+#area{
+  height: 180px;
+}
+#bar{
+  height: 560px;
+}
+#bars{
+
+}

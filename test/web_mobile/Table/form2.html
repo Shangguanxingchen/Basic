@@ -1,0 +1,1489 @@
+<html ng-app="NtCuxiao">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1.0, user-scalable=no"> 
+    <meta content="telephone=no" name="format-detection" />  
+    <script>
+         if (document.documentElement.clientWidth > 1024) { 
+           document.querySelector("meta[name=viewport]").setAttribute(
+             'content', 
+             'width=1024, initial-scale='+(document.documentElement.clientWidth/1024)+', minimum-scale=0.1, maximum-scale=2.0, user-scalable=no');
+       }
+    </script>
+    <link href="assets/css/css.css?r=1849920396" media="screen" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/datatables.css">
+    <link rel="stylesheet" href="assets/vendor/sm.min.css">
+    <link href="assets/css/style.css"  media="screen" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/sm-nx.css">
+    <link rel="stylesheet" href="assets/js/daterangepicker.min.css">
+    <script src="project.js"></script>
+    <script src="assets/js/get_lang_json.js"></script>
+</head>
+
+<style>
+.condition .item-content .item-input.range {
+  display: flex;
+}
+.condition .item-content .item-input.range .lbl-step{
+    display: block;
+    flex:1;
+    color: #1296db;
+    background: transparent;
+    border: 1px solid #1296db;
+    margin: 0 10px;
+    text-align: center;
+    border-radius: 4px;
+    padding-right: 0;
+  }
+.condition .item-content .item-input.range .lbl-step:last-child{
+  margin-right: 0;
+}
+.condition .item-content .item-input.range .lbl-step.active{
+    color: #fff;
+    background: #0894ec;
+    border: 1px solid transparent;
+}
+.condition .item-content .item-input.range .lbl-step input{
+    display: none;
+  }
+table.dataTable tbody tr td:nth-child(3){
+  color: #1296db;
+  text-decoration: underline;
+}
+
+</style>
+<body class="debugx">
+<div class="block_img"></div>
+<div id="bg"></div>
+<div id="bg_img"></div>
+	<div id="container">
+		<header>
+				<span class="menu"></span>
+        <a class="back_a" href=""><span class="menuBack"></span></a>
+				<span tkey='form2'></span><span class="blue" tkey="form2_tittle"></span>
+        <span class="menuRight" tkey="filter"></span>
+		</header>
+
+		<section class="filter hidden">
+      <span tkey="filters"></span>
+			<span tkey="sum"></span>（<span class="filter_reason2"></span>）;
+      <span tkey="skidding_sexs"></span>（<span class="filter_sexs"></span>）;
+      <span tkey="store"></span>（<span class="filter_store2"></span>）;
+      <span tkey="date"></span>（<span class="startDate"></span><span class="date_line">/</span><span class="endDate"></span>）
+		</section>
+
+<div class="condition">
+
+    <div class="row" >
+    <ul class="col-50">
+      
+      <li>
+        <div class="item-content item-relative group_by_li">
+            <label><span tkey="skidding_sum"></span>:</label>
+            <div class="item-input">
+              <!--relative-value 表示 一个输入框 对应 一个 右侧划入的列表-->
+              <input type="text" placeholder-key="desc_sum1" class="btn-panel relative-value" data-rel="panel-reason2" readonly="" data-value="storage1" value="">
+            </div>
+          </div>
+      </li>
+
+      <!-- 性别 -->
+      <li>
+        <div class="item-content item-relative sex_li">
+            <label><span tkey="skidding_sexs"></span>:</label>
+            <div class="item-input">
+              <!--relative-value 表示 一个输入框 对应 一个 右侧划入的列表-->
+              <input type="text" placeholder="请选择需查询性别" placeholder-key="desc_sexs" class="btn-panel relative-value" data-rel="panel-sexs" readonly="" data-value="storage5" value="">
+            </div>
+          </div>
+      </li>
+
+      <li>
+        <div class="item-content item-relative store_li">
+            <label><span tkey="skidding_store"></span>:</label>
+            <div class="item-input">
+              <!--relative-value 表示 一个输入框 对应 一个 右侧划入的列表-->
+              <input type="text" placeholder="请选择需查询店仓(可多选)" placeholder-key="store_desc" class="btn-panel relative-value" data-rel="panel-store2" readonly="" data-value="storage2" value="">
+            </div>
+          </div>
+      </li>
+
+      <li style="position: relative;">
+        <!-- <div> -->
+          <div id="datepicker1" class="alert_block datepicker">
+            <img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/date.png" />
+          </div>
+           <div class="wrapper">
+            <div class="dataTab">
+              <ul>
+                <li id="dp-day">
+                  <label for="mode_day"  class="block active" >
+                    <input name="mode" type="radio" value="day" id="mode_day"/><span tkey="day"></span>  
+                  </label>
+                </li>
+                <li id="dp-week">
+                  <label for="mode_week" class="block">
+                    <input name="mode" type="radio" value="week" id="mode_week" /><span tkey="week"></span> 
+                  </label>
+                </li>
+                <li id="dp-month">
+                  <label for="mode_month" class="block">
+                    <input name="mode" type="radio" value="month" id="mode_month" /><span tkey="month"></span>
+                  </label>
+                </li>
+                <li id="dp-range">
+                  <label for="mode_range" class="block" style="border-right:1px solid #2699de" >  
+                    <input name="mode" type="radio" value="customize" id="mode_range" /><span tkey="customize"></span>
+                  </label>
+                </li>
+              </ul>
+              <button id="date_sure" tkey="sure"></button>
+            </div>
+            <div class="picker" style="width:850px" id="pickerBox">
+              <div style="float:left;width:100%">
+                <div id="pickerContainer"></div>
+                <div class="shopForce"><img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/Group.png"/></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <input type="date" data-toggle="date" class="datepicker" value="" name="start_at">
+          <span class="datepicker-split">-</span>
+          <input type="date" data-toggle="date" class="datepicker" value="" name="end_at"> -->
+          <div class="date_text date_text1">
+            <span class="start"></span>
+            <span class="icondate">/</span>
+            <span class="end"></span>
+          </div>
+        <!-- </div> -->
+      </li>
+
+      <li>
+        <div class="item-content item-search">
+            <div class="item-input">
+              <!--relative-value 表示 一个输入框 对应 一个 右侧划入的列表-->
+              <input type="text" placeholder="请输入商品编码" placeholder-key="code_desc" name="name_code" class="">
+            </div>
+          </div>
+      </li>
+
+      <!-- <li>
+        <div class="item-content no-border">
+            <label><span tkey="form2_range"></span>:</label>
+            <div class="item-input range">
+            <span class="step"></span>
+              <input type="range" class="range2" name="range" min="10" max="30" step="10" value = '10' />
+            </div>
+          </div>
+      </li> -->
+      <li>
+        <div class="item-content no-border">
+            <label><span tkey="form2_range"></span>:</label>
+            <div class="item-input range">
+            <!-- <span class="step"></span>
+              <input type="range" class="range2" name="range" min="10" max="30" step="10" value = '10' /> -->
+              <label for="step1" class="lbl-step active">10<input name="range" id="step1" type="radio" value="10"></label>
+              <label for="step2" class="lbl-step">20<input name="range" id="step2" type="radio" value="20"></label>
+              <label for="step3" class="lbl-step">30<input name="range" id="step3" type="radio" value="30"></label>
+              <!-- <label for="step4" class="lbl-step">全部<input name="range" id="step4" type="radio" value="全部"></label> -->
+            </div>
+          </div>
+      </li>
+
+
+
+      <li>
+        <div class="item-content no-border item-button" style="margin-top: 40px">
+          <!-- <button class="button button-fill button-primary" id="clear" tkey="clear">重置</button> -->
+          <button class="button button-fill button-primary nx-btn-display nx-btn-display2" id="getList" data-table="#example" style="margin-left: 0px;" tkey="search"></button>
+        </div>
+      </li>
+      </ul>
+    </div>
+  </div>
+
+
+ <div class="data hidden">
+    <table class="display nx-datatables" id="example" width="100%">
+      <thead>
+        <tr></tr>
+      </thead>
+    </table>
+
+    <section class="count">
+      <p class="blue label"><span tkey="heji"></span>|</p>
+      <p class="footer"></p>
+    </section>
+    <!-- loading -->
+    <div class="data_content">
+      <div class="loading"></div>
+      <!-- loading -->
+      <div class="loader loader--style1" title="0">
+        <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+        <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+          s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+          c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/>
+        <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+          C22.32,8.481,24.301,9.057,26.013,10.047z">
+          <animateTransform attributeType="xml"
+            attributeName="transform"
+            type="rotate"
+            from="0 20 20"
+            to="360 20 20"
+            dur="0.5s"
+            repeatCount="indefinite"/>
+          </path>
+        </svg>
+        <p tkey="loading"></p>
+      </div>  
+    </div>
+
+    <footer id="mainFooter">
+      
+    </footer>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+<!-- 零售查询 -->
+<!-- * 商品排行 -->
+<!-- 汇总 -->
+<div class="panel panel-right panel-cover" id='panel-reason2'>
+    <header>
+    <a href="#" class="close-panel back"></a>  
+    <span tkey="sum"></span>
+    <a href="#" class="close-panel confirm confirm_1" tkey="sure"></a>
+    </header>
+
+    
+    <!-- Click on link with "close-panel" class will close panel -->
+    <div class="list-block">
+      <p class="small" tkey="sum_desc"></p>
+      <ul>
+        <!-- Single chekbox item -->
+        <li tkey="loading"></li>
+      </ul>
+      </div>
+</div>
+
+<!-- 性别 -->
+<div class="panel panel-right panel-cover" id='panel-sexs'>
+  <header>
+    <a href="#" class="close-panel back"></a>  
+    <span tkey="skidding_sexs"></span>
+    <a href="#" class="close-panel confirm confirm_5" tkey="sure"></a>
+  </header>
+  <!-- Click on link with "close-panel" class will close panel -->
+  <div class="list-block">
+    <p class="small" >* <span tkey="desc_sexs"></span></p>
+    <ul>
+      <!-- Single chekbox item -->
+      <li tkey="loading"></li>
+    </ul>
+  </div>
+</div>
+
+<!-- 店仓 -->
+<div class="panel panel-right panel-cover" id='panel-store2'>
+    <header>
+      <a href="#" class="close-panel back"></a>  
+      <!-- <span tkey="store"></span> -->
+      <!-- <a href="#" class="close-panel confirm confirm_2" tkey="sure"></a> -->
+      <input type="text" class="search-store" placeholder="请输入店铺名称或编码" placeholder-key="storelist_desc"/>
+      <button class="search-list" tkey="searchs"></button>
+    </header>
+
+    
+    <!-- Click on link with "close-panel" class will close panel -->
+    <div class="list-block">
+      <p class="small" tkey="store_desc"></p>
+      <p class="all">
+        <span tkey="all_check"></span>
+        <span class="checkbox">
+          <span class="input-checkbox">
+            <input type="checkbox" class="checkedAll" name="type" value=""  data-label="" checked />
+            <span class="inner"></span>
+          </span>
+          
+        </span>
+      </p>
+      <ul class="scroll-store">
+        <!-- Single chekbox item -->
+        <li tkey="loading"></li>
+      </ul>
+    </div>
+    <p class="list-btn">
+      <span tkey="Selected"> </span><span class="store-num"></span>
+      <button class="close-panel confirm confirm_2" tkey="sure"></button>
+    </p>
+</div>
+
+
+    
+    <script src="assets/vendor/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var jQuery=$.noConflict();
+    </script>
+    <script src="assets/vendor/fastclick.js"></script> 
+    <script type="text/javascript" src="assets/vendor/zepto.js"></script>
+    <script src="assets/vendor/sm.min.js"></script> 
+
+    <script src="assets/vendor/datatables.min.js"></script>
+    <script src="assets/vendor/Scroller-1.4.2/js/dataTables.scroller.min.js"></script>
+    <script src="assets/vendor/FixedColumns-3.2.2/js/dataTables.fixedColumns.min.js"></script>
+    <script src="assets/vendor/FixedHeader-3.1.2/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script src="assets/js/lang.js"></script> 
+    <script src="assets/js/common.js"></script>
+<script>
+  $(function() {
+    FastClick.attach(document.body);
+  });
+
+</script> 
+
+<!-- 
+<script src="assets/api/api.config.js"></script>
+<script src="assets/api/api.js"></script> -->
+
+
+
+<script>
+  $('.lbl-step').click(function(){
+    $('.lbl-step').removeClass('active');
+    $(this).addClass('active');
+  })
+  $('.lbl-step:first-child').click();
+
+
+var xhr,xhr1;
+var _ID = 0;
+var _count;//获取侧滑id
+var _NUM = {'product':0,'gift':0};
+var _time_interval = false;
+var shop_id = getUrlParameter('shop_id') * 1;
+var lang = getUrlParameter('lang');
+var _s = getUrlParameter('_s');
+var _siteId = getUrlParameter('site_id');
+var back_url='form.html'+ '?shop_id=' + shop_id + '&lang=' + lang + '&_s=' + _s + '&site_id=' + _siteId; 
+$('.back_a').attr('href',back_url);
+var _header = [];
+var allStore = [];
+ 
+
+// 判断缓存
+if(sessionStorage.getItem('reason2')){
+  $('.filter_reason2').html(sessionStorage.getItem('reason2'));
+}
+if(sessionStorage.getItem('store2')){
+  $('.filter_store2').html(sessionStorage.getItem('store2'));
+}
+// if(sessionStorage.getItem('start2')){
+//   $('.startDate').text(sessionStorage.getItem('start2'));
+//   $('input[name=start_at]').val(sessionStorage.getItem('start2'))
+// }else{
+//   $('.startDate').text($('input[name=start_at]').val());
+// }
+// if(sessionStorage.getItem('end2')){
+//   $('.endDate').text(sessionStorage.getItem('end2'));
+//   $('input[name=end_at]').val(sessionStorage.getItem('end2'))
+// }else{
+//   $('.startDate').text($('input[name=end_at]').val())
+// }
+  
+//点击弹出右侧的panel    
+$(document).on("click", ".btn-panel", function() {
+    var id = $(this).attr('data-rel');
+    $.openPanel("#"+id);
+    $('#bg').show();
+    _count = "#"+id;
+    $('.panel.panel-right.panel-cover'+_count+' ').show();
+
+});
+$('.panel header .back').on("click",function(){
+  $('#bg').hide();
+})
+
+$('#bg').on("click",function(){
+  $.closePanel(_count);
+  $(this).hide();
+  $('.wrapper').hide();
+  $('#date_sure').click();
+})
+
+$('.panel header .confirm').on("click",function(){
+  $('#bg').hide();
+})
+
+// 点击背景可以直接回填值
+$(document).on("close", ".panel", function(e, pageId, $page) {
+  $(this).find('.close-panel').click();
+});
+
+  // 获取周
+  // var date = new Date();
+  // var Year = date.getFullYear();
+  // var Month = date.getMonth() + 1;
+  // var Day = date.getDate();
+  // var week_start_date,week_end_date;
+
+  // if(String(Month).length == 1){
+  //     Month = '0' + Month;
+  // }if(String(Day).length == 1){
+  //     Day = '0' + Day;
+  // }
+  // var year_month_day = Year + '-' + Month + '-' + Day ;
+  // var date = new Date(year_month_day);
+  // date.setDate(date.getDate() - (date.getDay() + 7) % 7);
+  // var year = date.getFullYear();
+  // var month = date.getMonth()+1;
+  // var day = date.getDate();
+  // if(String(month).length == 1){
+  //     month = '0' + month;
+  // }if(String(day).length == 1){
+  //     day = '0' + day;
+  // }
+  // var week_start_date = year +'-'+ month + '-' + day;
+  // date.setDate(date.getDate() + 6);
+  // var year_end = date.getFullYear();
+  // var month_end = date.getMonth()+1;
+  // var day_end = date.getDate();
+  // if(String(month_end).length == 1){
+  //     month_end = '0' + month_end;
+  // }if(String(day_end).length == 1){
+  //     day_end = '0' + day_end;
+  // }
+  
+  // var week_end_date = year_end + '-' + month_end + '-' + day_end;
+  // $('.start').text(week_start_date);
+  // $('.end').text(week_end_date);
+
+
+$('#panel-store2').on("change", "p.all input", function(index) {
+    var t = $(this).prop('checked');
+    var count;
+    if(t){
+      jQuery('#panel-store2 ul .input-checkbox').not(':hidden').addClass('checked');
+      count = allStore.length;
+    }else{
+      jQuery('#panel-store2 ul .input-checkbox').not(':hidden').removeClass('checked');
+      count = 0;
+    }
+    jQuery('#panel-store2 ul input[type=checkbox]').not(':hidden').prop('checked',t);
+
+
+    if($('#panel-store2 li.li-cross').size() > 0){
+
+    count = $('#panel-store2 ul li.li-cross input[type=checkbox]:checked').size();
+    }else{
+
+    count = $('#panel-store2 ul li:not(.li-cross) input[type=checkbox]:checked').size();
+    }
+
+    $('.store-num').text(count);
+})
+$('#panel-store2').on("change", "ul input", function() {  
+    if($(this).parents('li').hasClass('li-cross')){
+      if($(this).parents('.panel').find('ul li.li-cross input[type=checkbox]:not(:checked)').size() == 0){
+        $('#panel-store2 p.all .input-checkbox').addClass('checked');
+        $('#panel-store2 p.all input[type=checkbox]').prop('checked',true);
+      }else{
+        $('#panel-store2 p.all .input-checkbox').removeClass('checked');
+        $('#panel-store2 p.all input[type=checkbox]').prop('checked',false);
+      }
+      var count = $('#panel-store2 ul li.li-cross input[type=checkbox]:checked').size();
+      $('.store-num').text(count);
+    }else{
+
+      if($(this).parents('.panel').find('ul li:not(.li-cross):not(.hiddens) input[type=checkbox]:not(:checked)').size() == 0){
+        $('#panel-store2 p.all  .input-checkbox').addClass('checked');
+        $('#panel-store2 p.all  input[type=checkbox]').prop('checked',true);
+      }else{
+        $('#panel-store2 p.all  .input-checkbox').removeClass('checked');
+        $('#panel-store2 p.all  input[type=checkbox]').prop('checked',false);
+      }
+      var count = $('#panel-store2 ul li:not(.li-cross) input[type=checkbox]:checked').size();
+      $('.store-num').text(count);
+    }
+
+})
+//搜索门店列表
+$('#panel-store2 header button').click(function(){
+    var flag = false;//if true then local
+    var search = $('#panel-store2 header input').val();
+    if($('#panel-store2 ul.scroll-store li:not(.li-cross)').size() < 1){
+      var str = '';
+      for(i=0;i<allStore.length;i++){
+        var name = allStore[i]['shop_name'];
+        var code = allStore[i]['shop_code'];
+        var shop_id = allStore[i]['shop_id'];
+        str += '<li data-code="'+code+'"><label class="lb" for="store2'+i+'">\
+                <span class="store-name">['+code+']'+ name +'</span>\
+                <span class="checkbox">\
+                  <span class="input-checkbox">\
+                    <input type="checkbox" name="store2" id="store2'+i+'" value="'+ shop_id +'" data-label="'+ name +'" data-code="'+ code +'"/>\
+                    <span class="inner"></span>\
+                  </span>\
+                </span>\
+              </li>';
+      }
+      $('#panel-store2 ul').html(str);
+      $('#panel-store2 ul li:first-child input').click();
+    }
+
+    //如果搜索为空，显示本办事处店铺，然后return
+    if(!search.trim()){
+      if(sessionStorage.getItem('flag1') == 'true'){
+        $('ul.scroll-store li').show(); 
+        $('ul.scroll-store li.li-cross').remove(); 
+        $('#panel-store2 ul li').removeClass('hiddens');
+
+
+        if(select_all()){
+          $('#panel-store2 .list-block .all .input-checkbox').addClass('checked')
+        }else{
+          $('#panel-store2 .list-block .all .input-checkbox').removeClass('checked')
+        }
+        sessionStorage.removeItem('flag1');
+      }else{
+
+        $('ul.scroll-store li.li-cross').remove(); 
+        $('ul.scroll-store li').show(); 
+        $('#panel-store2 ul li').removeClass('hiddens');
+        if(select_all()){
+          $('#panel-store2 .list-block .all .input-checkbox').addClass('checked')
+        }else{
+          $('#panel-store2 .list-block .all .input-checkbox').removeClass('checked')
+        }
+        $('#panel-store2 .list-block .scroll-store li').removeClass('hiddens');
+      }
+
+      $('.store-num').text($('#panel-store2 ul input:checked').size());
+      return;
+    }
+
+
+
+
+    $('ul.scroll-store li').hide();
+    $('#panel-store2 .list-block .scroll-store li').addClass('hiddens');
+
+
+    for(var i=0; i<allStore.length; i++){ 
+      if(allStore[i]['shop_code'].toLowerCase().indexOf(search.toLowerCase()) >=0 || allStore[i]['shop_name'].indexOf(search) >= 0){
+
+          var arr = [], str = '';
+          flag = true;
+
+        if(search.trim()){
+          for(var i=0; i<allStore.length; i++){      
+            if(allStore[i]['shop_code'].toLowerCase().indexOf(search.toLowerCase()) >=0 || allStore[i]['shop_name'].indexOf(search) >= 0){
+                arr.push(allStore[i]);
+                $('li[data-code="'+allStore[i]['shop_code']+'"]').show();
+                $('li[data-code="'+allStore[i]['shop_code']+'"]').removeClass('hiddens');
+            }
+          }
+        }
+
+        if($('#panel-store2 .list-block .scroll-store li').not('.hiddens').length > 0 && $('#panel-store2 .list-block .scroll-store li input').not('.checked').length > 0 ){
+            $('#panel-store2 .list-block .all .checkedAll').prop('checked', false);
+        }else{
+            $('#panel-store2 .list-block .all .checkedAll').prop('checked', true);
+        }
+      }
+    }
+
+    if(!flag){
+      sessionStorage.setItem('flag1','true');
+      $.ajax({
+        url: '/nt_pos/web_mobile/api?object=report.adapter.pos.html&method=get_shop_list',
+        data: JSON.stringify({"shop_id":shop_id,shop_code:search,signature: _s}),
+        type: 'POST',
+          dataType : "json",
+          contentType: "application/json",
+        success:  function(data){
+          var str = '';
+          for(i=0;i<data.data.length;i++){
+            var name = data.data[i]['shop_name'];
+            var code = data.data[i]['shop_code'];
+            var shop_id = data.data[i]['shop_id'];
+            str += '<li data-code="'+code+'" class="li-cross"><label class="lb" for="store2_new'+i+'">\
+              <span class="store-name">['+code+']'+ name +'</span>\
+              <span class="checkbox">\
+                <span class="input-checkbox">\
+                  <input type="checkbox" name="store2" id="store2_new'+i+'" value="'+ shop_id +'" data-label="'+ name +'" data-code="'+ code +'"/>\
+                  <span class="inner"></span>\
+                </span>\
+              </span>\
+            </li>';
+          }
+
+
+          $('#panel-store2 ul li').hide();
+          $('#panel-store2 ul li').addClass('hiddens');
+
+          $('#panel-store2 ul li.li-cross').remove();
+          $('#panel-store2 ul').append(str);
+          if(select_all()){
+            $('#panel-store2 p.all .input-checkbox').addClass('checked');
+          }else{
+            $('#panel-store2 p.all .input-checkbox').removeClass('checked');
+          }
+
+
+          $('.store-num').text($('#panel-store2 ul li.li-corss input:checked').size());
+        },
+        error:    function(d){
+          if(d.responseJSON.code == -11){
+            if(typeof js_bridge == 'object'){
+
+              js_bridge.callHandler('webviewForceRefresh', 
+                  {   
+                  }, function(response) {
+              })
+            }
+          }
+          console.log('error'); 
+        },
+        complete: function(){
+          console.log('complete');
+        },
+        beforeSend : function(){
+        }
+      })
+    }else{
+      $('.store-num').text($('#panel-store2 ul li:not(.li-cross) input:checked').size());
+    }
+    
+    // 清空input
+    // $('#panel-store2 header input').val('');
+})
+// 所选门店数
+$(document).on('click', '#panel-store2 .list-block .scroll-store li input', function(e){
+  return;
+    var num = + $('.store-num').text(),
+        index = $(this).parents('li').index();
+
+    if($(this).parents('li').hasClass('li-cross')){
+      $('#panel-store2 li:not(.li-cross)').remove();
+    }
+
+
+    if($(this).prop('checked')){
+        num ++;
+        if(select_all()){
+          $('#panel-store2 .list-block .all .checkedAll').prop('checked', true);
+        }
+    }else{
+        num --;
+        $('#panel-store2 .list-block .all .checkedAll').prop('checked', false);
+    }
+    //$('.store-num').text(num);
+
+
+    var count = $('#panel-store2 ul input[type=checkbox]:checked').size();
+    $('.store-num').text(count);
+})
+/**
+ * 判断是否全选中
+ */
+function select_all() {
+    var len = $(document).find('#panel-store2 .list-block .scroll-store li input').length;
+    for(var i = 0; i < len; i++){
+        if(!$(document).find('#panel-store2 .list-block .scroll-store li').eq(i).find('input').prop('checked')) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+
+jQuery(document).ready(function($){
+
+  // 通过url获取shop_id
+  function getShopId(str){
+      var url = location.href;
+      var index = url.indexOf(str) + 8,//等于号后面一个字符开始检测
+          fixed_index = url.indexOf(str) + 8,
+          reg = /\d/,
+          i = 0, //标记shop_id后面有几个数字, 这一串完整的数字是id
+          id = 0;
+      function getNums(index) {
+          if(reg.test(url.substr(index, 1))){
+              i++;
+              getNums(++index);
+          }
+      }
+      getNums(index);
+      id = url.substr(fixed_index, i);
+      return parseInt(id);
+  }
+
+	$('.filterButton').click(function(){
+		$('.filter').addClass('hidden');
+		$('#container > .condition').removeClass('hidden');
+	})
+
+  // $('#getList').click(function(){
+  //     if(ajax_count!=1 || !is_search){
+  //       return false;
+  //     }
+  //     $('.filter').removeClass('hidden');
+  //     $('#container > .condition').addClass('hidden');
+  // })
+  // 筛选
+  var flag = true; 
+  $('.menuRight').click(function(){
+    if(ajax_count!=1){
+      return false;
+    }
+    if(flag){
+      $('.filter').removeClass('hidden');
+      $('#container > .condition').addClass('hidden');
+      $('.data').removeClass('hidden');
+      flag = false;
+    }else{
+      $('.filter').addClass('hidden');
+      $('#container > .condition').removeClass('hidden');
+      $('.data').addClass('hidden');
+      flag = true;
+    }
+  })
+
+
+  var date = new Date();
+  var didDate = date.setDate(date.getDate()-6);
+  var year = date.getFullYear();
+  var month = date.getMonth()+1;
+  var day = date.getDate();
+  if(String(month).length == 1){
+    month = '0' + month;
+  }
+  if(String(day).length == 1){
+    day = '0' + day;
+  }
+  var year_month_day = year + '-' + month + '-' + day +'';
+
+  if(sessionStorage.getItem('start2')){
+    $('.startDate').text(sessionStorage.getItem('start2'));
+    $('input[name=start_at]').val(sessionStorage.getItem('start2'))
+  }else{
+    $('input[name=start_at]').val(year_month_day);
+    $('.startDate').text($('input[name=start_at]').val());
+  }
+  if(sessionStorage.getItem('end2')){
+    $('.endDate').text(sessionStorage.getItem('end2'));
+    $('input[name=end_at]').val(sessionStorage.getItem('end2'))
+  }else{
+    $('input[name=end_at]').val(new Date().Format("yyyy-MM-dd"));
+    $('.endDate').text($('input[name=end_at]').val());
+  }
+
+  $('input[name=start_at]').change(function(){
+    var start_at = $('input[name=start_at]').val();
+    var end_at = $('input[name=end_at]').val();
+    if(start_at > end_at ){
+      $('input[name=start_at]').val($('input[name=end_at]').val())
+    }
+    $('.startDate').text($('input[name=start_at]').val()); 
+    $('.endDate').text($('input[name=end_at]').val());
+    sessionStorage.setItem('start2',start_at);
+  })
+  $('input[name=end_at]').change(function(){
+    var start_at = $('input[name=start_at]').val();
+    var end_at = $('input[name=end_at]').val();
+    if(start_at > end_at ){
+      $('input[name=end_at]').val($('input[name=start_at]').val())
+    }
+    $('.startDate').text($('input[name=start_at]').val()); 
+    $('.endDate').text($('input[name=end_at]').val());
+    sessionStorage.setItem('end2',end_at);
+  })
+
+
+  $('.nx-btn-product-search').click(function(){
+    var val = $.trim($('#productCode').val());
+    var r = /^\d+$/;
+
+    if(r.test(val) == true)  
+     {  
+        if(val.length < 6){
+          showError('SKU至少输入6位');
+          $('#productCode').focus();
+          return false;
+        }else{
+          clearError();
+        }
+     }  
+    else  
+    {  
+      if(val.length < 2){
+        showError('商品名称至少输入2个字符');
+        $('#productCode').focus();
+        return false;
+      }else{
+        clearError();
+      }
+    }  
+      tab2_click_callback();
+    })
+
+  // 排行
+  var rangeValue = $('input[name=range]').val();
+    $('.step').html(rangeValue);
+  $('input[name=range]').change(function(e){
+    rangeValue = $('input[name=range]').val();
+    $('.step').html(rangeValue);
+  })
+
+			var table_example;
+
+      var TABLE = '';
+      function reset(){
+        if(!!table_example){
+            table_example.destroy();
+        }
+        table_example='';
+        $('.data table').remove();
+        var t = TABLE.clone();
+        $('.data').append(t);
+      }
+      TABLE = $('.data table').clone();
+
+        var render_table_example1 = function(cols){
+          // if(!!table_example){
+          //   table_example.ajax.reload();
+          //   return;
+          // }
+          var _columns = [];
+          var _columns_sort = ['shop_code','code','sale_count','amount_deserved','sale_amount','cut_rate','count_percent','amount_percent','stock_count','stock_amount','flow_rate'];
+          for(var i = 0; i < cols.length; i++){
+            if($.inArray(cols[i], _columns_sort) >= 0){
+              _columns.push(null);
+            }else{
+              _columns.push({orderable:false});
+            }
+          }
+
+          var colNum;
+          if($('input[name=reason2]:checked').val() == "category"){
+            colNum = [[cols.indexOf('sale_amount'),'desc']];
+          }else{
+            colNum = [];
+          }
+
+          table_example = $('#example').DataTable( {
+              scrollX: '100%',
+              scrollY: '485',
+              searching: false,
+              sort:true,
+              columns:_columns,
+              order:colNum,
+              "bProcessing" : true,  
+              "bServerSide" : true, 
+
+              ajax:{
+                url: '/nt_pos/web_mobile/api?object=report.adapter.pos.html&method=product_sale_rank',
+                type: 'POST',
+                dataType : "json",
+                contentType: "application/json",
+                data: function(d){
+                  var shop_ids = [], sexs = '';
+
+                if($('#panel-store2 li.li-cross').size() > 0 && !$('#panel-store2 li.li-cross').hasClass('hiddens')){
+
+                  $('#panel-store2 li.li-cross input[name=store2]:checked').each(function(){
+                      shop_ids.push($(this).val() * 1);
+                  })
+                }else{
+
+                  $('#panel-store2 li:not(.li-cross) input[name=store2]:checked').each(function(){
+                      shop_ids.push($(this).val() * 1);
+                  })
+                }
+                $('input[name=sexs]:checked').each(function(){
+                  sexs=$(this).val()
+                })
+
+                  // $('input[name=store2]:checked').each(function(){
+                  //     shop_ids.push($(this).val() * 1);
+                  // })
+                  // if($('.wrapper').attr('data-mode') == 'day'){
+                  //   d.end_date = $('.start').text();
+                  // }else{
+                  //   d.end_date = $('.end').text();
+                  // }
+                  
+                  // d.limit = d.length;
+                  // d.offset = d.start;
+                  // d.current_page = 1 + d.start / d.limit;
+                  // d.shop_ids = shop_ids;
+                  // d.product_code = $('input[name=name_code]').val();
+                  // d.start_date = $('.start').text();
+                  // d.group_level = $('input[name=reason2]:checked').val();
+                  // d.top_count = $('input[name=range]:checked').val()*1;
+                  // d.signature = _s;
+
+                  // if(d.order.length > 0){
+                  //   var _order_by = $('.dataTables_scrollHead th:eq('+d.order[0].column+')').attr('data-code');
+                  //   var _is_desc = (d.order[0].dir == 'asc')?0:1;
+
+                  //   d.order_by= _order_by;
+                  //   d.is_desc= _is_desc;
+                  // }
+
+                  var d2 = {};
+                  if($('.wrapper').attr('data-mode') == 'day'){
+                    d2.end_date = $('.start').text();
+                  }else{
+                    d2.end_date = $('.end').text();
+                  }
+                  
+                  d2.limit = d.length;
+                  d2.offset = d.start;
+                  d2.current_page = 1 + d.start / d2.limit;
+                  d2.shop_ids = shop_ids;
+                  d2.product_code = $('input[name=name_code]').val();
+                  d2.start_date = $('.start').text();
+                  d2.group_level = $('input[name=reason2]:checked').val();
+                  d2.top_count = $('input[name=range]:checked').val()*1;
+                  d2.signature = _s;
+                  d2.gender = sexs;
+
+                  if(d.order.length > 0){
+                    var _order_by = $('.dataTables_scrollHead th:eq('+d.order[0].column+')').attr('data-code');
+                    var _is_desc = (d.order[0].dir == 'asc')?0:1;
+
+                    d2.order_by= _order_by;
+                    d2.is_desc= _is_desc;
+                  }
+                  return (JSON.stringify(d2));
+                },
+                dataSrc:  function(data){
+
+                  // footer
+                  var footer = '';
+                  footer += '<span class="footerStyle">'+_LANG_SHOW['footer2_1']+':'+data.sale_count_sum+'</span>\
+                  <span class="footerStyle">'+_LANG_SHOW['footer2_2']+':'+data.sale_amount_sum+'</span>\
+                  <span class="footerStyle">'+_LANG_SHOW['footer1_1']+':'+data.stock_count_sum+'</span>\
+                  <span class="footerStyle">'+_LANG_SHOW['footer1_2']+':'+data.stock_amount_sum+'</span>\
+                  ' 
+                  $('.footer').html(footer);
+                  // if (langs.indexOf(langCode) != -1){
+                  //   $.getJSON('lang/'+langCode+'.json', {},translate);
+                  // }else{
+                  //   $.getJSON('lang/cn.json', translate);
+                  // }
+
+                  $('.data_content').hide();
+                  records = [];
+                  if(data['records']){
+                    for(var i = 0 ; i < data['records'].length ; i ++){
+                      var _data = [];
+                        for(var j=0; j < cols.length; j++){
+                          _data.push(data['records'][i][cols[j]]);
+                        }
+                        records.push(_data);
+                    }
+                  }
+                  return records
+                },
+              },
+              "fnCreatedRow": function( nRow, aData, iDataIndex ) {
+                $(nRow).find('td:nth-child(3)').click(function(e){
+                  var pageX = e.pageX;
+                  var pageY = e.pageY;
+                  var width = $(this)[0].offsetLeft + $(this)[0].offsetWidth;;
+                  getSku(e.target.innerHTML.slice(0,9),pageX,pageY,width);
+                  
+                })
+              },
+              "initComplete": function(settings, json) {
+                  $('#mainFooter').html('');
+    							$('#example_length').appendTo('#mainFooter');
+    							$('#example_info').appendTo('#mainFooter');
+    							$('#example_paginate').appendTo('#mainFooter');
+
+	            },
+		          "lengthMenu": [ [10 , 20, 50, 80], _LANG_SHOW['page_change'] ],
+		          "language":  _LANG_SHOW['_LANG']
+            } );
+
+            new $.fn.dataTable.FixedColumns( table_example, {
+                    leftColumns: 3,
+                } );
+
+            }
+
+            $('.nx-btn-display').css('background','#b3b3b3');
+
+            //init 汇总
+            var data = {
+                "data": [
+                  {
+                    "type_name": _LANG_SHOW['condi_category'],
+                    "type_code": "category"
+                  },
+                  {
+                    "type_name": _LANG_SHOW['condi_style'],
+                    "type_code": "style"
+                  },
+                  {
+                    "type_name": _LANG_SHOW['condi_color'],
+                    "type_code": "color"
+                  },
+                  {
+                    "type_name": _LANG_SHOW['condi_code'],
+                    "type_code": "sku"
+                  }
+                ]
+              }
+            var str = '';
+            for(i=0;i<data.data.length;i++){
+                var name = data.data[i]['type_name'];
+                var code = data.data[i]['type_code'];
+                str += '<li><label class="lb" for="reason2'+i+'">\
+                '+ name +'\
+                <span class="checkbox">\
+                  <span class="input-radio">\
+                    <input type="radio" name="reason2" id="reason2'+i+'" value="'+ code +'" data-label="'+ name +'" />\
+                    <span class="inner"></span>\
+                  </span>\
+                </span></label>\
+              </li>';
+              }
+              $('#panel-reason2 ul').html(str);
+              $(document).on("click", "#panel-reason2 .close-panel.confirm_1", function() {
+                var s = '';
+                if($(this).parents('.panel').find('input[type=radio]').size() == $(this).parents('.panel').find('input[type=radio]:checked').size()){
+                  s = '全部汇总类型';
+                }else{
+                  $(this).parents('.panel').find('input[type=radio]:checked').each(function(){
+                      if(s != ''){
+                          s += ',';
+                      }
+                      s +=  $(this).attr('data-label');
+                  });
+                }
+                $('input[data-value="storage1"]').val(s);
+                sessionStorage.setItem('reason2',s);
+                $('.filter_reason2').html(s);
+
+            });
+              
+            // 默认选中
+            $('#panel-reason2 ul li:first-child .input-radio input').click();
+            $('#panel-reason2 .close-panel.confirm_1').click();
+            
+            // init 性别
+            var data = {
+              "data": [
+                {'type_code': 'all', 'type_name': _LANG_SHOW['all_sexs']},
+                {'type_code': 'M', 'type_name': _LANG_SHOW['male']},
+                {'type_code': 'F', 'type_name': _LANG_SHOW['female']}
+              ]
+            }
+            var str = '';
+            for(i=0;i<data.data.length;i++){
+              var name = data.data[i]['type_name'];
+              var code = data.data[i]['type_code'];
+              str += '<li><label class="lb" for="sexs'+i+'">\
+                '+ name +'\
+                  <span class="checkbox">\
+                    <span class="input-radio">\
+                      <input type="radio" checked="" checked name="sexs" id="sexs'+i+'" value="'+ code +'" data-label="'+ name +'" />\
+                      <span class="inner"></span>\
+                    </span>\
+                  </span></label>\
+                </li>';
+            }
+            $('#panel-sexs ul').html(str);
+            $(document).on("click", "#panel-sexs .close-panel.confirm_5", function() {
+              var s = '';
+              if($(this).parents('.panel').find('input[type=radio]').size() == $(this).parents('.panel').find('input[type=radio]:checked').size()){
+                s = _LANG_SHOW[all_sum];
+              }else{
+                $(this).parents('.panel').find('input[type=radio]:checked').each(function(){
+                  if(s != ''){
+                    s += ',';
+                  }
+                  s +=  $(this).attr('data-label');
+                });
+              }
+              $('input[data-value="storage5"]').val(s);
+              sessionStorage.setItem('sexs1',s);
+              $('.filter_sexs').html(s);
+            });
+            // 默认选中
+            $('#panel-sexs ul li:first-child .input-radio input').click();
+            $('#panel-sexs input[value="code"]').click();
+            $('#panel-sexs .close-panel.confirm_5').click();
+
+            //init 店仓
+            if(xhr1){
+              xhr1.abort();
+            }
+            var shop_id = getShopId('shop_id=');
+            xhr1 = $.ajax({
+              url: '/nt_pos/web_mobile/api?object=report.adapter.pos.html&method=get_shop_list',
+              data: JSON.stringify({"shop_id":shop_id,signature: _s}),
+              type: 'POST',
+                dataType : "json",
+                contentType: "application/json",
+              success:  function(data){
+                        allStore = data.data;
+                        var str = '';
+                        for(i=0;i<data.data.length;i++){
+                            var name = data.data[i]['shop_name'];
+                            var code = data.data[i]['shop_code'];
+                            var shop_id = data.data[i]['shop_id'];
+                            str += '<li data-code="'+code+'"><label class="lb" for="store2'+i+'">\
+                      <span class="store-name">['+code+']'+ name +'</span>\
+                      <span class="checkbox">\
+                        <span class="input-checkbox">\
+                          <input type="checkbox" name="store2" id="store2'+i+'" value="'+ shop_id +'" data-label="'+ name +'" data-code="'+ code +'" />\
+                          <span class="inner"></span>\
+                        </span>\
+                      </span>\
+                    </li>';
+                        }
+                    $('#panel-store2 ul').html(str);
+                    $(document).on("click", "#panel-store2 .close-panel.confirm_2", function() {
+                      var s = '';
+                      var f = '';
+                      if($(this).parents('.panel').find('li.li-cross').size() > 0 && !$(this).parents('.panel').find('li.li-cross').hasClass('hiddens')){
+                      $(this).parents('.panel').find('li.li-cross input[type=checkbox]:checked').each(function(index){
+                          if(s != ''){
+                              s += ',';
+                          }
+                          s +=  $(this).attr('data-label');
+                          f +=  $(this).attr('data-code');
+
+                      });
+                      $('input[data-value="storage2"]').val(s);
+                      sessionStorage.setItem('store2',s);
+                      var size = $('#panel-store2 ul li.li-cross input[type=checkbox]:checked').size();
+                      if(size>1){
+                        $('.filter_store2').html(size);
+                      }else{
+                        $('.filter_store2').html(f);
+                      }
+                    }else{
+                      $(this).parents('.panel').find('li:not(.li-cross)  input[type=checkbox]:checked').each(function(index){
+                          if(s != ''){
+                              s += ',';
+                          }
+                          s +=  $(this).attr('data-label');
+                          f +=  $(this).attr('data-code');
+                      });
+                      $('input[data-value="storage2"]').val(s);
+                      sessionStorage.setItem('store2',s);
+                      var size = $('#panel-store2 ul li:not(.li-cross) input[type=checkbox]:checked').size();
+                      if(size>1){
+                        $('.filter_store2').html(size);
+                      }else{
+                        $('.filter_store2').html(f);
+                      }
+                    }
+                    // 必填显示
+                    if(!!s){
+                      $('.store_li').css('border', '1px solid #b7bec6')
+                    }else{
+                      $('.store_li').css('border', '1px solid red')
+                    }
+                    $('#bg').hide();
+                  });
+                  // 默认选中
+                  $('#panel-store2 .list-block ul li:first-child .input-checkbox input').click();
+                  $('#panel-store2 .close-panel.confirm_2').click();
+
+                //初始点击
+                // $('#getList').click();
+                ajax_count++;
+                if(ajax_count==1 && is_search){
+                  $('.nx-btn-display').css('background','#0894ec');
+                }else{
+                  $('.nx-btn-display').css('background','#b3b3b3');
+                }
+              },
+              error:    function(d){
+                if(d.responseJSON.code == -11){
+                  if(typeof js_bridge == 'object'){
+
+                    js_bridge.callHandler('webviewForceRefresh', 
+                        {   
+                        }, function(response) {
+                    })
+                  }
+                }
+                console.log('error');
+                
+              },
+              complete: function(){
+                console.log('complete');
+              },
+              beforeSend : function(){
+              }
+            })
+
+            // 倒计时显示
+            time_interval_init('form2', 1);
+
+            //click search
+            $('.nx-btn-display').click(function(){
+                if(ajax_count!=1 || !is_search){
+                  return false;
+                }
+
+                flag = false;
+                if($(this).hasClass('disabled')){
+                    return;
+                }
+                var shop_ids = [], sexs = '';
+                var type = [];
+                var Enddate;
+                $('input[name=sexs]:checked').each(function(){
+                  sexs=$(this).val();
+                })
+                if($('#panel-store2 li.li-cross').size() > 0 && !$('#panel-store2 li.li-cross').hasClass('hiddens')){
+                  $('#panel-store2 li.li-cross input[name=store2]:checked').each(function(){
+                      shop_ids.push($(this).val() * 1);
+                  })
+                }else{
+                  $('#panel-store2 li:not(.li-cross) input[name=store2]:checked').each(function(){
+                      shop_ids.push($(this).val() * 1);
+                  })
+                }
+                // if(shop_ids.length == 0){
+                //   shop_ids.push(shop_id);
+                // }
+                if($('.wrapper').attr('data-mode') == 'day'){
+                  Enddate = $('.start').text();
+                }else{
+                  Enddate = $('.end').text();
+                }
+                var data = {
+                    "limit":10, // 每页数量
+                    "current_page": 1, // 当前页码
+                    "shop_ids": shop_ids, // 店仓
+                    "start_date": $('.start').text(),
+                    "end_date": Enddate,
+                    "product_code": $('input[name=name_code]').val(), // 物品编码
+                    "group_level": $('input[name=reason2]:checked').val(),
+                    "top_count": $('input[name=range]:checked').val()*1,
+                    "gender": sexs,
+                    signature: _s,
+                    header_only:1
+                };
+
+                var check_ok = true
+                // 汇总，性别，店仓 必填
+                // if (data.group_level.length==0) {
+                //   $('.group_by_li').css('border', '1px solid red')
+                //   check_ok = false
+                // }
+                // if (data.gender.length==0) {
+                //   $('.sex_li').css('border', '1px solid red')
+                //   check_ok = false
+                // }
+                if (data.shop_ids.length==0) {
+                  $('.store_li').css('border', '1px solid red')
+                  check_ok = false
+                }
+                if(!check_ok){
+                  return
+                }
+
+                // 倒计时设定
+                time_interval(time, 'form2');
+                $('.data_content').show();
+                $(this).addClass('disabled');
+                $(this).html('加载中');
+                reset();
+                $('.data').removeClass('hidden');
+                $('.filter').removeClass('hidden');
+                $('#container > .condition').addClass('hidden');
+
+                //商品排行查询
+                if(xhr){
+                  xhr.abort();
+                }  
+                xhr = $.ajax({
+                  url: '/nt_pos/web_mobile/api?object=report.adapter.pos.html&method=product_sale_rank',
+                  data: JSON.stringify(data),
+                  type: 'POST',
+                    dataType : "json",
+                    contentType: "application/json",
+                  success:  function(data){
+                    console.log(data)
+                    records = [];
+                    if(data['records']){
+                      for(var i = 0 ; i < data['records'].length ; i ++){
+                        records.push([
+                          data['records'][i]['code'],
+                          data['records'][i]['category'],
+                          data['records'][i]['sale_count'],
+                          data['records'][i]['amount_deserved'],
+                          data['records'][i]['sale_amount'], 
+                          data['records'][i]['cut_rate'],
+                          data['records'][i]['count_percent'],
+                          data['records'][i]['amount_percent'],
+                          data['records'][i]['stock_count'],
+                          data['records'][i]['stock_amount'],
+                          data['records'][i]['flow_rate'],
+                        ])
+                      }
+                    }
+                    var _data = {
+                        headers:[
+                        {title : data.table_headers.code},
+                        {title : data.table_headers.category},
+                        {title : data.table_headers.sale_count},
+                        {title : data.table_headers.amount_deserved},
+                        {title : data.table_headers.sale_amount},
+                        {title : data.table_headers.cut_rate},
+                        {title : data.table_headers.count_percent},
+                        {title : data.table_headers.amount_percent},
+                        {title : data.table_headers.stock_count},
+                        {title : data.table_headers.stock_amount},
+                        {title : data.table_headers.flow_rate},
+                        ],
+                        records:records
+                    };
+
+                    var _data = {};
+                    var cols = [];
+                    var headers = [];
+                    var records = [];
+                  
+                    for(var i = 0 ; i < data.table_headers.length ;i++){
+                        for(var ss in data.table_headers[i]){
+                            headers.push({title : data.table_headers[i][ss]});
+                            cols.push(ss);
+                            if($('table thead tr').length == 1){
+                              $('table thead tr').append('<th data-code="'+ss+'">'+data.table_headers[i][ss]+'</th>');
+                            }
+                        }
+                    }
+                    // for(var i = 0 ; i < data.records.length; i++){
+                    //     var tmp = [];
+                    //     for(var j=0;j<cols.length;j++){
+                    //         tmp[j] = data.records[i][cols[j]];
+                    //     }
+                    //     records.push(tmp);
+                    // }
+                    
+                    render_table_example1(cols);
+
+                    $('.startDate').text($('.start').text());
+                    if($('.wrapper').attr('data-mode') == 'day'){
+                      $('.date_line').hide();
+                      $('.endDate').hide();
+                    }else{
+                      $('.date_line').show();
+                      $('.endDate').show();
+                      $('.endDate').text($('.end').text());
+                    }
+                    
+                    // _data.records = records;
+                    // _data.headers = headers;
+                    // render_table_example1(_data);
+
+                    },
+                    error:    function(d){
+                      if(d.responseJSON.code == -11){
+                        if(typeof js_bridge == 'object'){
+
+                          js_bridge.callHandler('webviewForceRefresh', 
+                              {   
+                              }, function(response) {
+                          })
+                        }
+                      }
+                      console.log('error');
+                      
+                    },
+                    complete: function(){
+                      console.log('complete');
+                    },
+                    beforeSend : function(){
+                    }
+                })
+
+                console.dir(data);
+
+                $(this).removeClass('disabled');
+                $(this).html('查询');
+            })
+
+})
+
+
+
+</script>
+    <script src="assets/js/moment.min.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.daterangepicker.min.js"></script>
+    <script src="assets/js/demo.js"></script>
+
+  <script>
+    var _paq = _paq || [];
+    window.onload = function(){
+      setTimeout(function() {
+        _paq.push(['enableLinkTracking', true]);
+        (function() {
+          try {
+            var storage, SiteId, UserId;
+            if(!!window.sessionStorage){
+                storage = window.sessionStorage;
+                SiteId = getUrlParameter('SiteId') || storage.getItem("SiteId") || P_SiteId;
+                UserId = getUrlParameter('UserId') || storage.getItem("UserId") || '';
+            }else{
+                SiteId = getUrlParameter('SiteId') || P_SiteId;
+                UserId = getUrlParameter('UserId') || '';
+            }
+            
+            if(!!window.sessionStorage){
+                storage = window.sessionStorage;
+                storage.setItem("SiteId", SiteId);
+                storage.setItem("UserId", UserId);
+            }
+            // 如果site_id是false,则不发送Piwik数据
+            if(SiteId == '' || SiteId == false){
+                return
+            }
+            
+            var u="http://a2.nexttao.com/";
+            // 当url为空不发送
+            if(u == "" || u == "false" || u == false){
+                return
+            }
+            if(!!UserId){
+                _paq.push(['setUserId', UserId]);
+            }
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', SiteId]);
+            _paq.push(['setDocumentTitle', '零售查询/商品排行']);
+            _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+            _paq.push(['trackPageView']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          }catch (e){
+            console.log(e);
+          }
+        })();
+      }, 200);
+    }
+  </script>
+</body>
+</html>

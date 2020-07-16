@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        div {
+            margin: 0;
+            padding: 0;
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 20px auto 0;
+            text-align: center;
+            line-height: 100px;
+            transform:rotate(30deg);
+        }
+
+        /* 边框 */
+        div {
+            /* -webkit-
+            -moz- */
+            border-radius: 5px;
+            border-shadow: 10px 10px 5px #888888; /* 水平阴影，垂直阴影，模糊的距离，以及阴影的颜色 */
+            border-image: url(border.png) 30 30 round; 
+            background-size: 80px 60px;/* 背景图片 */
+            background-origin: content-box;/* 背景图像位置 */
+            background-origin: border-box;
+            background-origin: padding-box;
+            background-image:url(img_flwr.gif),url(img_tree.gif);
+            background: linear-gradient(red, blue);/* 线性渐变 上至下 */
+            background: linear-gradient(to right, red , blue); /* 左至右 */
+            background: linear-gradient(180deg, red, blue); 
+            background: radial-gradient(red 5%, green 15%, blue 60%);/* 径向渐变 不均匀 */
+            background: radial-gradient(circle, red, yellow, green); /* 可设置形状 */
+            background: repeating-radial-gradient(red, yellow 10%, green 15%);/* 重复渐变 */
+        }
+
+        /* 2D 与 3D*/
+        div {
+            transform: rotate(30deg);/* 旋转 */
+            transform: translate(5px, 10px);/* 移动 */
+            transform: scale(2, 3);/* 缩放 */
+            transform: skew(20deg, 30deg); /* 倾斜 */
+            transform: matrix();/* 组合 */
+        }
+
+        /* 过渡 */
+        div {
+            transition: width 1s linear 2s;
+        }
+
+        /* 动画 */
+        div {
+            animation: myfirst 5s linear 2s infinite alternate;
+        }
+        @keyframes myfirst {
+            0%   {background: red;}
+            25%  {background: yellow;}
+            50%  {background: blue;}
+            100% {background: green;}
+        }
+
+        /* 多列 */
+        div {
+            column-count: 3; /* 列数 */
+            column-width: 100px;/* 列宽 */
+            column-gap: 50px;/* 列与列间的间隙 */
+            column-rule-style: solid;/* 列与列间的边框样式 */
+            column-rule-width: 1px; /* 边框厚度 */
+            column-rule-color: red;/* 边框颜色 */
+            column-rule: 1px solid red; /* 简写 */
+  
+        }
+
+        /* 响应式图片 */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* 弹性盒子 */
+        div {
+            display: flex;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <div>hello world</div>
+</body>
+</html>

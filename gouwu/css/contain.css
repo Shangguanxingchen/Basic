@@ -1,0 +1,124 @@
+#contain {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.content_left {
+    background-color: #eee;
+    border: 1px solid #aaa;
+    width: 200px;
+    float: left;
+    margin-right: 10px;
+}
+
+.content_right {
+    background-color: #eee;
+    border: 1px solid #aaa;
+    width:586px;
+    float: right;
+}
+
+.global_module {
+    position: relative;
+    background-color: #eee;
+    padding-bottom: 8px;
+}
+
+.module_up_down {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.procatalog .m-treeview li.m-expanded {
+    padding-left: 16px;
+    /* background: url(); */
+}
+
+.procatalog .m-treeview li.m-expanded > span {
+    font-weight: bold;
+    color: blue;
+}
+/* .procatalog .m-treeview li.m-expanded ul li {
+    list-style-image: 
+} */
+
+.content_right .ad {
+    margin-bottom: 10px;
+    width: 586px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+}
+
+.content_right .slider, .content_right .num {
+    position: absolute;
+    cursor: pointer;
+}
+
+.content_right .slider li {
+    width: 586px;
+    height: 150px;
+    overflow: hidden;
+    background-color: yellow;
+}
+
+.content_right .num {
+    right: 5px;
+    bottom: 5px;
+}
+
+.content_right .num li {
+    float: left;
+    border: 1px solid blue;
+    color: red;
+    margin-right: 3px;
+}
+
+.content_right .prolist {
+    position: relative;
+    width: 586px;
+    height: 150px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    background: #fff;
+}
+
+.content_right .prolist .prolist_content {
+    position: absolute;
+    width: 580px;
+    left: 0;
+    padding: 20px 0 0 8px;
+}
+
+/* .content_right .prolist .prolist_content a {
+    display: inline-block;
+} */
+.content_right .prolist .prolist_content img {
+    width: 60px;
+    height: 60px;
+    background-color: pink;
+    /* display: inline-block; */
+}
+
+.content_right .prolist .prolist_content .detail,.content_right .prolist .prolist_content .price {
+    display: block;
+}
+
+.content_right .prolist .module_left_right {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.content_right .prolist ul li {
+    float: left;
+    display: inline;
+    margin-right: 22px;
+    text-align: center;
+    width: 170px;
+}

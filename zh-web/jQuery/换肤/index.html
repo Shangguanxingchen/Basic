@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>简单换肤效果</title>
+<style>
+#content {
+    position: relative;
+    width: 500px;
+    height: 150px;
+    margin: 10px auto;
+    border: 1px solid #FCC;
+}
+.title {
+    font-size: 20px;
+    font-family:"微软雅黑";
+    color: #fff;
+    width: 500px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+}
+ul li {
+    list-style: none;
+    padding: 3px;
+    float: left;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div id="content">
+	<div class="title">web小实例-换肤</div>
+	<ul id="colors">
+    	<li>蓝色</li>
+        <li>绿色</li>
+        <li>橙色</li>
+        <li>青色</li>
+        <li>红色</li>
+        <li>紫色</li>
+    </ul>
+</div>
+
+<script src="../../lib/jquery-3.1.0.js"></script>
+<script type="text/javascript">
+    var col= ['#00f', '#0f0', '#E07D10', '#416316', '#f00', '#8994CC']; 
+    $('#colors li').on("click", function(){
+        var index=$(this).index();
+        //$(this).parents().find('.title').css('background',col[index]);
+        $("#content").css('backgroundColor',col[index]);
+        //$('body').css('background', col[index]);
+    });
+</script>
+</body>
+</html>

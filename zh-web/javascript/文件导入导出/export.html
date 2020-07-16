@@ -1,0 +1,24 @@
+<html>
+ <head>
+     <meta charset="UTF-8">
+     <title></title>
+ </head>
+ <body>
+ <iframe id="exeframe" name="exeframe" style="display:none">
+ </iframe>
+ <form id="form1" method="post" target="exeframe" action="export.jsp?ver=导出">
+  <input type="hidden" id="sContent" name="sContent" value=""/>
+ </form>
+  
+ <input type="button" onclick="exportData()" value="导出">
+    <script type="text/javascript">
+      function exportData(){
+      var html="<table><tr><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td></tr>";
+      html+="<tr><td>monday</td><td>tuesday</td><td>wednesday</td><td>thursday</td>";
+      html+="</tr></table>";
+      document.getElementByIdx_x_x("sContent").value=html;
+      document.getElementByIdx_x_x("form1").submit();
+      }
+     </script>
+ </body>
+</html>

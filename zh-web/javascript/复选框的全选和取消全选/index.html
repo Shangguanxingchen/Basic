@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    /*table {
+        background-color: red;
+    }
+    td,th {
+        background-color: #fff;
+    }*/
+    table,th,td {
+        border: 1px solid red;
+    }
+    table {
+        border-collapse: collapse;
+    }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th><input id="all" type="checkbox"></th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>电话</th>
+        </tr>
+        <tr>
+            <td><input id="c1" name="chk" type="checkbox"></td>
+            <td>aaa</td>
+            <td>bbb</td>
+            <td>ccc</td>
+        </tr>
+        <tr>
+            <td><input id="c2" name="chk" type="checkbox"></td>
+            <td>aaa</td>
+            <td>bbb</td>
+            <td>ccc</td>
+        </tr>
+        <tr>
+            <td><input id="c3" name="chk" type="checkbox"></td>
+            <td>aaa</td>
+            <td>bbb</td>
+            <td>ccc</td>
+        </tr>
+    </table>
+
+    <script>
+        var checkbox = function() {
+            var all = document.getElementById('all'),
+                chk = document.getElementsByName('chk');
+
+            all.onclick = function() {
+                var i, bgColor="", status="";
+
+                if(this.checked) {
+                    status = "checked";
+                    bgColor = "gold";
+                } else {
+                    status = "";
+                    bgColor = "";
+                }
+
+                for(i=0; i<chk.length; i++) {
+                    chk[i].checked = status;
+                    chk[i].parentNode.parentNode.style.backgroundColor = bgColor;
+                }
+            };
+
+            for(j=0; j<chk.length; j++) {
+                chk[j].onclick = function() {
+                    if (this.checked) {
+                        this.parentNode.parentNode.style.backgroundColor = 'yellow';
+                    } else {
+                        this.parentNode.parentNode.style.backgroundColor = '#fff';
+                    }
+
+                    if (isCheckedAll()) {
+                        all.checked = 'checked';
+                    } else {
+                        all.checked = '';
+                    } 
+                };
+            };
+
+            function isCheckedAll() {
+                for (k=0; k<chk.length; k++) {
+                    if (!chk[k].checked) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+
+        };
+        checkbox();
+    </script>
+    
+</body>
+</html>

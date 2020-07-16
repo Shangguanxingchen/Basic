@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>深拷贝</title>
+</head>
+<body>
+	<script>
+		function Dad(name) {
+			this.name = name;
+			this.age = 20;
+			this.money = "10000";
+			this.test = 'undefined';
+		}
+		Dad.prototype.fn = function() {
+			console.log("Dad");
+		}
+		function Son(name) {
+			Dad.call(this,name);
+			this.sex = "男";
+		}
+		//Son.prototype = deepCope(Dad.prototype);
+		Son.prototype.fn = function() {
+			console.log("Son");
+		}
+
+		let zhangsan = new Son("zhangsan");
+		zhangsan.fn();
+		let zhangyi = new Dad("zhangyi");
+		zhangyi.fn();
+        //方法一
+		/*function deepCope(obj) {
+			let newObj = Array.isArray(obj)?[]:{};
+			for(let key in obj) {
+				if(obj.hasOwnProperty(key)) {
+					if(typeof obj[key] === "Object") {
+						newObj[key] = deepCope(obj[key]);
+					}else {
+						newObj[key] = obj[key];
+					}
+				}
+			}
+			return newObj;
+		}*/
+
+		//方法二 组合继承
+		let deepCope = function() {};
+		deepCope.prototype = Dad.prototype;
+		Son.prototype = new deepCope();
+		Son.prototype.constrcutor = Son;
+
+		//简单拷备
+		let newObj = JSON.parse(JSON.stringify(obj));
+
+	</script>
+</body>
+</html>

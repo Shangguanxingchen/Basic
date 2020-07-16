@@ -1,0 +1,35 @@
+html, body, div,span,iframe,a,h1,h2,h3,h4,h5,h6,ul, ol, dl,li, p,img,form,input {
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    word-break: break-all;
+
+}
+
+html {
+    height: 100%;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.clear {
+    clear: both;
+}

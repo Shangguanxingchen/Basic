@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div data-type="table" data-value="10">table1</div>
+    <div data-type="table" data-value="11">table2</div>
+    <div data-type="grid" data-value="20">grid</div>
+
+    <script src="../zh-web/jquery.min.js"></script>
+    <script src="../react/build/react.js"></script>
+    <script src="../react/build/react-dom.js"></script>
+    <script src="../react/build/browser.min.js"></script>
+    <script>
+        var $table = $("div[data-type = 'table']");
+        console.log($table.data(10));
+        console.log($table.attr('data-value'));
+        /*var TodoList = React.createClass({
+          render: function() {
+            var createItem = function(itemText) {
+              return <li>{itemText}</li>;
+            };
+            return <ul>{this.props.items.map(createItem)}</ul>;
+          }
+        });*/
+        /*var TodoList = React.createClass({
+            render: function() {
+                var createItem = function(itemText) {
+                    return <li>{itemText}</li>;
+                };
+                return <ul>{this.props.items.map(createItem)}</ul>;
+            }
+        });*/
+
+        /*var TodoApp = React.createClass({
+            getInitailState: function() {
+                return {item: [], text: ""};
+            },
+            onChange: function(e) {
+                this.setState({text:e.target.value});
+            },
+            handleSubmit: function(e) {
+                e.preventDefault();
+                var nextItems = this.state.items.concat([this.state.text]);
+                var nextText = '';
+                this.setState({items: nextItems, text: nextText});
+            },
+            render: function() {
+                return (
+                    <div>
+                        <h3>TODO</h3>
+                        <TodoList items = {this.state.items} />
+                        <form onSubmit = {this.handleSubmit}>
+                            <input onChange = {this.onChange} value= {this.state.text} />
+                            <button>{"Add#" + (this.state.items.length + 1)}</button>
+                        </form>
+                    </div>
+                    );
+            }
+        });*/
+
+        /*React.render(<TodoApp />, document.body);*/
+        /*var TodoApp = React.createClass({
+          getInitialState: function() {
+            return {items: [], text: ''};
+          },
+          onChange: function(e) {
+            this.setState({text: e.target.value});
+          },
+          handleSubmit: function(e) {
+            e.preventDefault();
+            var nextItems = this.state.items.concat([this.state.text]);
+            var nextText = '';
+            this.setState({items: nextItems, text: nextText});
+          },
+          render: function() {
+            return (
+              <div>
+                <h3>TODO</h3>
+                <TodoList items={this.state.items} />
+                <form onSubmit={this.handleSubmit}>
+                  <input onChange={this.onChange} value={this.state.text} />
+                  <button>{'Add #' + (this.state.items.length + 1)}</button>
+                </form>
+              </div>
+            );
+          }
+        });*/
+
+       /* React.render(<TodoApp />, mountNode);*/
+ /*function fun(n, o) {
+    console.log(o);
+    return {
+        fun: function(m) {
+            return fun(m, n);
+        }
+    };
+ }
+
+ var a=fun(0);a.fun(1);a.fun(2);a.fun(3);
+ var b=fun(0).fun(1).fun(2).fun(3);
+ var c=fun(0).fun(1);fun(2);fun(3);
+*/
+
+
+/*var  name = "global";
+var obj = {
+    name:"obj",
+    dose:function() {
+        this.name = "dose";
+        return function() {
+            return this.name;
+        }
+    }
+    
+}
+console.log(obj.dose().call());*/
+
+/*var str = "abcdefg";
+console.log(str.substring(0));
+console.log(str.substring(2, 5));
+console.log(str.substr(2, 5));
+console.log(str.substr(2));*/
+
+
+
+</script>
+</body>
+</html>

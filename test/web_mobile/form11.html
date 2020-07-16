@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <meta name="author" content="zsy">
+    <meta name="keywords" content="table, analysis">
+    <meta name="description" content="Query goods gross margin">
+    <meta name="robots" content="index, follow">
+
+    <meta name="apple-mobile-web-app-title" content="landing">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="">
+    <link rel="stylesheet" type="text/css" href="static/lzsale/build/common.css">
+
+    <meta name="google" value="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <title>视图报表</title>
+    
+    <script src="static/src/js/fastclick.min.js"></script>
+    <script src="static/lzsale/src/js/expand.js"></script>
+    <script src="static/index/js/jquery.min.js"></script>
+    <script src="project_dashboard.js"></script>
+    <script src="static/index/js/get_lang_json.js"></script>
+    <!-- 新增关于日期控件 -->
+    <link rel="stylesheet" href="static/lzsale/src/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="static/lzsale/src/js/daterangepicker.min.css" />
+
+    <script src="static/lzsale/src/js/moment.min.js" type="text/javascript"></script>
+    <script src="static/lzsale/src/js/jquery.min.js" type="text/javascript"></script>
+    
+    <script src="static/lzsale/src/js/demo.js"></script>
+    <script src="static/lzsale/src/js/jquery.daterangepicker.min.js"></script>
+
+    <style>
+       /* .new_header ul li{
+            width: 25px;
+            float: left;
+        }*/
+
+    </style>
+</head>
+<body style="font-size:16px;">
+    <div class="header new_header">
+        <ul>
+            <li style="width: 10%;height:100%"></li>
+            <li>
+                <a href="form.html" class="header_a" tkey="one_one"></a>
+            </li>
+            <li>
+                <a href="javascript:;" class="active header_a" tkey="store_sale"></a>
+            </li>
+            <li>
+                <a href="form5.html" class="header_a" tkey="multichannel_sale"></a>
+            </li>
+            <li>
+                <a href="form2.html" class="header_a" tkey="store_target"></a>
+            </li>
+            <li>
+                <a href="form3.html" class="header_a" tkey="store_week"></a>
+            </li>
+            <li>
+                <a href="form4.html" class="header_a" tkey="kucun_analysis"></a>
+            </li>
+            <li style="width: 10%"></li>
+        </ul>
+    </div>
+    <div id="main">
+    </div>
+    <div class="background"></div>
+
+    <div class="background"></div>
+    
+    <div class="help-modeOne-one">
+      <div>
+        <p class="help-title" tkey="one_title1">
+        
+        </p>
+        <p class="help-title2" tkey="one_title1_1"></p>
+      </div>
+      <div>
+        <div tkey="one_title1_2"></div>
+        <div class="line-margin" tkey="one_title1_3"></div>
+      </div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="one_li1"></li>
+          <li tkey="one_li2"></li>
+          <li tkey="one_li3"></li>
+        </ul>
+      </div>
+    
+      <div>
+        <p class="help-title2" tkey="one_title2"></p>
+        <div tkey="one_1"></div>
+        <div tkey="one_2"></div>
+        <div class="line-margin" tkey="one_3"></div>
+        <div tkey="one_4"></div>
+        <!-- <div class="line-margin" tkey="one_5">     - 指标量</div>
+        <div tkey="one_6">     指标量前的冠名根据tab条件变更</div> -->
+        <div class="line-margin" tkey="one_7"></div>
+        <div tkey="one_8"></div>
+      </div>
+      <div>
+        <p class="help-title2" tkey="one_9"></p>
+        <div tkey="one_10"></div>
+        <div tkey="one_11"></div>
+        <div class="line-margin" tkey="one_12"></div>
+        <div tkey="one_13"></div>
+      </div>
+      <div>
+        <p class="help-title2" tkey="one_14"></p>
+        <div tkey="one_15"></div>
+        <div tkey="one_16"></div>
+        <div class="line-margin" tkey="one_17"></div>
+        <div tkey="one_18"></div>
+        <div class="line-margin" tkey="one_19"></div>
+        <div tkey="one_20"></div>
+      </div>
+      <div>
+        <p class="help-title2" tkey="one_21"></p>
+        <div tkey="one_22"></div>
+        <div tkey="one_23"></div>
+      </div>
+      <div>
+        <p class="help-title2" tkey="one_24"></p>
+        <div tkey="one_25"></div>
+        <div tkey="one_26"></div>
+        <div class="line-margin" tkey="one_27"></div>
+        <div tkey="one_28"></div>
+        <div class="line-margin" tkey="one_29"></div>
+        <div tkey="one_30"></div>
+      </div>
+    </div>
+    <div class="help-modeOne-two">
+      <div>
+        <p class="help-title" tkey="one_31"></p>
+      </div>
+      <div>
+        <div tkey="one_32"></div>
+        <div class="line-margin" tkey="one_33"></div>
+      </div>
+      <div style="margin-left: 70px;">
+        <ul>
+          <li tkey="one_34"></li>
+          <!-- <li>人员取值前5名，TOP3标记奖牌icon</li> -->
+        </ul>
+      </div>
+      <div tkey="one_35"></div>
+      <div tkey="one_36"></div>
+      <div class="line-margin" tkey="one_37"></div>
+      <div tkey="one_38"></div>
+    </div>
+    <div class="help-modeOne-three">
+      <div>
+        <p class="help-title" tkey="one_39"></p>
+      </div>
+      <div tkey="one_40"></div>
+      <div tkey="one_41"></div>
+      <div class="line-margin" tkey="one_42"></div>
+      <div tkey="one_43"></div>
+      <div class="line-margin" tkey="one_44"></div>
+      <div tkey="one_45"></div>
+    </div>
+
+    <div class="help-modeOne-four">
+      <div>
+        <p class="help-title" tkey="one_46"></p>
+      </div>
+      <div tkey="one_47"></div>
+      <div class="line-margin" tkey="one_48"></div>
+      <div tkey="one_49"></div>
+      <div class="line-margin" tkey="one_50"></div>
+      <div tkey="one_51"></div>
+      <div class="line-margin" tkey="one_52"></div>
+    </div>
+  
+    <script type="text/javascript">
+        var One = {};
+        var Two = {};
+        var Three = {};
+        var Four = {};
+        var myCharts = {};
+        var needAnimation = false;
+        
+    </script>
+    <script>
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        var _s = getUrlParameter('_s');
+        // _s = (!!_s)?_s:'';
+        if(_s == undefined || _s == 'undefined'){
+            _s = ''
+        }
+        var str = window.location.href;
+        function getParam(str){
+            var obj = {};
+            var pos_hash = str.lastIndexOf('#') ;
+            if(pos_hash != -1){
+                var search_arr = str.substr(str.indexOf('?') + 1 , ( pos_hash - str.indexOf('?') - 1)).split('&');
+            }else{
+                var search_arr = str.substr(str.indexOf('?') + 1).split('&');
+            }
+            for(var i = 0; i < search_arr.length; i++){
+                var key_value_arr = search_arr[i].split('=');
+                obj[key_value_arr[0]] = decodeURIComponent(key_value_arr[1]);
+            }
+            return obj;
+        }
+        
+        var _paq = _paq || [];
+        window.onload = function(){
+            // function getNum(str){
+            //     var url=location.href;
+            //     var index = url.indexOf(str) +8,
+            //     fixed_index = url.indexOf(str) +8,
+            //     reg = /\d/,i =0,id=0;
+            //     function getNums(index){
+            //       if(reg.test(url.substr(index,1))){
+            //         i++;
+            //         getNums(++index);
+            //       }
+            //     }
+            //     getNums(index);
+            //     id = url.substr(fixed_index,i)
+            //     return parseInt(id);
+            // }
+            var shop_id = getUrlParameter('shop_id');
+            var _s = getUrlParameter('_s');
+            var _lang = getUrlParameter('lang');
+            var _siteId = getUrlParameter('site_id');
+            var arr = document.getElementsByClassName('header_a');
+            for(var i in arr){
+                var href = arr[i].href;
+                arr[i].href = href + '?shop_id=' + shop_id + '&lang=' + _lang + '&_s=' + _s + '&site_id=' + _siteId;
+            }
+
+            // $('.header_a').each(function(){
+            //     if(!$(this).hasClass('active')){
+            //         $(this).attr('href', $(this).attr('href') + '&lang=' + _lang + '&_s=' + _s);
+            //     }
+            // })
+            setTimeout(function(){
+                var params = getParam(str);
+                _paq.push(['enableLinkTracking', true]);
+                (function() {
+                    try {
+                        var storage, SiteId, UserId;
+                        if(!!window.sessionStorage){
+                            storage = window.sessionStorage;
+                            SiteId = params.SiteId || storage.getItem("SiteId") || P_SiteId;
+                            UserId = params.UserId || storage.getItem("UserId") || '';
+                        }else{
+                            SiteId = params.SiteId || P_SiteId;
+                            UserId = params.UserId || '';
+                        }
+                        
+                        if(!!window.sessionStorage){
+                            storage = window.sessionStorage;
+                            storage.setItem("SiteId", SiteId);
+                            storage.setItem("UserId", UserId);
+                        }
+                        // 如果site_id是false,则不发送Piwik数据
+                        if(SiteId == '' || SiteId == false){
+                            return
+                        }
+                        var u="http://a2.nexttao.com/";
+                        // 当url为空不发送
+                        if(u == "" || u == "false" || u == false){
+                            return
+                        }
+                        if(!!UserId){
+                            _paq.push(['setUserId', UserId]);
+                        }
+                        _paq.push(['setTrackerUrl', u+'piwik.php']);
+                        _paq.push(['setSiteId', SiteId]);
+                        _paq.push(['setDocumentTitle', 'Dashboard-门店销售']);
+                        _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+                        _paq.push(['trackPageView']);
+                        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                    }catch (e){
+                        console.log(e);
+                    }
+                })();
+            }, 200)
+            // $.ajax({
+            //     url: 'http://192.168.11.115:4000/api/v6/stock/login/post',
+            //     data: JSON.stringify({
+            //         "username": "admin",
+            //         "password": "123",
+            //         "data":{    
+            //         }
+            //     }),
+            //     type: 'POST',
+            //     dataType : "json",
+            //     contentType: "application/json",
+            //     success:  function(data){
+            //         console.log(data)
+            //     },
+            //     error:    function(d){
+            //         console.log(d)
+            //     },
+            //     complete: function(){
+            //     },
+            //     beforeSend : function(){
+            //     }
+            // })
+            
+        }
+
+    </script>
+    <script type="text/javascript" src="static/lzsale/build/form.js"></script>
+    <script src="static/index/js/lang.js"></script>
+    <script src="static/lzsale/src/js/common.js"></script>
+</body>
+</html>

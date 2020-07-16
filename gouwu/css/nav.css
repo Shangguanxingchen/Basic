@@ -1,0 +1,41 @@
+#nav {
+    width: 784px;
+    padding: 8px;
+    margin: 8px auto;
+    background: #3b5998;
+    height: 18px;
+}
+#nav ul li {
+    float: left;
+    margin-right: 14px;
+    position: relative;
+    z-index: 100;
+}
+
+#nav ul li a {
+    display: block;
+    padding: 0 8px;
+    background: #eee;
+    font-weight: 700;
+}
+
+#nav ul li ul {
+    background-color: #88c366;
+    position: absolute;
+    width: 80px;
+    display: none;
+    overflow: hidden;
+}
+
+#nav ul li:hover ul {
+    background-color: #88c366;
+    position: absolute;
+    width: 100px;
+    display: block;
+}
+
+#nav ul li ul li {
+    border-bottom: 1px solid #bbb;
+    text-align: left;
+    width: 100%;
+}

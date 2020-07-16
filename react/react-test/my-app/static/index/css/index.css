@@ -1,0 +1,147 @@
+body{
+    font-size: 1.82vw;
+}
+.back{
+    background: #f5f5f5;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+.header_holder{
+    height: 62px;
+}
+.header{
+    line-height: 60px;
+    font-weight: 700;
+    color: #000;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #cccccc;
+    background: #ffffff;
+    margin-bottom: 0;
+    position: fixed;
+    z-index: 50;
+}
+.navbar-toggle{
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    text-align: center;
+}
+.navbar-toggle .icon-bar {
+    background: #5bc0de;
+}
+#total_sale,#hour_sale{
+    height: 230px;
+    width: 98vw;
+    background: #fff !important;
+}
+.part{
+    border: 1px solid #cccccc;
+    background: #fff;
+    margin: 1vw;
+    margin-bottom: 0;
+    position: relative;
+}
+.title_front{
+    background: #2699de;
+    padding: 2px;
+    position: absolute;
+    display: block;
+    height: 19px;
+}
+.part-title h4{
+    text-indent: 1vw;
+    position: relative;
+}
+.myrow{
+    border-top: 1px solid #cccccc;
+}
+.infoblock{
+    text-align: center;
+    height: 13vw;
+    border-right: 1px solid #cccccc;
+    width: 32vw;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.no_right{
+    border-right: none;
+}
+.rank_month,.rank_week,.rank_today{
+    display: flex;
+    display: flex;
+    justify-content: center;
+}
+.staff{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 18vw;
+    height: 22vw;
+}
+.staff p{
+    margin-top: 1vw;
+    font-size: 2vw;
+}
+.staff_pic{
+    display: block;
+    width: 12vw;
+    height: 12vw;
+}
+.fly{
+    position: absolute;
+    z-index: 20;
+}
+.m_w_d{
+    position: absolute;
+    right:0px;
+    top: -0.5vw;
+    background: #f7f7f7;
+    border: 1px solid #cccccc;
+    border-right: none;
+}
+h4 .time_select{
+    float: left;
+    text-indent: 0px;
+    font-size: 2vw;
+    width: 8.5VW;
+    line-height: 3.38vw;
+    text-align: center;
+    border-right: 1px solid #cccccc;
+}
+.selected{
+    background: #2699de;
+    color: #fff;;
+}
+.red{
+    color: red;
+}
+.num_total_sale{
+    font-style: normal;
+    font-size: 3.9vw;
+}
+.num_order{
+    font-size: 3.38vw;
+    padding: 10px;
+}
+.num_VIPorder{
+    font-size: 3.38vw;
+    padding: 1vw;
+}
+.num_newmember{
+    color: #61a0a8;
+    font-size: 3.9vw;
+}
+.price_customer{
+    font-size: 3.38vw;
+}
+.match_rate{
+    font-size: 3.38vw;
+}

@@ -1,0 +1,246 @@
+/*顶部*/
+
+.index_header{
+    position: relative;
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    border: 1px solid #CACFD5;
+    box-sizing: border-box;
+    padding-left: 100px;
+    background-color: #ffffff;
+    z-index: 5;
+}
+
+.index_header > section{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.index_header > section.clear{
+    clear: both;
+}
+
+.index_header .left{
+    line-height: 80px;
+}
+
+.index_header .left span{
+    color: #34495e;
+    font-size: 15px;
+}
+
+.index_header .left span.high_mark{
+    color: #1296DB;
+    font-size: 18px;
+}
+
+.index_header .right{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.index_header .right input{
+    font-size: 16px;
+    min-width: 320px;
+    height: 40px;
+    /*color: #CACFD5;*/
+    background-color: #F7F8FA;
+    border: 1px solid #B7BEC6;
+    box-sizing: border-box;
+    padding-left: 55px;
+    border-radius: 20px;
+    background-image: url("./../imgs1/search.png");
+    background-size: 23px 23px;
+    background-repeat: no-repeat;
+    background-position: 10px 8px;
+    outline: 0;
+    margin-right: -20px;
+}
+.index_header .right .search{
+  border: 1px solid #1296DB;
+  border-radius:4px; 
+  background: none;
+  padding: 4px 30px;
+  margin-right: -8px;
+  margin-left: 20px;
+  margin-top: 20px;
+  color: #1296DB;
+  position: relative;
+  left: -5px;
+  outline: none;
+}
+
+.index_header .right input::-webkit-input-placeholder{
+    color: #CACFD5;
+}
+
+.index_header .right input::-moz-placeholder{
+    color: #CACFD5;
+}
+
+.index_header .right input:-ms-input-placeholder{
+    color: #CACFD5;
+}
+
+.index_header .right input:-moz-placeholder{
+    color: #CACFD5;
+}
+
+.index_header .right .scan{
+    width: 24px;
+    vertical-align: middle;
+}
+
+/*顶部结束*/
+
+
+/*主体*/
+
+.index_body{
+    width: 100%;
+    box-sizing: border-box;
+    /*text-align: center;*/
+}
+
+.index_body > a{
+    width: 25%;
+    max-width: 240px;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    margin: 10px 7px 0;
+    border: 1px solid #CACFD5;
+    cursor: pointer;
+    text-align: left;
+    background: #fff;
+}
+
+.index_body > a:nth-child(4n + 1){
+    margin-left: 11px;
+}
+
+.index_body > a > img{
+    max-width: 100%;
+    height:238px;
+    display: block;
+    margin:auto;
+}
+
+.index_body > a p{
+    color: #34495E;
+    width: 100%;
+    height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 2px 10px 0 10px;
+    line-height: 20px;
+}
+
+.index_body > a div{
+    position: relative;
+    padding: 0 10px;
+}
+
+.index_body > a div .money{
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+    line-height: 32px;
+    color: #DA1E24;
+}
+
+.index_body > a div .rank{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 90px;
+    height: 40px;
+    text-align: center;
+    line-height: 39px;
+    background-image: url("../imgs1/rank.png");
+    background-repeat: no-repeat;
+    background-size: 90px 33px;
+    background-position: 0 0;
+    color: #ffffff;
+}
+.index_body > a div .ranks{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 90px;
+    height: 40px;
+    text-align: center;
+    line-height: 39px;
+    background-image: url("../imgs1/no_icon.png");
+    background-repeat: no-repeat;
+    background-size: 90px 33px;
+    background-position: 0 0;
+    color: #ffffff;
+}
+.index_body p{
+    color: #34495E;
+    width: 100%;
+    word-wrap:break-word;
+
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 10px 0 0px;
+    line-height: 20px;
+}
+/*主体结束*/
+.open-board{
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+}
+.sku{
+    color: #34495E;
+    display: block;
+    padding-left: 10px;
+    margin-top: 5px;
+}
+.right .del{
+    position: relative;
+    width: 18px;
+    left: -16px;
+    top: 3px;
+}
+svg path,svg rect{
+  fill: #1296DB;
+}
+.bg{
+    background: #fff;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3;
+    display: none;
+}
+.size{
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    display: none;
+    z-index: 4
+}
+.shopForce{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 40%;
+    left: 40%;
+    /*display: none*/
+}
+.shopForce img{
+    width: 300px;
+}
+

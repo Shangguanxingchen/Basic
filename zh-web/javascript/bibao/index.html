@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+       .wp {
+        width: 100px;
+        border: 1px solid red;
+        margin: 10px;
+        padding: 5px;
+       }
+    </style>
+</head>
+<body>
+    <div class="wp">
+        <ui id="myUl">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ui>
+    </div>
+    
+    <script>
+        var myUl = document.getElementById('myUl');
+        var lis = document.getElementsByTagName('li');
+
+        /*for(var i=0; i<lis.length; i++) {
+
+            (function(i) {
+                lis[i].onclick = function () {
+                     alert(i);
+                }
+            })(i)
+         }*/
+
+        /*for(var i=0; i<lis.length; i++) {
+            
+            lis[i].onclick = (function(n) {
+                return function() {
+                    alert(n)
+                }
+            })(i)
+        }*/
+        for(var i=0; i<lis.length; i++) {
+            (function(n) {
+                lis[i].onclick = function() {
+                    alert(n)
+                }
+            })(i)
+        }   
+    </script>
+    
+</body>
+</html>

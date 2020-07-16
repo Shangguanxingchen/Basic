@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+    <style>
+        table {
+        	border-collapse: collapse;
+        }
+
+    </style>
+<body>
+
+	<div class="wp">
+		<p>
+			<label>姓名：<input id="name" type="text"></label>
+		</p>
+		<p>
+			<label>电话：<input id="mobile" type="text"></label>
+		</p>
+		<p>
+			<label>地址：<input id="address" type="text"></label>
+		</p>
+		<p>
+			<button id="saveBtn">保存</button>
+		</p>
+	</div>
+
+	<hr>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>电话</th>
+				<th>地址</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			
+		</tbody>
+	</table>
+    
+    <script src="../lib/jquery-3.1.0.js"></script>
+	<script>
+	!function(window,document,$,undefined) {
+		var init = function() {
+			initEvt();
+			renderTable();
+
+		};
+
+		var initEvt = function() {
+			$('#saveBtn').on('click', onSaveBtnClick);
+			$('#tbody').on('click','.delBtn', onDelBtnClick);
+		};
+
+		var onDelBtnClick = function() {
+			var $this = $(this);
+			var key = $this.attr('id');
+			var ls = window.localStorage;
+
+			if(confirm('确定要删除吗?')){
+				ls.removeItem(key);
+			}
+			renderTable();
+		};
+
+		var onSaveBtnClick = function() {
+			var data = {
+				name: $('#name').val(),
+				mobile: $('#mobile').val(),
+				address: $('#address').val()
+			};
+			var ls = window.localStorage;
+			var time = data.name + new Date().getTime();
+			//TODO 检查数据
+			
+			ls.setItem(time, JSON.stringify(data));
+			renderTable();
+		};
+
+		var renderTable = function() {
+			var ls = window.localStorage;
+			var len = ls.length;
+			var key;
+			var obj;
+			var trs = [];
+			for(var i=0; i<len; i++) {
+				key = localStorage.key(i);
+				obj = JSON.parse(localStorage.getItem(key));
+
+				trs.push(
+					'<tr>',
+						'<td>', obj.name ,'</td>',
+						'<td>', obj.mobile ,'</td>',
+						'<td>', obj.address ,'</td>',
+						'<td><a id="',key, '" class="delBtn" href="javascript:;">删除</a><a href="javascript:;">修改</a></td>',
+					'</tr>'
+				);
+			};
+
+			$('#tbody').html(trs.join(''));
+		};
+
+		init();
+
+	}(window,document,jQuery);
+		
+	/*var ContactList = {
+		currKey: undefined,
+		init: function() {
+			this.initEvt();
+			this.showList();
+		},
+		initEvt: function() {
+			document.getElementById('saveBtn').onclick = this.onSaveBtnClick;
+		},
+		onSaveBtnClick: function() {
+			var name = document.getElementById('name').value;
+			var mobile = document.getElementById('mobile').value;
+			var address = document.getElementById('address').value;
+
+		
+			var obj = {
+				name: name,
+				mobile: mobile,
+				address: address
+			};
+
+			if (ContactList.currKey) {
+				localStorage.setItem(ContactList.currKey, JSON.stringify(obj));
+				ContactList.currKey = undefined;
+				document.getElementById('saveBtn').innerHTML = '保存';
+			} else {
+				localStorage.setItem('name' + new Date().getTime(), JSON.stringify(obj));
+			}
+
+			ContactList.showList();
+		},
+		showList: function() {
+			var tbody = document.getElementById('tbody');
+			var len = localStorage.length;
+			var i;
+			var key;
+			var obj;
+			var trs = [];
+
+
+			for (i=0; i<len; i++) {
+				key = localStorage.key(i);
+				obj = JSON.parse(localStorage.getItem(key));
+
+				trs.push(
+					'<tr>', 
+						'<td>', obj.name, '</td>', 
+						'<td>', obj.mobile, '</td>', 
+						'<td>', obj.address, '</td>', 
+						'<td><button ukey="', key, '" onclick="ContactList.onDelBtnClick(this)">删除</button><button ukey="', key, '" onclick="ContactList.onUpdateBtnClick(this)">修改</button></td>', 
+					'</tr>'
+				);
+			}
+
+			tbody.innerHTML = trs.join('');
+
+		},
+		onDelBtnClick: function(me) {
+			var key = me.getAttribute('ukey');
+			if (confirm('确定要删除该联系人吗？')) {
+				localStorage.removeItem(key);
+				ContactList.showList();
+			}
+		},
+		onUpdateBtnClick: function(me) {
+			var key = me.getAttribute('ukey');
+			var obj = JSON.parse(localStorage.getItem(key));
+
+			// TODO
+
+			ContactList.currKey = key;
+			document.getElementById('saveBtn').innerHTML = '修改';
+
+			document.getElementById('name').value = obj.name;
+
+		}
+	};
+
+	ContactList.init();*/
+
+	</script>
+
+
+</body>
+</html>

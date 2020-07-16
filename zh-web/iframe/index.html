@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="outerH1">outer</h1>
+    <iframe id="frame1" src="iframe_inner.html"></iframe>
+    <button id="setInBtn">set inner</button>
+
+    <script>
+        var setInBtn = document.getElementById('setInBtn');
+        var outerH1 = document.getElementById('outerH1');
+        var frame1 = document.getElementById('frame1');
+
+        setInBtn.onclick = function() {
+            var cWindow = frame1.contentWindow;
+            var cDocument = cWindow.document;
+            var inner = cDocument.getElementById('inner');
+
+            inner.innerHTML = "888";
+            
+        }
+    </script>
+
+</body>
+</html>

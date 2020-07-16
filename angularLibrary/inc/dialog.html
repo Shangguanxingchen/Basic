@@ -1,0 +1,81 @@
+<div id="bookDialog" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{bookDlgTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        <!-- 表单 -->
+        <form id="booksForm" class="form-horizontal">
+          <input type="hidden" id="bookId">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">书名：</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="name" placeholder="请输入书名" ng-model="book.name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">作者：</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="author" placeholder="请输入作者" ng-model="book.author">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">出版社：</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="publisher" placeholder="请输入出版社" ng-model="book.publisher">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">定价：</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="price" placeholder="请输入定价" ng-model="book.price">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">出版日期：</label>
+            <div class="col-sm-7">
+              <input type="text" class="form-control" id="p_date" placeholder="请输入出版日期" ng-model="book.p_date">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">类别：</label>
+            <div class="col-sm-7">
+              <select id="classify" class="form-control" ng-model="book.classify">
+                <option value="0">请选择</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">上架/下架：</label>
+            <div class="col-sm-7">
+              <label class="radio-inline"><input type="radio" name="status" value="1" ng-model="book.status">上架</label>
+              <label class="radio-inline"><input type="radio" name="status" value="0" ng-model="book.status">下架</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">借出状态：</label>
+            <div class="col-sm-7">
+              <label class="radio-inline"><input type="radio" name="b_status" value="0" ng-model="book.borrow_status">未借出</label>
+              <label class="radio-inline"><input type="radio" name="b_status" value="1" ng-model="book.borrow_status">已借出</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">上传图片：</label>
+            <div class="col-sm-7">
+              <input type="file">
+              <input type="button" value="上传">
+            </div>
+          </div>
+        </form>
+        <!-- 表单 -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="saveBtn" type="button" class="btn btn-primary w-110" ng-show="!isUpdate" ng-click="saveBook()">确认并保存</button>
+        <button type="button" class="btn btn-primary" ng-show="isUpdate" ng-click="doUpdateBook()">确认并修改</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>图书销售管理系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- <link rel="shortcut icon" href="../favicon.ico"> -->
+		<script type="text/javascript" src="../zh-web/jquery.min.js"></script>
+	</head>
+	<body>
+	    <div class="container">
+		    <div id="container_demo">
+		        <a class="hiddenanchor" id="toregister"></a> 
+		        <a class="hiddenanchor" id="tologin"></a>
+		        <div id="wrapper">
+		            <div id="login" class="animate form">
+				        <form id="loginform" name="loginform" method="post">
+				       		<h1>登录</h1>
+					        <p>
+						        <label for="email" class="uname" data-icon="u"> 邮箱 </label>
+						        <input id="email" name="email" required="required" type="text" placeholder="请输入邮箱" autofocus />
+					        </p>
+					        <p>
+						        <label for="password" class="youpasswd" data-icon="p"> 密码 </label> 
+						        <input id="password" name="password" required="required" type="password" placeholder="请输入密码" />
+					        </p>
+					        <p class="keeplogin">
+					        <input type="checkbox" name="isRemberPwdId" id="isRemberPwdId"/> 
+					        <label for="loginkeeping">记住密码&nbsp;</label>
+					        </p>
+					        <p class="keeplogin">
+					        <input type="checkbox" name="isAutoLoginId" id="isAutoLoginId"/>
+					        <label for="autologin">自动登录&nbsp;</label>
+					        </p>
+					        <p class="login button">
+					            <input type="button" value="登录" onclick="login()" />
+					        </p>
+					       	<p class="change_link">
+					            没有账号? <a href="#toregister" class="to_register">前去注册</a>
+					       	</p>
+				        </form>
+		     		</div>
+		        </div>
+		    </div>
+	    </div>
+	<script>
+	    //先查看是否有本地数据（记住密码）
+		$(document).ready(function(){ 
+		    //读取 localStage 本地存储，填充用户名密码,如果自动登录有值直接跳转； 
+		    //相反，跳转到本页面,等待登陆处理 
+		    var storage = window.localStorage; 
+		    var getEmail = storage["email"]; 
+		    var getPwd = storage["password"]; 
+		    var getisstroepwd = storage["isstorePwd"]; 
+		    var getisautologin = storage["isautologin"]; 
+		     
+	        if(getisautologin == "yes") { 
+	            if(( ("" != getEmail) || (null != getEmail)) && (("" != getPwd) ||(null != getPwd))) { 
+	                //lacoste  已经保存 登陆信息 直接登陆 
+	                // alert('正在自动登录');
+	                $("#email").val(getEmail);
+	                $("#password").val(getPwd); 
+	               // window.location="";  
+	               //加载时显示：正在自动登录
+	                $.ajax({
+				        /*url : '../servlet/LoginServlet?choose=login',*/
+				        url :" php/login.php",
+				        data : {
+				            email :  getEmail,
+				        	password : getPwd
+				        },
+				        dataType : 'json',
+				        success : function(data) {
+				        	if (data.msg == "") {
+				                alert("账号信息异常，请核实后重新登录");
+				        	} else {
+				            	//登录成功后保存session，如果选择了记住密码，再保存到本地
+				        		//window.location.href ='../index/index.jsp';
+				        	}
+				        },
+				        error : function() {
+				        	alert("系统错误");
+				        }
+				    });
+	            } 
+	        } else {    
+	                $("#email").val(getEmail); 
+	                $("#password").val(getPwd); 
+	                document.getElementById("isRemberPwdId").checked = true; 
+	        } 
+		}); 
+
+		function login() {
+		    var userEmail = $("#email").val(); 
+		    var userPassWord = $("#password").val(); 
+		    var storage = window.localStorage; 
+		    //记住密码 
+		    if(document.getElementById("isRemberPwdId").checked) { 
+		        //存储到loaclStage   
+		        storage["email"] = userEmail; 
+		        storage["password"] = userPassWord; 
+		        storage["isstorePwd"] = "yes"; 
+		    } else { 
+		        storage["email"] = userEmail; 
+		        storage["isstorePwd"] =  "no"; 
+		    } 
+		    //下次自动登录 
+		    if(document.getElementById("isAutoLoginId").checked) { 
+		        //存储到loaclStage   
+		        storage["email"] = userEmail; 
+		        storage["password"] =  userPassWord; 
+		        storage["isstorePwd"] =  "yes"; 
+		        storage["isautologin"] =  "yes"; 
+		    } else { 
+		        storage["email"] = userEmail; 
+		        storage["isautologin"] = "no"; 
+		    }
+
+		    $.ajax({
+		        /*url : '../servlet/LoginServlet?choose=login',*/
+		        url : "php/login.php",
+		        data : {
+				    email : userEmail,
+				    password : userPassWord
+				},
+		        dataType : 'json',
+			    success : function(data) {
+			    	if (data.msg == "") {
+			     		alert("用户名或密码错误");
+			    	} else {
+			    		//登录成功后保存session，如果选择了记住密码，再保存到本地
+			     		window.location.href ='../index/index.jsp';
+			    	}
+			    },
+			    error : function() {
+			    	alert("系统错误");
+			    }
+			});
+
+		    alert("登录成功");
+		}
+	</script>
+	</body>
+</html>

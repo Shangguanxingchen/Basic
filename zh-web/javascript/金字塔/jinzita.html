@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style type="text/css">
+        span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+     
+
+    <script>
+        function jinzita() {
+            for (var i=0; i<10; i++) {
+
+                for (var k=0; k<10 - i - 1; k++) {
+                    document.write('<span></span>');
+                }
+
+                for (var j=0; j<=2*i; j++) {
+                    document.write('<span>*</span>');
+                }
+
+                document.write('<br>');
+            }
+        }
+        jinzita();
+
+    </script>
+</body>
+</html>

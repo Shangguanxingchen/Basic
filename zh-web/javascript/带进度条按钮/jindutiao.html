@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style type="text/css">
+        .outer {
+            width: 150px;
+            height: 30px;
+            line-height: 30px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            cursor:pointer;
+        }
+
+        .inner {
+            width: 0;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #000;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer" id="outer">
+        提交
+        <div class="inner" id="inner">
+             
+        </div>
+    </div>
+
+    <script>
+         
+        var outer = document.getElementById('outer'),
+            inner = document.getElementById('inner'),
+            counter = 0,
+            timer;
+
+        /*outer.onclick = function() {
+                timer = setInterval(function() {
+                counter++;
+                inner.style.width = counter * 10 + '%';
+                if(counter == 10) {
+                    clearInterval(timer);
+                    }
+                }, 1000);
+            };*/
+        /*outer.onclick = function() {
+            function running() {
+                counter++;
+                inner.style.width = counter*10 + "%";
+                if(counter == 10) {
+                    clearInterval(timer);
+                }
+            };
+            timer = setInterval(running, 1000);
+        };*/
+
+        outer.onclick = function() {
+            timer = setInterval(running, 1000);
+        };
+
+        function running() {
+            inner.style.width = counter*10 + '%';
+            if(counter > 10) {
+                clearInterval(timer);
+                return;
+            }
+            counter++;
+        };
+
+
+    </script>
+</body>
+</html>

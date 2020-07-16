@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>99乘法表</title>
+
+    <style type="text/css">
+          div {
+             width: 729px;
+             border-color: red;
+             border-width: 0 0 1px 1px;
+             border-style: solid;
+          }
+
+          span {
+              display: inline-block;
+              width: 80px;
+              height: 30px;
+              line-height: 30px;
+              background-color: #ccc;
+              font-family: "microsoft yahei";
+              font-size: 16px;
+              text-indent: 10px;
+              border-color: red;
+              border-width: 1px 1px 0 0;
+              border-style: solid;
+          }
+    </style>
+</head>
+<body>
+
+
+<script>
+  function do99() {
+    document.write("<div>");
+    for(j=1; j<=9; j++) {
+        for(i=1; i<=j; i++) {
+            document.write("<span>" + i + "&times;" + j + "=" + j * i + "</span>");
+        }
+        document.write("<br>");
+    }
+    document.write("</div>");
+  }
+  do99();
+</script>  
+<script src="js/index.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html ng-app="NtSF" ng-cloak="" class="ng-cloak">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <meta name="author" content="zsy">
+    <meta name="keywords" content="table, analysis">
+    <meta name="description" content="Query goods gross margin">
+    <meta name="robots" content="index, follow">
+
+    <meta name="apple-mobile-web-app-title" content="landing">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="">
+    <link rel="stylesheet" type="text/css" href="static/lzsale/build/common.css">
+
+    <meta name="google" value="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <title>视图报表</title>
+    
+    <script src="static/src/js/fastclick.min.js"></script>
+    <script src="static/lzsale/src/js/expand.js"></script>
+    <script src="static/index/js/jquery.min.js"></script>
+    <script src="project_dashboard.js"></script>
+    <script src="static/index/js/get_lang_json.js"></script>
+
+    <!-- 新增关于日期控件 -->
+    <link rel="stylesheet" href="static/lzsale/src/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="static/lzsale/src/js/daterangepicker.min.css" />
+
+    <script src="static/lzsale/src/js/moment.min.js" type="text/javascript"></script>
+    <script src="static/lzsale/src/js/jquery.min.js" type="text/javascript"></script>
+    <!-- <script src="static/index/js/lang.js"></script> -->
+    <script src="static/lzsale/src/js/demo.js"></script>
+    <script src="static/lzsale/src/js/jquery.daterangepicker.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="static/index/js/bootstrap.min.js"></script>
+    <link href="static/index/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/src/css/form5.css" rel="stylesheet">
+
+</head>
+<body ng-controller="form5">
+    <!-- tab -->
+    <div class="header new_header">
+        <ul>
+            <li style="width: 10%;height:100%"></li>
+            <li>
+                <a href="form.html" class="header_a" tkey="one_one"></a>
+            </li>
+            <li>
+                <a href="form11.html" class="header_a" tkey="store_sale"></a>
+            </li>
+            <li>
+                <a href="javascript:;" class="active header_a" tkey="multichannel_sale"></a>
+            </li>
+            <li>
+                <a href="form2.html" class="header_a" tkey="store_target"></a>
+            </li>
+            <li>
+                <a href="form3.html" class="header_a" tkey="store_week"></a>
+            </li>
+            <li>
+                <a href="form4.html" class="header_a" tkey="kucun_analysis"></a>
+            </li>
+            <li style="width: 10%"></li>
+        </ul>
+    </div>
+
+    <div class="well">
+        <div style="background-color: white;">
+            <!-- title -->
+            <div class="row header_5" style="margin-left:0;border:1px solid #eaeaea;border-bottom: 0;">
+                <span class="blue_block"></span>
+                <div class="col-md-5 title" tkey="one_title1">销售统计</div>
+                <div class="col-md-4">
+                    <ul class="nav nav-pills">
+                        <li style="border-bottom:none;" role="presentation" ng-class="{active:search_type=='today'}" ng-click="getData('today')"><a tkey="real_time_query">实时查询</a></li>
+                        <li style="border-bottom:none;" role="presentation" ng-class="{active:search_type=='history'}" ng-click="getData('yestoday')"><a tkey="historical_query">历史查询</a></li>
+                    </ul>
+                </div>
+                <div ng-show="search_type=='today'" class="col-md-3 date_title">
+                    <!-- <div class="datepicker" id="datepicker" display=""> -->
+                        <span class="startDate_today">{{startDate}}</span>
+                        <img class="date_img" src="static/lzsale/src/img/date_disabled.png" alt="">
+                    <!-- </div> -->
+                </div>
+                <div ng-show="search_type!='today'" class="col-md-3 date_title">
+                    <div class="datepicker" name="daterange" id="datepicker" display="">
+                        <span ng-class="{startDate_today:yestoday_class}" class="startDate">{{startDate}}</span>
+                        <img src="static/lzsale/src/img/date.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- 上部分 销售统计-->
+            <div class="row" style="margin-left:0;border:1px solid #eaeaea;border-bottom: 0;">
+                <!-- 合计 -->
+                <div class="col-md-6">
+                    <div class="row"><div class="col-md-12 tit_mar" tkey="online_and_offline">线上、线下销售合计</div></div>
+                    <div class="row _mar">
+                        <div class="col-md-5" tkey="sales_amount">销售额</div>
+                        <div class="col-md-7 sale_amount">{{data.total_amount|currency : ''}}</div><!-- |currency:'￥' -->
+                    </div>
+                    <div class="row _mar">
+                        <div class="col-md-5" tkey="sales_order">销售单数</div>
+                        <div class="col-md-7 sale_count">{{data.order_count}}<span tkey="order">笔</span></div>
+                    </div>
+                    <div class="row _mar">
+                        <div class="col-md-5" tkey="sales_qty">销售数量</div>
+                        <div class="col-md-7 sale_count">{{data.product_count}}<span tkey="piece">件</span></div>
+                    </div>
+                </div>
+                <!-- 饼图 -->
+                <div class="col-md-6" style="border-left:1px solid #eaeaea">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="sale_on_off"></div>
+                        </div>
+                        <div class="col-md-6" style="margin-top: 2rem;">
+                            <div>
+                                <div class="line_on" tkey="online_sales">线上销售额</div> 
+                                <div class="line_on_off_amount" ng-style="{'fontSize':(data.on_line_sales+'').split('.')[0].length>11?'19px':'24px'}">{{data.on_line_sales|currency : ''}}</div>
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <div class="line_off" tkey="offline_sales">线下销售额</div> 
+                                <div class="line_on_off_amount" ng-style="{'fontSize':(data.offline_sales+'').split('.')[0].length>11?'19px':'24px'}">{{data.offline_sales|currency : ''}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex_channel">
+                <!-- 上部分 多渠道合计 -->
+                <div class="flex_lr" ng-repeat="channel_sale in data.channel_sales">
+                    <div class="channel_left tit_1">
+                        <div ng-show="channel_sale.channel_code=='H5'">H5</div>
+                        <div ng-show="channel_sale.channel_code=='SAA_express'" tkey="saa"></div>
+                        <div ng-show="channel_sale.channel_code=='SAA_pickup'" tkey="saa"></div>
+                        <div ng-show="channel_sale.channel_code=='MINIPROGRAM'">
+                            <div style="text-align: center;" tkey="miniprogram1"></div>
+                            <div tkey="miniprogram2"></div>
+                        </div>
+
+                        <div class="tit_2" ng-show="channel_sale.channel_code=='SAA_express'" tkey="home_delivery"></div>
+                        <div class="tit_2" ng-show="channel_sale.channel_code=='SAA_pickup'" tkey="self_pick_service"></div>
+                    </div>
+                    <div class="channel_right">
+                        <div><span tkey="products_qty">商品数量</span>：{{channel_sale.product_count}}</div>
+                        <div><span tkey="orders">订单数量</span>：{{channel_sale.order_count}}</div>
+                        <div><span tkey="sales_amount_Amt">销售额</span>：{{channel_sale.amount|currency : ''}}</div>
+                    </div>
+                </div>
+                <!-- <div class="flex_lr">
+                    <div class="channel_left tit_1">H5</div>
+                    <div class="channel_right">
+                        <div>商品数量：1</div>
+                        <div>订单数量：2</div>
+                        <div>销售额：2,000.00</div>
+                    </div>
+                </div>
+                <div class="flex_lr">
+                    <div class="channel_left tit_1">导购宝<div class="tit_2">送货到家</div></div>
+                    <div class="channel_right">
+                        <div>商品数量：1</div>
+                        <div>订单数量：2</div>
+                        <div>销售额：2,000.00</div>
+                    </div>
+                </div>
+                <div class="flex_lr">
+                    <div class="channel_left tit_1">导购宝<div class="tit_2">自提/自助收银</div> </div>
+                    <div class="channel_right">
+                        <div>商品数量：1</div>
+                        <div>订单数量：2</div>
+                        <div>销售额：2,000.00</div>
+                    </div>
+                </div>
+                <div class="flex_lr">
+                    <div class="channel_left tit_1">小程序</div>
+                    <div class="channel_right">
+                        <div>商品数量：1</div>
+                        <div>订单数量：2</div>
+                        <div>销售额：2,000.00</div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- 下部分 员工销售统计 -->
+        <div class="div2">
+            <div class="row header_5" style="margin-left:0;border:1px solid #eaeaea;border-bottom: 0;">
+                <span class="blue_block"></span>
+                <div class="col-md-10 title" tkey="staff_sales_statistic">员工销售统计</div>
+            </div>
+            
+            <div class="staff_sort">
+                <div ng-show="data.employee_sales.length == 0">
+                    <img ng-show="_lang!='en'&&_lang!='zh-Hant'" class="nodata_mul" src="static/lzsale/src/img/nodata.png" />
+                    <img ng-show="_lang=='en'" class="nodata_mul" src="static/lzsale/src/img/nodata_img.png" />
+                    <img ng-show="_lang=='zh-Hant'" class="nodata_mul" src="static/lzsale/src/img/nodata_zh_Hant.png" />
+                </div>
+                <div class="staff_left" ng-show="data.employee_sales.length > 0">
+                    <div class="tr_div" style="height:65px;">
+                        &nbsp;
+                    </div>
+                    <div class="tr_div staff_color tit_1" style="height:58px;display: flex;align-items: center;">
+                        H5
+                    </div>
+                    <div class="tr_div" style="height:58px;">
+                        <div class="tit_1" tkey="saa">导购宝</div>
+                        <div class="tit_2" tkey="home_delivery">送货到家</div>
+                    </div>
+                    <div class="tr_div staff_color" ng-style="lang_style" style="height:58px;">
+                        <div class="tit_1" tkey="saa">导购宝</div>
+                        <div class="tit_2" tkey="self_pick_service">自提/自助收银</div>
+                    </div>
+                    <div class="tr_div tit_1" style="height:58px;display: flex;flex-direction: column;margin: 0;padding: 8px;">
+                        <div ng-show="_lang=='en'" tkey="miniprogram1"></div>
+                        <div ng-show="_lang=='en'" tkey="miniprogram2"></div>
+
+                        <div ng-show="_lang!='en'" style="line-height: 42px;" tkey="miniprogram1"></div>
+                    </div>
+                </div>
+                <div class="staff_right" style="overflow-x: scroll;position: absolute;left: 12rem;width: 84.5%;overflow: auto;">
+                    <div class="right_column" ng-repeat="employee_sale in data.employee_sales">
+                        <div>
+                            <div class="tit">{{employee_sale.user_name}}</div>
+                            <div class="tit_num">{{employee_sale.amount|currency : ''}}</div>
+                        </div>
+
+                        <div 
+                        ng-class="{staff_color:user_channel_sale.channel_code=='H5'||user_channel_sale.channel_code=='SAA_pickup'}" 
+                        ng-repeat="user_channel_sale in employee_sale.user_channel_sales">
+                            <div>{{user_channel_sale.amount|currency : ''}}</div>
+                            <div>{{user_channel_sale.order_count}}<span tkey="order">笔</span>/{{user_channel_sale.product_count}}<span tkey="piece">件</span></div>
+                        </div>
+                        <div class="bg_style">{{$index+1}}</div>
+                        <!-- <div>
+                            <div>1000.00</div>
+                            <div>1单/2件</div>
+                        </div>
+                        <div class="staff_color">
+                            <div>1000.00</div>
+                            <div>1单/2件</div>
+                        </div>
+                        <div>
+                            <div>0.00</div>
+                            <div>0/0</div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 日期弹框 -->
+    <div class="wrapper">
+        <div class="dataTab">
+            <ul>
+                <li id="dp-day">
+                    <label class="active">
+                        <input type="radio" name="mode" value="day" id="mode_day" />
+                        <span tkey="day">日</span>
+                    </label>
+                </li>
+                <li id="dp-week">
+                    <label>
+                        <input type="radio" name="mode" value="week" id="mode_week" />
+                        <span tkey="week">周</span>
+                    </label>
+                </li>
+                <li id="dp-month">
+                    <label>
+                        <input type="radio" name="mode" value="month" id="mode_month" />
+                        <span tkey="month">月</span>
+                    </label>
+                </li>
+                <li id="dp-range">
+                    <label style="border-right: 1px solid rgb(18, 150, 219);">
+                        <input type="radio" name="mode" value="customize" id="mode_range"/>
+                        <span tkey="customize">自定义</span>
+                    </label>
+                    </li>
+            </ul>
+            <button ng-click="getData()" tkey="search">查询</button>
+        </div>
+        <div class="picker" id="pickerBox" style="width: 850px;">
+            <div style="float: left; width: 100%;">
+                <div id="pickerContainer"></div>
+                <div class="shopForce">
+                    <img src="static/lzsale/src/img/Group.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="background" style="display: none;"></div>
+
+    <!-- loading -->
+    <div class="circle_loading loader loader--style2" title="1">
+      <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+      <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+        <animateTransform attributeType="xml"
+          attributeName="transform"
+          type="rotate"
+          from="0 25 25"
+          to="360 25 25"
+          dur="0.6s"
+          repeatCount="indefinite"/>
+        </path>
+      </svg>
+    </div>
+
+    <!-- <div class="loading loading-detail"> 加载中 ...</div> -->
+    <script type="text/javascript">
+        var One = {};
+        var Two = {};
+        var Three = {};
+        var Four = {};
+        var myCharts = {};
+        var needAnimation = false;
+    </script>
+    <script type="text/javascript">
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        var _s = getUrlParameter('_s');
+        // _s = (!!_s)?_s:'';
+        if(_s == undefined || _s == 'undefined'){
+            _s = ''
+        }
+        
+        var str = window.location.href;
+        function getParam(str){
+            var obj = {};
+            var pos_hash = str.lastIndexOf('#') ;
+            if(pos_hash != -1){
+                var search_arr = str.substr(str.indexOf('?') + 1 , ( pos_hash - str.indexOf('?') - 1)).split('&');
+            }else{
+                var search_arr = str.substr(str.indexOf('?') + 1).split('&');
+            }
+            for(var i = 0; i < search_arr.length; i++){
+                var key_value_arr = search_arr[i].split('=');
+                obj[key_value_arr[0]] = decodeURIComponent(key_value_arr[1]);
+            }
+            return obj;
+        }
+
+        var _paq = _paq || [];
+        window.onload = function(){
+            var shop_id = getUrlParameter('shop_id');
+            var _s = getUrlParameter('_s');
+            var _lang = getUrlParameter('lang');
+            var _siteId = getUrlParameter('site_id');
+            var arr = document.getElementsByClassName('header_a');
+            for(var i in arr){
+                var href = arr[i].href;
+                arr[i].href = href + '?shop_id=' + shop_id + '&lang=' + _lang + '&_s=' + _s + '&site_id=' + _siteId;
+            }
+
+            // $('.header_a').each(function(){
+            //     if(!$(this).hasClass('active')){
+            //         $(this).attr('href', $(this).attr('href') + '&lang=' + _lang);
+            //     }
+            // })
+            //piwik
+            setTimeout(function(){
+                var params = getParam(str);
+                _paq.push(['enableLinkTracking', true]);
+                (function() {
+                try {
+                    var storage, SiteId, UserId;
+                    if(!!window.sessionStorage){
+                        storage = window.sessionStorage;
+                        SiteId = params.SiteId || storage.getItem("SiteId") || P_SiteId;
+                        UserId = params.UserId || storage.getItem("UserId") || '';
+                    }else{
+                        SiteId = params.SiteId || P_SiteId;
+                        UserId = params.UserId || '';
+                    }
+                    
+                    if(!!window.sessionStorage){
+                        storage = window.sessionStorage;
+                        storage.setItem("SiteId", SiteId);
+                        storage.setItem("UserId", UserId);
+                    }
+                    // 如果site_id是false,则不发送Piwik数据
+                    if(SiteId == '' || SiteId == false){
+                        return
+                    }
+                    
+                    var u="http://a2.nexttao.com/";
+                    // 当url为空不发送
+                    if(u == "" || u == "false" || u == false){
+                        return
+                    }
+                    if(!!UserId){
+                        _paq.push(['setUserId', UserId]);
+                    }
+                    _paq.push(['setTrackerUrl', u+'piwik.php']);
+                    _paq.push(['setSiteId', SiteId]);
+                    _paq.push(['setDocumentTitle', 'Dashboard-多渠道销售']);
+                    _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+                    _paq.push(['trackPageView']);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                }catch (e){
+                    console.log(e);
+                }
+                })();
+            })
+        }
+        
+    </script>
+    <script src="static/index/js/lang.js"></script>
+    <script type="text/javascript" src="static/lzsale/src/libs/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="static/lzsale/src/libs/angular-1.4.8.min.js"></script>
+    <script type="text/javascript" src="static/lzsale/src/libs/angular-route.js"></script>
+    <script type="text/javascript" src="static/lzsale/src/libs/angular-resource.js"></script>
+    <script type="text/javascript" src="static/lzsale/src/js/api.js"></script>
+    <script src="static/lzsale/src/js/common.js"></script>
+</body>
+</html>

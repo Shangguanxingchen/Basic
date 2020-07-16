@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+          .reir {
+            width: 300px;
+            height: 50px;
+            border: 1px solid #ccc;
+            line-height: 50px;
+            text-align: center;
+          }
+          .contral {
+            margin: 20px 0;
+          }
+          .didian {
+            width: 250px;
+          }
+    </style>
+</head>
+<body>
+    <div class="reir" id="reir">
+         
+    </div>
+    <div class="contral" id="contral">
+        <button id="start">开始</button>
+        <button id="stop">停止</button>
+    </div>
+    <div>
+        <input type="text" class="didian" id="didian">
+        <button id="addbtn">新增</button>
+    </div>
+
+    <script>
+        var selectDD = function() {
+            var members = ["故宫","长城","十三陵","十渡","圆明园","颐和园"];
+            var start = document.getElementById("start");
+            var stop = document.getElementById("stop");
+            var reir = document.getElementById("reir");
+            var st;
+            var addbtn = document.getElementById("addbtn");
+            var didian = document.getElementById("didian");
+
+            start.onclick = function() {
+                if(st) {
+                    return;
+                }
+
+                st = setInterval(function() {
+                    var r = Math.floor(Math.random()*members.length);
+                    reir.innerHTML = members[r];
+                }, 100)
+            }
+
+            stop.onclick = function() {
+                clearInterval(st);
+                st = undefined;
+            }
+
+            addbtn.onclick =function() {
+                var val = didian.value;
+                val = val.split("|");
+
+                for(var i=0; i<members.length; i++) {
+                    if(val == members[i]) {
+                        alert("此地点已存在");
+                        return;
+                    }
+                }
+                if(didian != null) {
+                    didian.value = ""
+                }
+
+                members = members.concat(val);
+            }
+           
+        }
+        selectDD();
+           
+    </script>
+</body>
+</html>

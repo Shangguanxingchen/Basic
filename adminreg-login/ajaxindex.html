@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .dialog-wp {
+            display: none;
+        }
+        .dialog-wp .masker {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: 0.6;
+        }
+        .dialog-wp .dialog {
+            width: 500px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -259px;
+            margin-top: -150px;
+            background-color: #fff;
+        }
+        .dialog .dialog-header {
+            height: 35px;
+            line-height: 35px;
+            text-indent: 30px;
+            background-color: red;
+            color: #fff;
+        }
+        .dialog .dialog-header span {
+            position: absolute;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>我是首页，请<a href="javascript:;" id="login">登录</a>或<a href="javascript:;" id="reg">注册</a></h1>
+    <div class="dialog-wp">
+        <div class="masker"></div>
+        <div class="dialog">
+            <div class="dialog-header">
+                首页对话框
+                <span id="close">&times</span>
+                <span>&times</span>
+            </div>
+            <div class="dialog-body"></div>
+        </div>
+    </div>
+    <script src="../zh-web/lib/jquery-3.1.0.js"></script>
+    <script>
+        $(document).ready(function() {
+            var login = document.getElementById("login");
+            var reg = document.getElementById("reg");
+            var close = document.getElementById("close");
+            login.onclick = function() {
+                $('.dialog-wp').css('display', 'block');
+            }
+            reg.onclick = function() {
+                $('.dialog-wp').css('display', 'block');
+            }
+            close.onclick = function() {
+                $('.dialog-wp').css('display', 'none');
+            }
+        }
+</body>
+</html>

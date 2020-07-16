@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>固定宽度瀑布流</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    #wp {
+        margin: 0 auto;
+    }
+
+    div:not(#wp) {
+        background: #ccc;
+        width: 200px;
+        margin:0 5px;
+        position: absolute;
+    }
+    </style>
+</head>
+<body>
+    <div id="wp"></div>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            createDiv ()
+            function createDiv () {
+                for (var i = 0; i < 7; i++) {
+                    var div = document.createElement('div');
+                    var divh = Math.floor(Math.random()*300+50)   //div的高度在50到350之间
+                    div.style.height = divh + "px";
+                    div.innerHTML = i;
+                    document.getElementById("wp").appendChild(div);    
+                };
+                change()
+            }
+
+            function change() {
+                var aDiv = document.getElementsByTagName('div');
+                // alert(aDiv.length);
+                var windowCW = document.documentElement.clientWidth;  //窗口视口的宽度
+                var n = Math.floor(windowCW/210);                     //一行能容纳多少个div，并向下取整
+                if (n<=0) {return};
+                //var t = 0;
+                var center = (windowCW - n*210)/2;                   //居中或距左边的距离
+                var arrH = [];                                       //定义一个数组存放div的高度
+                for (var i = 0; i < aDiv.length; i++) {
+                    var j = i%n;                                  
+
+                    if (arrH.length >= n) {                    //一行排满n个后到下一行                    
+                        var min = findMin(arrH);              //从最“矮”的排起，可以从下图的序号中看得出来，下一行中序号是从矮到高排列的
+                        aDiv[i].style.left = center + min*210 + "px";       
+                        aDiv[i].style.top = arrH[min] + 10 + "px";
+                        arrH[min] += aDiv[i].offsetHeight + 10;    
+                        // alert(min);
+                    }else{
+                        arrH[j] = aDiv[i].offsetHeight;        
+                        aDiv[i].style.left =center + 200*j+10*j + "px";
+                        aDiv[i].style.top = 0;
+                    }
+
+                };
+            }
+        }
+        
+        window.onresize = function(){      //窗口改变也调用函数  
+            change();
+        }
+
+        window.onscroll= function  () {
+            // 页面总高度
+            var bodyHeight = document.documentElement.offsetHeight;
+            // 可视区高度
+            var windowHeight = document.documentElement.clientHeight;
+            //滚动条的高度    
+            var srcollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var srcollH = document.body.scrollHeight;
+            // alert(srcollH);
+            if (srcollTop+windowHeight  >= srcollH-20) {
+                createDiv();
+            };
+        }
+
+        /*window.onscroll = function() {
+            var st = document.documentElement.scrollTop || document.body.scrollTop;
+            var sh = document.body.height;
+            if(st+ch > sh) {
+                createElement();
+            }
+        };*/
+
+        /*function findMin(arr) {
+            var k = 0;
+            for (var i = 0; i < arr.length; i++) {
+                k = Math.min(arr[k], arr[i]) == arr[k] ? k : i;
+            }
+            return k;
+        }*/
+
+        function findMin(arr) {
+            var height = 100000,
+            index = 0;
+            
+            for(var a=0; a<arr.length; a++) {
+                var new_height = arr[a];
+                if(new_height < height) {
+                    height = new_height;
+                    index = a;
+                }
+            }
+            return index;
+        };
+
+    </script>
+</body>
+</html>

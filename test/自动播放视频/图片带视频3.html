@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        video {
+            max-width:  100%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">hello1211111111111111111111111111111111</div>
+
+    <img id="imgView" src="images/bg.jpg" class="thumbnail" />
+    <video id="videoView" src=""  autoplay="autoplay" controls  volume="true" muted="muted" ></video>
+
+    <script language="javascript">
+        /*var video = document.getElementById("bestsellerVideo");
+        var content= document.getElementById("content");
+        var vList = ['1.mp4', '2.mp4','3.jpg']; 
+        var vLen = vList.length; 
+        var curr = 0; 
+        
+        video.addEventListener('ended', function(){
+            curr++;
+            if(curr < vLen){
+                play();
+            }else {
+                curr = 0;
+                video.pause();
+                content.style.display = "block";
+                video.style.display = "none";
+            }
+        });
+        
+        var play = function() {
+            content.style.display = "none";
+            video.style.display = "block";
+            video.src = vList[curr];
+            video.load(); 
+            video.play();
+        }
+        
+        var intervalId = setInterval(function() {
+            play();
+        }, 1000*60)*/
+
+        var notices = null;
+        var imgsAndVideos = null;
+        var words = null;
+        
+
+        function startInterval(data) {
+            notices = data.notices;
+            words = data.words;
+            imgsAndVideos = data.videosAndPictures;
+         
+            $('#notice').html(notices[0]);
+            $('#words').html(words[0]);
+            handleImgVideoUrl(imgsAndVideos);
+        }
+        function handleImgVideoUrl(imgsAndVideos) {
+                // 设置图片和视频播放
+            // let iavSize = imgsAndVideos.length;
+            var vList=[];
+            // var vList = ['0:https://www.runoob.com/try/demo_source/movie.mp4','1:http://www.runoo.png']; // 播放列表
+            for (let index = 0; index < imgsAndVideos.length; index++) {
+                vList.push(imgsAndVideos[index]);
+            }
+         
+            var myvideo = document.getElementById("videoView");
+            var vLen = vList.length;
+            if (vList[curr].indexOf('0:') >= 0) {
+                    $("#imgView").hide();
+                    $("#videoView").show();
+                    // myvideo.src = vList[curr];
+                    let url = vList[curr].replace('0:', '');
+                    $('#videoView').attr('src', url);
+                    // myvideo.muted=true;
+                    myvideo.load();
+                    myvideo.play();
+                    // curr++;
+            }else{
+                let url = vList[curr].replace('1:', '');
+                $("#videoView").hide();
+                $("#imgView").show();
+                $("#imgView").attr("src", url);
+                curr++;
+                if (curr >= vLen) {
+                    curr = 0; //重新循环播放
+                }
+                // console.log("当前图片地址：1" );
+                setTimeout(function () {
+                    console.log("当前图片地址：2" );
+                    handleImgVideoUrl(imgsAndVideos);
+                }, 3000);
+            }
+            
+            //视频播放完执行的方法
+            myvideo.onended = function () {
+                if (vList[curr].indexOf('0:') >= 0) {
+                    $("#imgView").hide();
+                    $("#videoView").show();
+                    // myvideo.src = vList[curr];
+                    let url = vList[curr].replace('0:', '');
+                    $('#videoView').attr('src', url);
+                    // myvideo.muted=true;
+                    myvideo.load();
+                    myvideo.play();
+                    curr++;
+                    if (curr >= vLen) {
+                        curr = 0; //重新循环播放
+                    }
+                    handleImgVideoUrl(imgsAndVideos);
+                } else {
+                    
+                        
+                        // 图片
+                        // let imgUrl = prefixUrl.substring(2);
+                        let url = vList[curr].replace('1:', '');
+                        $("#videoView").hide();
+                        $("#imgView").show();
+                        $("#imgView").attr("src", url);
+                        //$('#videoView').get(0).pause();
+                        console.log("当前图片地址：" + url);
+                        curr++;
+                        if (curr >= vLen) {
+                            curr = 0; //重新循环播放
+                        }
+                        setTimeout(function () {
+                            handleImgVideoUrl(imgsAndVideos);
+                        }, 3000);
+         
+                }
+         
+            };
+        }
+
+    </script>
+</body>
+</html>

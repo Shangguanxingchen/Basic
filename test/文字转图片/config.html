@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>商场对账配置系统</div>
+	<div>
+		<span>品牌名称：</span>
+		<select name="" id="pinpai">
+			<option value="BESTSELLER">BESTSELLER</option>
+			<option value="JLINDEBERG">JLINDEBERG</option>
+		</select>
+	</div>
+	<div>报表名称：<input type="text" id="biaoming" value=""></div>
+	<div class="xiaoshouduizhang">
+		<div>
+			销售对账
+		</div>	
+		<div>
+			<lable><input type="checkbox" id="xianjin" value="xianjin">现金</lable>
+			<lable><input type="checkbox" id="shuaka" value="shuaka">刷卡</lable>
+			<lable><input type="checkbox" id="alipay" value="alipay">支付宝</lable>
+			<lable><input type="checkbox" id="wechart" value="wechart">微信</lable>
+		</div>
+	</div>
+	
+	<div><button id="submitBtn"> 提交</button></div>
+	<script src="../jquery.min.js"></script>
+	<script>
+		var $submitBtn = $('#submitBtn');
+	    
+
+
+		$submitBtn.on('click', function(){
+			var $checkboxArr = $('.xiaoshouduizhang input[type=checkbox]:checked');
+			var trs=[];
+			$checkboxArr.each(function(i,obj) {
+                trs.push(obj.value)
+            });
+			console.log(trs);
+			//console.log($checkboxArr.val());
+			var data = {
+				pinpai: $('#pinpai option:checked').val(),
+				biaoming: $('#biaoming').val(),
+				peizhi: trs
+			};
+			console.log(data);
+		});
+		
+
+	</script>
+	
+</body>
+</html>

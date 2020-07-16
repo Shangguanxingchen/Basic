@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .wp {
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div class="wp" id="wp"></div>
+    <script>
+         var dizeng = function() {
+            var wp = document.getElementById("wp");
+            var i = 1;
+            var timer;
+           
+            timer = setInterval(function() {
+                if(i>10) {
+                    clearInterval(timer);
+                    return;
+                }
+                
+                wp.innerHTML += i;
+                i++;
+
+                },1000)
+ 
+         };
+         dizeng();
+
+    </script>
+</body>
+</html>

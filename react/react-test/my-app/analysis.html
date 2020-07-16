@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <meta name="author" content="zsy">
+    <meta name="keywords" content="table, analysis">
+    <meta name="description" content="Query goods gross margin">
+    <meta name="robots" content="index, follow">
+
+    <meta name="apple-mobile-web-app-title" content="landing">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="144x14e34" href="">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="">
+    <link rel="stylesheet" href="static/build/analysis.css">
+
+    <meta name="google" value="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <title>报表分析</title>
+    <script src="static/src/js/fastclick.min.js"></script>
+    <script src="project_dashboard.js"></script>
+    <script type="text/javascript">
+        if (typeof String.prototype.startsWith != 'function') {
+            String.prototype.startsWith = function (prefix) {
+                return this.slice(0, prefix.length) === prefix;
+            };
+        }
+        String.prototype.trimrl = function () {
+            if (this[0] == '/' && this[this.length - 1] == '/') {
+                return this.substr(1, this.length - 1)
+            } else if (this[0] == '/') {
+                return this.substr(1)
+            } else if (this[this.length - 1] == '/') {
+                return this.substr(0, this.length - 1)
+            }
+            return this;
+        }
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function () {
+                FastClick.attach(document.body);
+            }, false);
+        }
+    </script>
+    <script src="static/src/js/expand.js"></script>
+</head>
+<body>
+<div id="main" class="container"></div>
+
+<script src="static/build/vendor.js"></script>
+<script src="static/build/analysis.js"></script>
+<script type="text/javascript">
+    /*var str = window.location.search, site_id = '', tenant_id = '', tenant_name = '';
+    var arr = str.split('&');
+    function getParam(str, arr){
+        for(var i=0; i<arr.length; i++){
+            if(arr[i].indexOf(str) !== -1){
+                return arr[i].split('=')[1];
+            }
+        }
+    }
+    site_id = getParam('site_id', arr);
+    tenant_id = getParam('tenant_id', arr);
+    tenant_name = getParam('tenant_name', arr);*/
+
+
+    var str = window.location.href;
+    function getParam(str){
+        var obj = {};
+        var pos_hash = str.lastIndexOf('#') ;
+        if(pos_hash != -1){
+            var search_arr = str.substr(str.indexOf('?') + 1 , ( pos_hash - str.indexOf('?') - 1)).split('&');
+        }else{
+            var search_arr = str.substr(str.indexOf('?') + 1).split('&');
+        }
+        for(var i = 0; i < search_arr.length; i++){
+            var key_value_arr = search_arr[i].split('=');
+            obj[key_value_arr[0]] = decodeURIComponent(key_value_arr[1]);
+        }
+        return obj;
+    }
+
+    var _paq = _paq || [];
+    window.onload = function(){
+        setTimeout(function(){
+            var params = getParam(str);
+            _paq.push(['enableLinkTracking', true]);
+            (function () {
+                try {
+                    var storage, SiteId, UserId;
+                    if(!!window.sessionStorage){
+                        storage = window.sessionStorage;
+                        SiteId = params.SiteId || storage.getItem("SiteId") || P_SiteId;
+                        UserId = params.UserId || storage.getItem("UserId") || '';
+                    }else{
+                        SiteId = params.SiteId || P_SiteId;
+                        UserId = params.UserId || '';
+                    }
+                    
+                    if(!!window.sessionStorage){
+                        storage = window.sessionStorage;
+                        storage.setItem("SiteId", SiteId);
+                        storage.setItem("UserId", UserId);
+                    }
+                    // 如果site_id是false,则不发送Piwik数据
+                    if(SiteId == '' || SiteId == false){
+                        return
+                    }
+                    var u="http://a2.nexttao.com/";
+                    // 当url为空不发送
+                    if(u == "" || u == "false" || u == false){
+                        return
+                    }
+                    if(!!UserId){
+                        _paq.push(['setUserId', UserId]);
+                    }
+                    _paq.push(['setTrackerUrl', u+'piwik.php']);
+                    _paq.push(['setSiteId', SiteId]);
+                    _paq.push(['setDocumentTitle', 'Dashboard-门店销售']);
+                    _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+                    _paq.push(['trackPageView']);
+                    
+                    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                    g.type = 'text/javascript';
+                    g.async = true;
+                    g.defer = true;
+                    g.src = u + 'piwik.js';
+                    s.parentNode.insertBefore(g, s);
+                } catch (e) {
+                    console.log(e);
+                }
+
+            })();
+        }, 200)
+        
+    }
+    
+</script>
+</body>
+</html>

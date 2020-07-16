@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>photos</title>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	ul li {
+		list-style: none;
+	}
+	div {
+		font-size: 0;
+	}
+	img {
+		display:inline-block;
+	}
+	div.top img {
+		width: 100%;
+		vertical-align:bottom;
+	}
+
+	div.mid li {
+		float: left;
+		display: block;
+		width:50%;
+	}
+	div.mid li img {
+		width: 100%;
+	}
+    
+	div.footer {
+		width: 100%;
+	}
+	div.footer li {
+		float: left;
+		display: block;
+		width: 33.3%;
+	}
+	div.footer li img {
+		width: 100%;
+	}
+	.clear {
+		clear: both;
+	}
+	</style>
+</head>
+<body>
+	<div class="top"><img src="./img/kelg.jpg" alt=""></div>
+	<section></section>
+	<div class="mid">
+		<ul>
+			<li><img src="./img/kelg.jpg" alt=""></li>
+			<li><img src="./img/remht.jpg" alt=""></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="footer">
+		<ul>
+			<li><img src="./img/kelg.jpg" alt=""></li>
+			<li><img src="./img/remht.jpg" alt=""></li>
+			<li><img src="./img/zhufdp.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script>
+		(function (doc, win) {
+          var docEl = doc.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+              var clientWidth = docEl.clientWidth;
+              if (!clientWidth) { return; }
+              docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+            };
+
+          if (!doc.addEventListener) return;
+          win.addEventListener(resizeEvt, recalc, false);
+          doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+
+
+        var url = "http://m.jackjones.com.cn/217497506E40000?utm_source=qroffline&utm_medium=qrlable&utm_term=qr01";
+		var arr = url.split('?');
+		var idx = arr[0].lastIndexOf('/');
+		var str = arr[0].substr(idx + 1,15);
+        alert(str);
+
+        /*方案一*/
+        (function(window,document,$,undefined) {
+        	var obj = {
+        		init: function() {
+        			this.initEvent();
+		            this.initTable();
+		            this.initDatePicker();
+		            this.renderClassifySel();
+        		},
+        		initEvent: function(){
+        			$('#newBookBtn').on('click', this.onNewBookBtnClick);
+            		$('#saveBtn').on('click', this.onSaveBtnClick);
+        		}
+        	};
+
+        	obj.init();
+        })(window,document,jQuery)
+
+        /*方案二*/
+        !function(window,document,$,undefined) {
+        	var init = function() {
+        		bindEvent();
+        	};
+        	var bindEvent = function() {
+        		$('#newBookBtn').on('click', onNewBookBtnClick);
+            	$('#saveBtn').on('click', onSaveBtnClick);
+        	}
+
+			$(document).ready(init);
+        }(window,document,jQuery)
+	</script>
+</body>
+</html>

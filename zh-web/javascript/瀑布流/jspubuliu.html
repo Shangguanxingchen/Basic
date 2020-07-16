@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			.main {
+				position: relative;
+				margin: 0 auto;
+			}
+			.box {
+				float: left;
+				margin: 0 5px;
+			}
+			.box .pic {
+			    width: 180px;
+			    height: auto;
+			    padding: 10px;
+			    border-radius: 5px;
+			    box-shadow: 0 0 5px #cccccc;
+			    border: 1px solid #cccccc;
+			}
+			.box .pic img {
+			    display: block;
+			    width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+	        <div class="box">
+	            <div class="pic"><img src="./img/1.jpg"></div>
+	        </div>
+	        <div class="box">
+	            <div class="pic"><img src="./img/2.jpg"></div>
+	        </div>
+	        <div class="box">
+	            <div class="pic"><img src="./img/3.jpg"></div>
+	        </div>
+	        <div class="box">
+	            <div class="pic"><img src="./img/4.jpg"></div>
+	        </div>
+	        <div class="box">
+	            <div class="pic"><img src="./img/5.jpg"></div>
+	        </div>
+	        <div class="box">
+	            <div class="pic"><img src="./img/6.jpg"></div>
+	        </div>
+	        <div class="box">
+	            <div class="pic"><img src="./img/7.jpg"></div>
+	        </div>
+	    </div>
+    
+    <script>
+    	window.onload = function() {
+    		init('main', 'box');
+    		
+    		//模拟json数据
+            var dataJson = {'data': [{'src':'30.jpg'},{'src':'31.jpg'},{'src':'32.jpg'},{'src':'33.jpg'},{'src':'34.jpg'},{'src':'35.jpg'},{'src':'36.jpg'},{'src':'37.jpg'},{'src':'38.jpg'},{'src':'39.jpg'},{'src':'40.jpg'},{'src':'41.jpg'},{'src':'42.jpg'},{'src':'43.jpg'},{'src':'44.jpg'},{'src':'45.jpg'}]};
+    		
+    		/*//监听scroll事件
+    		window.on('scroll', function() {
+    			var isPosting = false;
+    			if(checkScroll('main', 'box') && !isPosting) {
+    				var oParent = document.getElementById('main');
+    				for(var i in dataJson.data) {
+    					isPosting = true;
+    					var oBox = documen.createElement('div');
+    					oBox.className = 'box';
+    					oBox.innerHTML = '<div class="pic"><img src="./img/'+dataJson.data[i].src+'"></div>';
+    					oParent.appendChild(oBox);
+    				}
+    				isPosting = false;
+    				init('main', 'box');
+    			}
+    		});*/
+    		
+    		监听scroll事件
+		    window.onscroll = function(){
+		        var isPosting = false;
+		        if(checkScollSlide('main','box') && !isPosting){
+		            var oParent = document.getElementById('main');
+		            for(var i in dataJson.data){
+		                isPosting = true;
+		                var oBox = document.createElement('div');
+		                oBox.className = 'box';
+		                oBox.innerHTML = '<div class="pic"><img src="./images/'+dataJson.data[i].src+'"></div>';
+		                oParent.appendChild(oBox);
+		            }
+		            isPosting = false;
+		            waterfall('main','box');
+		        }
+		    };
+    	};
+    	/*parent 父元素id clsName 块元素类*/
+    	function init(parent, clsName) {
+    		//获取父元素
+    		var oParent = document.getElementById(parent);
+    		//获取所有box
+    		var aBoxArr = oParent.getElementsByClassName(clsName);
+    		//单个box宽度
+    		var boxW = aBoxArr[0].offsetWidth;
+    		//列数
+    		var clos = Math.floor(document.documentElement.clientWidth/boxW);
+    		oParent.style.cssText = 'width:'+boxW*clos+'px; margin:0 auto';
+    		//存储所有高度
+    		var hArr = [];
+    		for(var i=0; i<aBoxArr.length; i++) {
+    			if(i < clos) {
+    				hArr[i] = aBoxArr[i].offsetHeight;
+    			} else{
+    				//获取hArr最小值
+    				var minH = Math.min.apply(null,hArr);
+    				//hArr最小高度的索引index
+    				minHIndex = getMinHIndex(hArr, minH);
+    				aBoxArr[i].style.cssText = 'position:absolute; top:'+minH+'px; left:'+aBoxArr[minHIndex].offsetLeft+'px;';
+    				//添加元素之后更新hArr
+    				hArr[minHIndex] += aBoxArr[i].offsetHeight;
+    			}
+    		}
+    	};
+    	
+    	//得到最小高度的索引
+    	function getMinHIndex(arr, val) {
+    		for(var i=0; i<arr.length; i++) {
+    			if(arr[i] == val) {
+    				return i
+    			}
+    		}
+    	};
+    	
+    	/*//检查是否满足加载数据条件,parent 父元素id clsName 块元素类
+		function checkScollSlide(parent,clsName){
+		    var oParent = document.getElementById(parent),
+		        aBoxArr = oParent.getElementsByClassName(clsName),
+		        // 最后一个box元素的offsetTop+高度的一半
+		        lastBoxH = aBoxArr[aBoxArr.length - 1].offsetTop + aBoxArr[aBoxArr.length - 1].offsetHeight / 2,
+		        //兼容js标准模式和混杂模式
+		        scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+		        height = document.documentElement.clientHeight || document.body.clientHeight;
+		    return lastBoxH < scrollTop + height ? true : false;
+		};*/
+		
+		//检查是否满足加载数据条件
+		function checkScroll(parent, clsName) {
+			var oParent = document.getElementById(parent),
+			aBoxArr = document.getElementsByClassName(clsNamen),
+			//最后一个box元素的offsetTop高度的一半
+			lastBoxH = aBoxArr[aBoxArr.length-1].offsetTop + aBoxArr[aBoxArr.length-1].offsetHeight/2,
+			scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
+			height = document.documentElement.clientHeight || document.body.clientHeight;
+			return lastBoxH < scrollTop + height ? true : false;
+		};
+		
+		//getElementByClassName兼容性问题
+		function getElementsByCls(clsName, context) {
+            var elementsArr = [],
+                elements,
+                cls;
+
+            if (document.getElementsByClassName) {
+                return document.getElementsByClassName(clsName);
+            } else {
+
+                context = context || document;
+
+                elements = context.getElementsByTagName('*');
+
+                for (var i=0; i<elements.length; i++) {
+
+                    cls = elements[i].className;
+
+                    console.log(cls);
+
+                    if (!cls) {
+                        continue;
+                    }
+
+                    if (isInclude(clsName, cls)) {
+                        elementsArr.push(elements[i]);
+                    }
+
+                    /*if (elements[i].className != '') {
+                        console.log(elements[i].className)
+                    }*/
+
+                }
+
+                return elementsArr;
+            }
+        };
+
+    	
+    	
+    	
+    	
+
+    </script>
+	</body>
+</html>

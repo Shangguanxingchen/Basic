@@ -1,0 +1,741 @@
+<html>
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1.0, user-scalable=no"> 
+  <meta content="telephone=no" name="format-detection" />  
+  <script src="project.js"></script>
+  <script src="assets/js/get_lang_json.js"></script>
+  <script>
+    if (document.documentElement.clientWidth > 1024) { 
+      document.querySelector("meta[name=viewport]").setAttribute(
+        'content', 
+        'width=1024, initial-scale='+(document.documentElement.clientWidth/1024)+', minimum-scale=0.1, maximum-scale=2.0, user-scalable=no');
+    }
+  </script>
+  <link href="assets/css/css.css?r=1849920396" media="screen" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/datatables.css">
+  <link rel="stylesheet" href="assets/vendor/sm.min.css">
+  <link href="assets/css/style.css"  media="screen" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/sm-nx.css">
+</head>
+
+<body class="debugx">
+  <div id="bg"></div>
+  <div id="container">
+    <header style="padding-top: 30px;">
+      <!-- <span class="menu"></span> -->
+      <!-- 促销查询 -->
+      <!-- <a class="back_a" href=""><img src="/nt_pos/web_mobile/static/lzsale/src/img/cuxiao/backs.png" alt=""></a> -->
+      <div style="display: flex;justify-content: center;">
+        <div tkey="estock_title" onclick="tab_select('estock')" class="estock tab_title tab_seleted"></div>
+        <div style="display:none;" tkey="activite_type" onclick="tab_select('activite_type')" class="activite_type tab_title"></div>
+      </div>
+    </header>
+    <div class="estock_div">
+      <div class="overview">
+        <p><strong tkey="qty_available"></strong><span id="cur_all_qty1"></span></p>
+        <p><strong tkey="cur_qty_available"></strong><span id="stock_all_qty1"></span></p>
+        <p><strong tkey="diff_qty"></strong><span class="red" id="diff_all_qty1"></span></p>
+        <p><strong tkey="diff_amount"></strong><span class="red" id="diff_all_money1"></span></p>
+      </div>
+      <div class="condition">
+        <ul class="row">
+          <li class="col-50">
+            <div class="item-content item-select" style="position: relative;">
+              <select class="" name="selectType" style="z-index:99999;position: absolute;height:100%;">
+                <option value="sku">SKU</option>
+                <option value="skc">SKC</option>
+                <option value="spu">SPU</option>
+              </select>
+            </div>
+            <div class="item-content no-border item-checkbox">
+              <span class="input-checkbox">
+                  <input type="checkbox" value="1" name="is_diff" id="is_diff">
+                  <span class="inner"></span>
+                </span>
+              <label for="is_active" tkey="only_diff"></label>
+            </div>
+          </li>
+
+          <li class="col-50">
+            <div class="item-content item-search">
+              <div class="item-input">
+                <!--relative-value 表示 一个输入框 对应 一个 右侧划入的列表-->
+                <input type="text" placeholder="" placeholder-key="input_code" name="name_code" class="">
+              </div>
+            </div>
+            <div class="item-content item-button">
+              <div class="item-input">
+                <button class="button button-fill button-primary nx-btn-display" id="getList" data-table="#example" tkey="query">&nbsp;</button>
+                <button class="button button-default nx-btn-clear" tkey="clear">&nbsp;</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <table class="display nx-datatables hidden" id="example" width="100%">
+        <thead>
+          <tr>
+            <th tkey="code"></th>
+            <th tkey="qty_available"></th>
+            <th tkey="cur_qty_available"></th>
+            <th tkey="diff"></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <!-- loading -->
+      <div class="data_content">
+        <div class="loading"></div>
+        <!-- loading -->
+        <div class="loader loader--style1" title="0">
+          <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+          <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+            s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+            c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/>
+          <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+            C22.32,8.481,24.301,9.057,26.013,10.047z">
+            <animateTransform attributeType="xml"
+              attributeName="transform"
+              type="rotate"
+              from="0 20 20"
+              to="360 20 20"
+              dur="0.5s"
+              repeatCount="indefinite"/>
+            </path>
+          </svg>
+          <p tkey="loading"></p>
+        </div>  
+      </div>
+      <footer id="mainFooter"></footer>
+    </div>
+    <div class="activite_type_div">
+      <div class="overview">
+        <p><strong tkey="qty_available"></strong><span id="cur_all_qty2"></span></p>
+        <p><strong tkey="cur_qty_available"></strong><span id="stock_all_qty2"></span></p>
+        <p><strong tkey="diff_qty"></strong><span class="red" id="diff_all_qty2"></span></p>
+        <p><strong tkey="diff_amount"></strong><span class="red" id="diff_all_money2"></span></p>
+      </div>
+      <div class="condition">
+        <ul class="row">
+          <li class="col-50">
+            <div class="item-content item-select">
+              <select class="" name="selectType">
+                <option value="sku">按正价</option>
+                <option value="skc">按活动款</option>
+                <option value="spu">按赠品</option>
+              </select>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <table class="display nx-datatables2 hidden" id="example2" width="100%">
+        <thead>
+          <tr>
+            <th tkey="code"></th>
+            <th tkey="qty_available"></th>
+            <th tkey="cur_qty_available"></th>
+            <th tkey="diff"></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <!-- loading -->
+      <div class="data_content">
+        <div class="loading"></div>
+        <!-- loading -->
+        <div class="loader loader--style1" title="0">
+          <svg version="1.1" id="loader-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+          <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+            s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+            c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/>
+          <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+            C22.32,8.481,24.301,9.057,26.013,10.047z">
+            <animateTransform attributeType="xml"
+              attributeName="transform"
+              type="rotate"
+              from="0 20 20"
+              to="360 20 20"
+              dur="0.5s"
+              repeatCount="indefinite"/>
+            </path>
+          </svg>
+          <p tkey="loading"></p>
+        </div>  
+      </div>
+      <footer id="mainFooter2"></footer>
+    </div>
+  </div>
+  <div class="back" onclick="back()" style="display: none;"></div>
+  <script src="assets/vendor/jquery.min.js"></script>
+  <script src="assets/vendor/fastclick.js"></script> 
+  <script src="assets/vendor/datatables.min.js"></script>
+  <script src="assets/vendor/Scroller-1.4.2/js/dataTables.scroller.min.js"></script>
+  <script src="assets/vendor/FixedColumns-3.2.2/js/dataTables.fixedColumns.min.js"></script>
+  <script src="assets/vendor/FixedHeader-3.1.2/js/dataTables.fixedHeader.min.js"></script>
+
+  <script type="text/javascript" src="assets/js/main.js"></script>
+  <script type="text/javascript" src="assets/js/lang.js"></script>
+  <script type="text/javascript" src="assets/js/common.js"></script>
+  <script>
+    $(function() {
+      FastClick.attach(document.body);
+    });
+    function back(){
+      window.history.back();
+    }
+    
+  DT_LANG = {
+    'cn':{
+      "sProcessing":   "处理中...",
+      "sLengthMenu":   "显示 _MENU_ 项结果",
+      "sZeroRecords":  "没有匹配的数据",
+      "sInfo":         "_PAGE_ / _PAGES_",
+      "sInfoEmpty":    "",
+      "sInfoFiltered": "",
+      "sInfoPostFix":  "",
+      "sSearch":       "搜索:",
+      "sUrl":          "",
+      "sEmptyTable":     "",
+      "sLoadingRecords": "载入中...",
+      "sInfoThousands":  ",",
+      "oPaginate": {
+          "sFirst":    "首页",
+          "sPrevious": "上页",
+          "sNext":     "下页",
+          "sLast":     "末页"
+      },
+      "oAria": {
+          "sSortAscending":  ": 以升序排列此列",
+          "sSortDescending": ": 以降序排列此列"
+      }
+  },
+  'zh-Hant':{
+      "sProcessing":   "處理中...",
+      "sLengthMenu":   "顯示 _MENU_ 項結果",
+      "sZeroRecords":  "沒有匹配的數據",
+      "sInfo":         "_PAGE_ / _PAGES_",
+      "sInfoEmpty":    "",
+      "sInfoFiltered": "",
+      "sInfoPostFix":  "",
+      "sSearch":       "搜索:",
+      "sUrl":          "",
+      "sEmptyTable":     "",
+      "sLoadingRecords": "載入中...",
+      "sInfoThousands":  ",",
+      "oPaginate": {
+          "sFirst":    "首頁",
+          "sPrevious": "上頁",
+          "sNext":     "下頁",
+          "sLast":     "末頁"
+      },
+      "oAria": {
+          "sSortAscending":  ": 以升序排列此列",
+          "sSortDescending": ": 以降序排列此列"
+      }
+  },
+  'en':{
+    "sEmptyTable":     "",
+    "sInfo":           "_PAGE_ / _PAGES_",
+    "sInfoEmpty":      "Showing 0 to 0 of 0 entries",
+    "sInfoFiltered":   "",
+    "sInfoPostFix":    "",
+    "sInfoThousands":  ",",
+    "sLengthMenu":     "Show _MENU_ entries",
+    "sLoadingRecords": "Loading...",
+    "sProcessing":     "Processing...",
+    "sSearch":         "Search:",
+    "sZeroRecords":    "No Records",
+    "oPaginate": {
+        "sFirst":    "First",
+        "sLast":     "Last",
+        "sNext":     "Next",
+        "sPrevious": "Previous"
+    },
+    "oAria": {
+        "sSortAscending":  ": activate to sort column ascending",
+        "sSortDescending": ": activate to sort column descending"
+    }
+  }
+}
+</script> 
+
+<script>
+  var xhr,xhr2;
+  var _ID = getUrlParameter('id');
+  var _NUM = {'product':0,'gift':0};
+  var _time_interval = false;
+  var shop_id = getUrlParameter('shop_id') * 1;
+  // 返回地址
+  var lang = getUrlParameter('lang');
+  var _s = getUrlParameter('_s');
+
+  var _SKU = {};
+  //product_id to sku
+  function codetoSKU(code){
+    return SKUtoSKU(code);
+  }
+  function SKUtoSKU(sku){
+    var val = $('select[name=selectType]').val();
+    switch(val){
+      case 'skc':
+        sku = sku.substring(0,12);
+      break;
+      case 'spu':
+        sku = sku.substring(0,9);
+      break;
+      default:
+      break;
+    }
+    return sku;
+  }
+  var tbl, tbl2, DATA = {};
+  var render_table_example = function(){
+    if((typeof tbl !== 'undefined') && (typeof tbl !== 'undefined') && (tbl != '')){
+      tbl.destroy();
+    }
+
+    var data = DATA;
+    // stock_rack_ids  list  货架列表
+    // stock_rack_ids/line_ids list  货架明细
+    // stock_rack_ids/line_ids/product_id  int 商品
+    // stock_rack_ids/line_ids/code  string  商品编号
+    // stock_rack_ids/line_ids/quantity  int 数量
+    var LIST = {};//codetoSKU(code)
+    for(var i = 0 ; i < data.inventory_line.length;i++){
+      var o = data.inventory_line[i];
+      var sku = codetoSKU(o.code);
+      if(!!!LIST[sku]){
+        LIST[sku] = {
+            cur_qty_available:0,
+            qty_available:0,
+            diff_qty:0,
+        };
+      }
+      LIST[sku]['cur_qty_available'] += o['cur_qty_available'];
+      LIST[sku]['qty_available'] += o['qty_available'];
+      LIST[sku]['diff_qty'] += o['diff_qty'];
+      LIST[sku]['line'] = {};
+    }
+    for(var i = 0 ; i < data.stock_rack_ids.length;i++){
+            var _name = data.stock_rack_ids[i]['name'];
+            for(var j = 0 ; j < data.stock_rack_ids[i]['line_ids'].length;j++){
+                var o = data.stock_rack_ids[i]['line_ids'][j];
+                var sku = codetoSKU(o.code);
+
+                if(!!LIST[sku]){
+                  if(!!LIST[sku]['line'][_name]){
+                    LIST[sku]['line'][_name] += o.quantity; 
+                  }else{
+                    LIST[sku]['line'][_name] =  o.quantity;
+                  }
+                }else{
+                  continue;
+                  // LIST[sku] = {'line':[]};
+                  // LIST[sku]['line'].push({_name:o.quantity});
+                }
+            }
+          }
+
+    var str = '';
+    for(var ss in LIST){
+      var o = LIST[ss];
+      str += '<tr>\
+      <td>'+ss+'</td>\
+      <td>'+o.cur_qty_available+'</td>\
+      <td>'+o.qty_available+'</td>\
+      <td>'+o.diff_qty+'</td>\
+      <td>';
+
+      if(!!LIST[ss]['line']){
+        for(var ss2 in LIST[ss]['line']){
+            str += "<p><em>"+ss2+"</em><span>" + LIST[ss]['line'][ss2]+ "</span></p>";
+        }
+      }
+      str += '</td></tr>';
+    }
+    $('.nx-datatables').removeClass('hidden');
+    $('.nx-datatables tbody').html(str);
+    tbl = $('.nx-datatables').DataTable( {
+      // scrollX:'100%',
+      scrollY: '445',
+      fixedHeader: {
+          header: true,
+          footer: true
+      },
+      columnDefs:[{
+  　　　　'targets' : [4],   
+  　　　　'orderable' : false
+  　　}],
+      // "paging":   false,
+      // "info":     false,
+
+      "pagingTypeSince":($(window).width() > 480)?'simple_numbers':'simple',
+      "sPaginationType":($(window).width() > 480)?'simple_numbers':'simple',
+
+      "initComplete": function(settings, json) {
+      var id = 'example';
+        $('.estock_div footer').html('');
+        $('.estock_div footer').removeClass('hidden');
+        $('#'+id + '_length').appendTo('.estock_div footer');
+        $('#'+id + '_info').appendTo('.estock_div footer');
+        $('#'+id + '_paginate').appendTo('.estock_div footer');
+        $('.dataTables_length').remove();
+      },
+      "language": DT_LANG[langCode]
+    } )
+    filter_data();
+    // new $.fn.dataTable.FixedColumns( tbl, {
+    //         leftColumns: 1
+    //     } );
+  }
+  function deal_data(data, _list){
+      DATA = data;
+      var _list_key = ['cur_all_qty','stock_all_qty','diff_all_qty','diff_all_money']
+      for(var i = 0 ; i < _list.length;i++){
+          var ss = _list[i];
+          var s = _list_key[i];
+          if(s  == 'diff_all_money'){
+            data[s] = Math.round(data[s]*100)/100;
+          }
+          $('#'+ss).html(data[s]);
+      }  
+      render_table_example();
+
+      $('.item-select').change(function(){
+        $('.data_content').show();
+        setTimeout(function(){
+          render_table_example();
+          $('.data_content').hide();
+        },100);
+      }) 
+
+      $('.nx-btn-clear').on( 'click', function () {
+        $('input[name=name_code]').val('');
+        filter_data();
+      });
+
+      $('.nx-btn-display').on( 'click', function () {
+        filter_data();
+      });
+      $('input[name=is_diff]').on( 'change', function () {
+        filter_data();
+      });
+  }
+  
+  var render_table_example2 = function(){
+    if((typeof tbl2 !== 'undefined') && (typeof tbl2 !== 'undefined') && (tbl2 != '')){
+      tbl2.destroy();
+    }
+
+    var data = DATA;
+    // stock_rack_ids  list  货架列表
+    // stock_rack_ids/line_ids list  货架明细
+    // stock_rack_ids/line_ids/product_id  int 商品
+    // stock_rack_ids/line_ids/code  string  商品编号
+    // stock_rack_ids/line_ids/quantity  int 数量
+    var LIST = {};//codetoSKU(code)
+    for(var i = 0 ; i < data.inventory_line.length;i++){
+      var o = data.inventory_line[i];
+      var sku = codetoSKU(o.code);
+      if(!!!LIST[sku]){
+        LIST[sku] = {
+            cur_qty_available:0,
+            qty_available:0,
+            diff_qty:0,
+        };
+      }
+      LIST[sku]['cur_qty_available'] += o['cur_qty_available'];
+      LIST[sku]['qty_available'] += o['qty_available'];
+      LIST[sku]['diff_qty'] += o['diff_qty'];
+      LIST[sku]['line'] = {};
+    }
+    for(var i = 0 ; i < data.stock_rack_ids.length;i++){
+      var _name = data.stock_rack_ids[i]['name'];
+      for(var j = 0 ; j < data.stock_rack_ids[i]['line_ids'].length;j++){
+          var o = data.stock_rack_ids[i]['line_ids'][j];
+          var sku = codetoSKU(o.code);
+
+          if(!!LIST[sku]){
+            if(!!LIST[sku]['line'][_name]){
+              LIST[sku]['line'][_name] += o.quantity; 
+            }else{
+              LIST[sku]['line'][_name] =  o.quantity;
+            }
+          }else{
+            continue;
+            // LIST[sku] = {'line':[]};
+            // LIST[sku]['line'].push({_name:o.quantity});
+          }
+      }
+    }
+
+    var str = '';
+    for(var ss in LIST){
+      var o = LIST[ss];
+      str += '<tr>\
+      <td>'+ss+'</td>\
+      <td>'+o.cur_qty_available+'</td>\
+      <td>'+o.qty_available+'</td>\
+      <td>'+o.diff_qty+'</td>\
+      <td>';
+
+      if(!!LIST[ss]['line']){
+        for(var ss2 in LIST[ss]['line']){
+            str += "<p><em>"+ss2+"</em><span>" + LIST[ss]['line'][ss2]+ "</span></p>";
+        }
+      }
+      str += '</td></tr>';
+    }
+    $('.nx-datatables2').removeClass('hidden');
+    $('.nx-datatables2 tbody').html(str);
+    tbl2 = $('.nx-datatables2').DataTable( {
+      // scrollX:'100%',
+      scrollY: '445',
+      fixedHeader: {
+          header: true,
+          footer: true
+      },
+      columnDefs:[{
+  　　　　'targets' : [4],   
+  　　　　'orderable' : false
+  　　}],
+      // "paging":   false,
+      // "info":     false,
+
+      "pagingTypeSince":($(window).width() > 480)?'simple_numbers':'simple',
+      "sPaginationType":($(window).width() > 480)?'simple_numbers':'simple',
+
+      "initComplete": function(settings, json) {
+      var id = 'example2';
+        $('.activite_type_div footer').html('');
+        $('.activite_type_div footer').removeClass('hidden');
+        $('#'+id + '_length').appendTo('.activite_type_div footer');
+        $('#'+id + '_info').appendTo('.activite_type_div footer');
+        $('#'+id + '_paginate').appendTo('.activite_type_div footer');
+        $('.dataTables_length').remove();
+      },
+      "language": DT_LANG[langCode]
+    } )
+    filter_data();
+    // new $.fn.dataTable.FixedColumns( tbl, {
+    //         leftColumns: 1
+    //     } );
+  }
+  function deal_data2(data, _list){
+      DATA = data;
+      var _list_key = ['cur_all_qty','stock_all_qty','diff_all_qty','diff_all_money']
+      for(var i = 0 ; i < _list.length;i++){
+          var ss = _list[i];
+          var s = _list_key[i]
+          if(s  == 'diff_all_money'){
+            data[s] = Math.round(data[s]*100)/100;
+          }
+          $('#'+ss).html(data[s]);
+      }  
+      render_table_example2();
+
+      $('.item-select').change(function(){
+        $('.data_content').show();
+        setTimeout(function(){
+          render_table_example2();
+          $('.data_content').hide();
+        },100);
+      }) 
+
+      $('.nx-btn-clear').on( 'click', function () {
+        $('input[name=name_code]').val('');
+        filter_data();
+      });
+
+      $('.nx-btn-display').on( 'click', function () {
+        filter_data();
+      });
+      $('input[name=is_diff]').on( 'change', function () {
+        filter_data();
+      });
+  }
+  
+  function filter_data(){
+  $('.data_content').show();
+  setTimeout(function(){
+    var t1 = new Date();
+      var code = $('input[name=name_code]').val();
+      var diff = $('input[name=is_diff]').prop('checked');
+      // tbl
+      //     .columns( 0 )
+      //     .search('^('+code+')',true,true,false)
+      //     .draw();
+      // tbl
+      //     .columns( 0 )
+      //     .search(code,true,true,false)
+      //     .draw();
+
+      if(diff){
+        tbl
+            .columns( 0 )
+            .search('^('+code+')',true,true,false)
+            .columns( 3 )
+            .search('^[^0](.*)$',true,true,false)
+            .draw();
+      }else{
+        tbl
+            .columns( 0 )
+            .search('^('+code+')',true,true,false)
+            .columns( 3 )
+            .search("")
+            .draw();
+      }
+    var t2 = new Date();
+    console.log(t2 - t1);
+    $('.data_content').hide();
+  },100);
+}
+  
+  // 电子库存init
+  get_estock();
+  $('.activite_type_div').hide();
+  // tab切换
+  function tab_select(type){
+    // $(e).addClass('tab_seleted').siblings().removeClass('tab_seleted');
+    if(type=='estock'){
+      $('.estock').addClass('tab_seleted');
+      $('.activite_type').removeClass('tab_seleted');
+      $('.estock_div').show();
+      $('.activite_type_div').hide();
+      get_estock();
+    }else{
+      $('.estock').removeClass('tab_seleted');
+      $('.activite_type').addClass('tab_seleted');
+      $('.activite_type_div').show();
+      $('.estock_div').hide();
+      get_activite_type();
+    }
+  }
+  
+  // 电子库存
+  function get_estock(){
+    xhr = $.ajax({
+      url: '/nt_core/web_mobile/api?object=nt.pos.api&method=lingzhi_inventory_plan_detail_wm',
+      data: JSON.stringify({id:_ID,signature: _s}),
+      type: 'POST',
+      dataType : "json",
+      contentType: "application/json",
+      success:  function(data){
+        deal_data(data, ['cur_all_qty1','stock_all_qty1','diff_all_qty1','diff_all_money1']);
+      },
+      error:    function(d){
+        if(d.responseJSON.code == -11){
+          if(typeof js_bridge == 'object'){
+            js_bridge.callHandler('webviewForceRefresh', 
+              {   
+              }, function(response) {
+            })
+          }
+        }
+        console.log('error');
+      },
+      complete: function(){
+        console.log('complete');
+        $('.data_content').hide();
+      },
+      beforeSend : function(){
+        $('.data_content').show();
+      }
+    })
+  }
+
+  // 活动任务
+  function get_activite_type(){
+    xhr = $.ajax({
+      url: '/nt_core/web_mobile/api?object=nt.pos.api&method=lingzhi_inventory_plan_detail_wm',
+      data: JSON.stringify({id:_ID,signature: _s}),
+      type: 'POST',
+      dataType : "json",
+      contentType: "application/json",
+      success:  function(data){
+        deal_data2(data, ['cur_all_qty2','stock_all_qty2','diff_all_qty2','diff_all_money2']);
+      },
+      error:    function(d){
+        if(d.responseJSON.code == -11){
+          if(typeof js_bridge == 'object'){
+            js_bridge.callHandler('webviewForceRefresh', 
+              {   
+              }, function(response) {
+            })
+          }
+        }
+        console.log('error');
+      },
+      complete: function(){
+        console.log('complete');
+        $('.data_content').hide();
+      },
+      beforeSend : function(){
+        $('.data_content').show();
+      }
+    })
+  }
+</script>
+<script>
+  var _paq = _paq || [];
+  var str = window.location.href;
+  window.onload = function(){
+      setTimeout(function(){
+        var params = getParam(str);
+        _paq.push(['enableLinkTracking', true]);
+        (function() {
+          try {
+              
+            var storage, SiteId, UserId;
+            if(!!window.sessionStorage){
+                storage = window.sessionStorage;
+                SiteId = params.SiteId || storage.getItem("SiteId") || P_SiteId;
+                UserId = params.UserId || storage.getItem("UserId") || '';
+            }else{
+                SiteId = params.SiteId || P_SiteId;
+                UserId = params.UserId || '';
+            }
+            
+            if(!!window.sessionStorage){
+                storage = window.sessionStorage;
+                storage.setItem("SiteId", SiteId);
+                storage.setItem("UserId", UserId);
+            }
+            // 如果site_id是false,则不发送Piwik数据
+            if(SiteId == '' || SiteId == false){
+                return
+            }
+            var u="http://a2.nexttao.com/";
+            // 当url为空不发送
+            if(u == "" || u == "false" || u == false){
+                return
+            }
+            if(!!UserId){
+                _paq.push(['setUserId', UserId]);
+            }
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', SiteId]);
+            _paq.push(['setDocumentTitle', '电子库存']);
+            _paq.push(['setCustomVariable',"5","AppVersion",P_CV.AppVersion,'page']);
+            _paq.push(['trackPageView']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          }catch (e){
+              console.log(e);
+          }
+        })();
+      }, 200)
+    }
+  
+</script>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>无缝滚动</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	    ul, li {
+	    	list-style: none;
+	    }
+	    .container {
+	    	width: 100%;
+	    	max-width: 640px;
+	    	min-width: 320px;
+	    	margin: 50px auto;
+	    }
+		.banner {
+			width: 100%;
+		}
+		.banner ul {
+			width: 1000%;
+			transform: translateX(-10%);
+			-webkit-transform: translateX(-10%);
+			height: 10px;
+		}
+		.banner ul li {
+			width: 10%;
+			float: left;
+			color: red;
+			text-align: center;
+		}
+		.blue {
+			background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div class="container" id='container'>
+		<section class="banner" id="banner">
+		    <ul id="box">
+		    	<li>8</li>
+		        <li>1</li>
+		        <li>2</li>
+		        <li>3</li>
+		        <li>4</li>
+		        <li>5</li>
+		        <li>6</li>
+		        <li>7</li>
+		        <li>8</li>
+		        <li>1</li>
+		     </ul>
+	    </section>
+	</div>
+ <script>
+ 	!function() {
+ 		var banner = document.getElementById("banner");
+ 		var box = document.getElementById("box");
+	    var width = banner.clientWidth;
+	    var index = 1;
+	    var timer = setInterval(function() {
+	    	index++;
+	    	box.style.transition = 'all 0.2s';
+	    	box.style.webkitTransition = 'all 0.2s';
+	    	box.style.transform = 'translateX('+(-index*width)+' px)';
+	    },1000)
+	    document.getElementById("container").style.backgroundColor = "blue";
+	    
+ 	}();
+
+    
+ </script>
+</body>
+</html>

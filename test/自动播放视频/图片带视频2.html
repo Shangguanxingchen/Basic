@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7-dist/css/bootstrap.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+ 
+        .clear {
+            *zoom: 1;
+        }
+ 
+        .clear:after {
+            visibility: hidden;
+            content: "";
+            display: block;
+            clear: both;
+            height: 0;
+        }
+        
+        video{
+            object-fit: fill;
+        }
+
+        #show {
+            display: none;
+        }
+        </style>
+</head>
+<body>
+<div id="content">111</div>
+<!--加轮播图视频加图片-->
+<div id="show">
+    <!-- <div class="room_information">
+        <table class="table table-hover fromOne">
+            <tbody id="price">
+            </tbody>
+        </table>
+    </div> -->
+    <div class="chart">
+        <!--轮播图data-ride="carousel"-->
+        <div class="container" style="height: 100%;">
+            <div class="carousel slide" id="slidershow" data-interval="3000" data-ride="carousel" style="height: 100%;">
+                <!--图片容器-->
+                <div id="baner" class="carousel-inner" style="height: 99%; width: 82%;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../jquery.min.js"></script>
+<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+    /*setInterval(
+
+    )*/
+ 
+    //视频或图片的地址链接
+    var content = document.getElementById("content");
+    var showImg = document.getElementById("show");
+    var ele = [
+        '1.mp4',
+        '3.jpg',
+        '2.mp4'
+    ]
+    
+    //初始化追加的dome元素
+    $(function () {
+        addDoem()
+    })
+
+    //截取链接的最后一个后缀格式
+    function getExt(name) {
+        const parts = name.split('.')
+        return parts[parts.length - 1]
+    }
+ 
+    //判断文件格式类型
+    function mediaType(name) {
+        const ext = this.getExt(name)
+        // console.log('this',this)
+        if (['jpg', 'png'].includes(ext)) {
+            return 'image'
+        } else if (['mkv', 'mp4', 'ogg', 'avi'].includes(ext)) {
+            return 'video'
+        } else {
+            return 'unknown'
+        }
+    }
+
+    //追加dome元素
+    function addDoem() {
+ 
+        var imgList = ''
+        //先动态拼接dome元素，判断图片或是视频
+        for (let i = 0; i < ele.length; i++) {
+ 
+            if (mediaType(ele[i]) == 'image') {
+ 
+                imgList += " <div class='item'> "
+ 
+                imgList += "<img class='imgAdd' style='height: 100%;'/>";
+ 
+                imgList += "</div>"
+ 
+            } else {
+                imgList += " <div class='item'> "
+                imgList += "<video height=\"100%\" width=\'100%\' autoplay=\"autoplay\"  preload  muted=\"muted\">" +
+                    " <source >" + "</video>"
+                imgList += "</div>"
+            }
+        }
+        //把判断出来的dome元素分别追加到bootstrap下面的carousel-inner容器下
+        $('.carousel-inner').append(imgList)
+        // $('.carousel-inner').append(msg)
+        //追加第一个div的类名追加属性active
+        //$('.carousel-inner').children('div:eq(0)').addClass('active')
+ 
+        //重点：这里得把上面拼接到的dome元素再循环一遍判断，然后追加src属性，这里踩了个坑就是直接在上面追加src
+        //没有出来效果，因为元素还没有拼接出来，所以这里得再循环ele里面的元素再进行判断
+        var imge = []
+        var videAdd = []
+        var indexs = []
+        ele.forEach(function (value, index) {
+            if (mediaType(value) == 'image') {
+                imge.push(value)
+            } else {
+                videAdd.push(value)
+                indexs.push(index)
+            }
+        })
+        //拼接video元素
+        //判断是否存在一个视频，是的话让它重复轮播
+        var  it_length = $('.item').length
+        //如果ele的length等于1逻辑且类型等于video
+        if(it_length == 1 && mediaType(ele[0]) == 'video') {
+            var imgList = ''
+ 
+            if ($('.item').eq(0).is(':has(video)') == true) {
+                //追加多一个dome元素
+                imgList += " <div class='item'> "
+                    + "<video height=\"100%\" width=\'100%\' autoplay=\"autoplay\"  preload  muted=\"muted\">" +
+                    " <source >" + "</video>"
+                    +  "</div>"
+            }
+            $('.carousel-inner').append(imgList)
+            ele.push(ele[0])
+            for (var i = 0; i < ele.length; i++) {
+                $("video").eq(i).children('source').attr("src", ele[i])
+ 
+                var suffix = getExt(ele[i])
+ 
+                $("video").eq(i).children('source').attr("type", "video/" + suffix)
+ 
+            }
+            var indexs = [0,1]
+            for (let i = 0; i < indexs.length; i++) {
+                $('video').eq(i).attr('id', "myVideo" + indexs[i])
+            }
+ 
+            console.log('hsphsp',ele)
+        }else {
+            for (var i = 0; i < videAdd.length; i++) {
+                $("video").eq(i).children('source').attr("src", videAdd[i])
+ 
+                var suffix = getExt(videAdd[i])
+ 
+                $("video").eq(i).children('source').attr("type", "video/" + suffix)
+ 
+            }
+            //拼接img元素
+            for (let i = 0; i < imge.length; i++) {
+                $(".imgAdd").eq(i).attr("src", imge[i])
+            }
+            //video的id根据下标命名
+            console.log('indesx', indexs)
+            for (let i = 0; i < indexs.length; i++) {
+                $('video').eq(i).attr('id', "myVideo" + indexs[i])
+            }
+        }
+    }
+ 
+    //下载视频或图片
+    setInterval(() => {
+        content.style.display = "none";
+        showImg.style.display = "block";
+ 
+        console.log(document.querySelector('video#myVideo'))
+ 
+        // var vid = document.querySelector('video#myVideo')
+        var _slider_show = $('#slidershow');
+ 
+        console.log('$item',$('.item').eq(3).is(':has(video)'))
+ 
+        _slider_show.on('slide.bs.carousel', function (obj) {
+            // 当前轮播索引
+            var idx = $(this).find('.item').index(obj.relatedTarget);
+            //console.log("索引:" + idx);
+            // console.log($('.item').eq(idx).find('video'))
+            if ($('.item').eq(idx).is(':has(video)') == true) {
+ 
+            //console.log($('.item').eq(idx).find('video'))
+            //开始
+                var vid = document.querySelector('video#myVideo' + idx)
+ 
+            //引进video播放结束的判断函数
+                currentVideo(vid)
+            }else{
+                $('.carousel').carousel();
+            }
+        })
+    }, 2000)
+ 
+    //当前判断的video
+    function currentVideo(vid) {
+        var _slider_show = $('#slidershow');
+        vid.addEventListener('play', function () {
+ 
+        //console.log("开始播放");
+ 
+            $('.carousel').carousel('pause')
+ 
+        // vid.currentTime = 0;
+        });
+ 
+        //监听播放结束
+        vid.addEventListener('ended', function () {
+        //console.log("播放结束");
+            $('.carousel').carousel();
+            _slider_show.on('slide.bs.carousel', function (obj) {
+                // 当前轮播索引
+                var index = $(this).find('.item').index(obj.relatedTarget);
+                if (mediaType(ele[index]) == "video") {
+                    vid.load()
+                }
+            })
+
+            var video = document.getElementById("bestsellerVideo");
+            var content= document.getElementById("content");
+            var vList = ['1.mp4', '2.mp4','3.jpg']; 
+            var vLen = vList.length; 
+            var curr = 0; 
+            
+            video.addEventListener('ended', function(){
+                curr++;
+                if(curr < vLen){
+                    play();
+                }else {
+                    curr = 0;
+                    video.pause();
+                    content.style.display = "block";
+                    video.style.display = "none";
+                }
+            });
+        })
+    }
+
+    /*var intervalId = setInterval(function() {
+        addDoem();
+    }, 1000*60)*/
+ 
+ 
+ 
+ 
+</script>
+</html>

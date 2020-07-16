@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>FileSaver.js demo</title>
+	<style type="text/css">
+		ul{ list-style:none; padding:0px; margin:0px; width:590px;
+		height:20px; line-height:20px; border:1px solid #99CC00;
+		border-top:0px; font-size:12px;}
+		ul li{ display:block; width:33%; float:left;text-indent:2em}
+		.th{ background:#F1FADE; font-weight:bold; border-top:1px }
+	</style>
+</head>
+<body>
+
+    <table border='1' id="tb">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>民族</th>
+            </tr>
+        </thead>
+    
+        <tbody id="tBody">
+        </tbody>
+    </table> 
+
+	<!-- <table id="tb" border=4 width=250 align=center>
+		
+		<tr bgcolor="#cccccc">
+			<th><br></th>
+			<th>列-A</th>
+			<th>列-B</th>
+			<th>列-C</th>
+		</tr>
+		<tr align=center>
+			<td>行-1</td>
+			<td>A1</td>
+			<td>B1</td>
+			<td rowspan=2>C1-C2</td>
+		</tr>
+		<tr align=center>
+			<td>行-2</td>
+			<td>A2</td>
+			<td>B2</td>
+		</tr>
+		<tr align=center>
+			<td>行-3</td>
+			<td>A3</td>
+			<td colspan=2>A3-B3</td>
+		</tr>
+	</table>  -->
+	
+	<!-- <div id="tb">
+		<h1><a href="http://www.66css.com">www.66css.com</a></h1>
+		<ul class="th">
+			<li>姓名</li>
+			<li>班级</li>
+			<li>年龄</li>
+		</ul>
+		<ul>
+			<li>阿三</li>
+			<li>3-1</li>
+			<li>13</li>
+		</ul>
+		<ul>
+			<li>小龙</li>
+			<li>2-4</li>
+			<li>16</li>
+		</ul>
+		<ul>
+			<li>大马</li>
+			<li>5-3</li>
+			<li>17</li>
+		</ul>
+	</div> -->
+	<input type="button" value="导出" onClick=ExportUtil.toExcel("tb") />
+    <script src="FileSaver.min.js"></script>
+	<script src="ExportUtil.js"></script><!--工具类-->
+	
+	<script>
+	    var arr = [
+	       {name:'张三',
+	        age:20,
+	        gender:'男',
+	        nation:'汉'},
+
+	        {name:'李四',
+	        age:25,
+	        gender:'男',
+	        nation:'汉'},
+
+	        {name:'王五',
+	        age:30,
+	        gender:'男',
+	        nation:'汉'},
+
+	        {name:'候六',
+	        age:35,
+	        gender:'男',
+	        nation:'汉'},
+	    ];
+	    var renderTable = function() {
+	        var i, trArr = [];
+	        for(i=0; i<arr.length; i++) {
+	            trArr.push(
+	                '<tr>',
+	                    '<td>',arr[i].name,'</td>',
+	                    '<td>',arr[i].age,'</td>',
+	                    '<td>',arr[i].gender,'</td>',
+	                    '<td>',arr[i].nation,'</td>',
+	                '</tr>'
+	            );
+	        }
+
+	        document.getElementById('tBody').innerHTML = trArr.join("");
+	        //document.getElementById('tBody').setAttribute('id', 'tul');
+		};
+		window.onload = renderTable;
+		//demo 1
+		/*ExportUtil.toExcel([
+			["学号", "姓名", "年龄"],
+			["001", "张学友", "40"],
+			["002", "张信哲", "38"],
+			["003", "林志炫", "41"],
+			["004", "刘亦菲", "24"],
+			["005", "贾玲", "30"],
+			["006", "陈一发", "23"]
+		],"hello.xls");	*/
+		
+		//demo2
+		//ExportUtil.toExcel("tb");	
+		
+	</script>
+</body>
+</html>
